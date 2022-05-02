@@ -2,7 +2,7 @@ package com.group2022103.flightkiosk.vo;
 
 import java.util.List;
 
-public class PlaneBack {
+public class IntervalBack {
 	private List<String> flightID;
 
 	public List<String> getFlightID() {
@@ -12,4 +12,5 @@ public class PlaneBack {
 	public void setFlightID(List<String> flightID) {
 		this.flightID = flightID;
 	}
+	
 }

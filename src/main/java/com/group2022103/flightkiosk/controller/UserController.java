@@ -7,8 +7,7 @@ public class UserController {
 		var res = new UserFront();
 		var id = "get from database";
 		var tel = "get from database";
-		res.setUserId(id);
-		res.setTelNo(tel);
+
 		return res;
 	}
 }
