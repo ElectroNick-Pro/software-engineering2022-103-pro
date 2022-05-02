@@ -1,8 +1,7 @@
 package com.group2022103.flightkiosk.mapper.base;
 
 import java.nio.file.Path;
-import java.util.Arrays;
-import java.util.stream.Stream;
+import java.util.*;
 
 public class MapperImpl<T> implements Mapper<T> {
 	
@@ -28,11 +27,12 @@ public class MapperImpl<T> implements Mapper<T> {
 
 	@Override
 	public T getById(Integer id) {
+		
 		return null;
 	}
 
 	@Override
-	public Stream<T> queryAll() {
+	public List<T> queryAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}

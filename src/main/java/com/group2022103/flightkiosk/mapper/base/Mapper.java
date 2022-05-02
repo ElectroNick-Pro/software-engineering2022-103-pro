@@ -1,9 +1,9 @@
 package com.group2022103.flightkiosk.mapper.base;
 
-import java.util.stream.Stream;
+import java.util.*;
 
 public interface Mapper<T> {
 	public T getById(Integer id);
-	public Stream<T> queryAll();
+	public List<T> queryAll();
 	public T update(T obj);
 }
