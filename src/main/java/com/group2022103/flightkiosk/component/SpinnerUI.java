@@ -6,7 +6,6 @@ import java.awt.event.*;
 
 public class SpinnerUI extends JPanel{
 	private JTextField textField;
-//	private int value = 0;
 	private int max = 10;
 	private int min = 0;
 	private int step = 1;
@@ -27,7 +26,11 @@ public class SpinnerUI extends JPanel{
                 	}else {
                 		value = Integer.parseInt(textField.getText());
                 	}
-                	if(value > min) {
+                	if(value <= min) {
+                		textField.setText(""+min);
+                	}else if(value > max) {
+                		textField.setText(""+max);
+                	}else {
                     	value -= step;
                     	textField.setText(""+value);
                 	}
@@ -46,7 +49,11 @@ public class SpinnerUI extends JPanel{
                 	}else {
                 		value = Integer.parseInt(textField.getText());
                 	}
-                	if(value < max) {
+                	if(value < min) {
+                		textField.setText(""+min);
+                	}else if(value >= max) {
+                		textField.setText(""+max);
+                	}else {
                 		value += step;
                     	textField.setText(""+value);
                 	}
