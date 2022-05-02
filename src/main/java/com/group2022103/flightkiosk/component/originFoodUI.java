@@ -18,11 +18,19 @@ public class originFoodUI extends foodPanelUI{
 		this.name = name;
 		this.price = price;
 		
-		add(new JLabel("$"+price,SwingConstants.CENTER) {{
-			setBounds(0,100,200,50);
-			setFont(new Font("Microsoft YaHei UI",Font.BOLD,20));
-			setForeground(new Color(226,37,37));
-		}});	
+		if(price == 0.0) {
+			add(new JLabel("FREE",SwingConstants.CENTER) {{
+				setBounds(0,100,200,50);
+				setFont(new Font("Microsoft YaHei UI",Font.BOLD,20));
+				setForeground(new Color(0,131,255));
+			}});
+		}else {
+			add(new JLabel("$"+price,SwingConstants.CENTER) {{
+				setBounds(0,100,200,50);
+				setFont(new Font("Microsoft YaHei UI",Font.BOLD,20));
+				setForeground(new Color(226,37,37));
+			}});	
+		}
 		
 		add(ok = new JLabel(new ImageIcon("src/main/resources/image/success1.png")) {{
 			setBounds(0,80,50,50);

@@ -24,6 +24,11 @@ public class PageFrm extends JFrame{
 			setBackground(Color.WHITE);
 			setBorder(null);
 			setBounds(40,20,40,40);
+			addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+				}
+			});
 		}});
 		
 		add(new JButton() {{
@@ -33,20 +38,25 @@ public class PageFrm extends JFrame{
 			setBackground(Color.WHITE);
 			setBorder(null);
 			setBounds(880,20,40,40);
+			addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+				}
+			});
 		}});
 	}
 	
 	public void setTitleName(String title) {
 		add(new JLabel(title) {{
 			setFont(new Font("Microsoft YaHei UI", Font.BOLD, 35));
-            setBounds(45, 85, 523, 49);
+            setBounds(45, 75, 523, 49);
 		}});
 	}
 	
 	public void setHintName(String hint) {
 		add(new JLabel(hint) {{
 			setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 15));
-            setBounds(45, 125, 523, 49);
+            setBounds(45, 110, 523, 49);
 		}});
 	}
 	

@@ -27,7 +27,6 @@ public class MapperImpl<T> implements Mapper<T> {
 
 	@Override
 	public T getById(Integer id) {
-		
 		return null;
 	}
 

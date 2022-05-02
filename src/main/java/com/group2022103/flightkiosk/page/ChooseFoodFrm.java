@@ -20,7 +20,7 @@ public class ChooseFoodFrm extends PageFrm{
 		setNextButton();
 		
 		foodContent = new originFoodUI[foodNumber];
-		foodContent[0] = new originFoodUI("src/main/resources/image/Standard1.png","Standard",5,1);
+		foodContent[0] = new originFoodUI("src/main/resources/image/Standard1.png","Standard",0,1);
 		foodContent[1] = new originFoodUI("src/main/resources/image/Hamburger3.png","Hamburger",6,2);
 		foodContent[2] = new originFoodUI("src/main/resources/image/child6.png","Children",7,3);
 		foodContent[3] = new originFoodUI("src/main/resources/image/Standard1.png","Standard",5,4);
@@ -48,7 +48,6 @@ public class ChooseFoodFrm extends PageFrm{
                     	image = newChoice.getImage();
                     	name = newChoice.getName();
                     	price = newChoice.getPrice();
-//                    	System.out.println(foodID+" "+image+" "+name+" "+price);
                     }
                 });
             }
@@ -64,5 +63,6 @@ public class ChooseFoodFrm extends PageFrm{
 	
 	public void setNextAction() {
 		System.out.println("next");
+		System.out.println(foodID+" "+image+" "+name+" "+price);
 	}
 }

@@ -9,7 +9,7 @@ public class TestFrm extends PageFrm{
 	public TestFrm(){
 		super();
 		setTitleName("Retrieve");
-		setHintName("hhh");
+		setHintName("hhh111");
 		setBackButton();
 		setNextButton();
 		setBackgroundImage(new ImageIcon("src/main/resources/image/background0.png"));

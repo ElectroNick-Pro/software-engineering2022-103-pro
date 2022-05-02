@@ -8,6 +8,12 @@ public class RoundButtonUI extends JButton{
 	private Color color, color_initial, color_pressed; // ��ť��ɫ�Ͱ�ס֮�����ɫ
 	private Color color_border = null;// �߿���ɫ Ĭ��û�б߿�
 	private int arc = 8;// Ĭ�ϻ��ȴ�С
+	private int FontSize = 15;
+	
+	public RoundButtonUI(ImageIcon image,Color c_initial, Color c_pressed) {
+		super(image);
+		setButton(c_initial,c_pressed);
+	}
 	
 	public RoundButtonUI(Color c_initial, Color c_pressed) {
 		super();
@@ -27,12 +33,16 @@ public class RoundButtonUI extends JButton{
 		this.arc = arc;
 	}
 	
+	public void setFontSize(int size) {
+		this.FontSize= size;
+	}
+	
 	public void setButton(Color c_initial, Color c_pressed) {
 		color = c_initial;
 		color_initial = c_initial;
 		color_pressed = c_pressed;
 		setPreferredSize(new Dimension(75, 30));// ���尴ť��С
-		setFont(new Font("Microsoft YaHei UI", Font.BOLD, 15));// ���尴ť�ϵ��ı����壬��С
+		setFont(new Font("Microsoft YaHei UI", Font.BOLD, FontSize));// ���尴ť�ϵ��ı����壬��С
 		setFocusPainted(false);// ȥ�� �����ťʱ���ı��ܱߵ�����
 		setContentAreaFilled(false);// ��ť��������Ϊ͸����ֻ������������ʾ�������Լ��������ɫ
 		addMouseListener(new MouseAdapter() {// ͨ��������������������밴��ʱ����ť��ɫ�ı仯

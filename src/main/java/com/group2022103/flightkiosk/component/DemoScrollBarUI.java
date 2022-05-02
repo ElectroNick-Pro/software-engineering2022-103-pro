@@ -63,19 +63,11 @@ public class DemoScrollBarUI extends BasicScrollBarUI {
  
         GradientPaint gp = null;
  
-        //判断滚动条是垂直的 还是水平的
  
         if (this.scrollbar.getOrientation() == JScrollBar.VERTICAL) {
  
             //设置画笔
  
-            gp = new GradientPaint(0, 0, new Color(245, 245, 245),
- 
-                    trackBounds.width, 0, new Color(245, 245, 245));
- 
-        }
- 
-        if (this.scrollbar.getOrientation() == JScrollBar.HORIZONTAL) {
  
             gp = new GradientPaint(0, 0, new Color(255, 255, 255),
  
