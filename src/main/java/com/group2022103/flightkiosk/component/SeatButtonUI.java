@@ -25,7 +25,7 @@ public class SeatButtonUI extends JPanel {
     public SeatButtonUI(int seatId, int[] position) {
         super();
         this.seatId = seatId;
-        this.seatService = new SeatService();
+        this.seatService = new SeatService(seatId);
         this.seatChoice = this;
         setLayout(null);
         setBounds(position[0], position[1], 40, 40);

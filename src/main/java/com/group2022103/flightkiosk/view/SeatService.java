@@ -16,6 +16,10 @@ public class SeatService {
     public SeatService(Seat seat){
 
     }
+    
+    public SeatService(int seatId) {
+    	this.seatId = seatId;
+    }
 
     public SeatService(SeatButtonUI seatBtn){
         this.seatChoiceBtn = seatBtn;
@@ -36,7 +40,11 @@ public class SeatService {
 
         return this.seatChoiceBtn;
 	}
-
+	
+	public int getSeatId() {
+		return this.seatId;
+	}
+	
     public void getSeatStatus(){
 
     }

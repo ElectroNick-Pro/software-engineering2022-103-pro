@@ -1,4 +1,4 @@
-package com.group2022103.flightkiosk;
+package com.group2022103.flightkiosk.view;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
