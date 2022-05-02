@@ -8,13 +8,13 @@ import javax.swing.border.Border;
  
 /**
  * Swing
- * ÉèÖÃÔ²½Ç±ß¿ò£¨¿ÉÒÔ×Ô¶¨Òå±ß¿òµÄÑÕÉ«£©
- * ¿ÉÒÔÎªbutton£¬ÎÄ±¾¿òµÈÈËÒÔ×é¼þÌí¼Ó±ß¿ò
- * Ê¹ÓÃ·½·¨£º
- * JButton close = new JButton(" ¹Ø ±Õ ");
- * close.setOpaque(false);// ÉèÖÃÔ­À´°´Å¥±³¾°Í¸Ã÷
- * close.setBorder(new RoundBorderUI());ºÚÉ«µÄÔ²½Ç±ß¿ò
- * close.setBorder(new RoundBorderUI(Color.RED)); ºìÉ«µÄÔ²½Ç±ß¿ò
+ * ï¿½ï¿½ï¿½ï¿½Ô²ï¿½Ç±ß¿ò£¨¿ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ß¿ï¿½ï¿½ï¿½ï¿½É«ï¿½ï¿½
+ * ï¿½ï¿½ï¿½ï¿½Îªbuttonï¿½ï¿½ï¿½Ä±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó±ß¿ï¿½
+ * Ê¹ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½
+ * JButton close = new JButton(" ï¿½ï¿½ ï¿½ï¿½ ");
+ * close.setOpaque(false);// ï¿½ï¿½ï¿½ï¿½Ô­ï¿½ï¿½ï¿½ï¿½Å¥ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ï¿½
+ * close.setBorder(new RoundBorder());ï¿½ï¿½É«ï¿½ï¿½Ô²ï¿½Ç±ß¿ï¿½
+ * close.setBorder(new RoundBorder(Color.RED)); ï¿½ï¿½É«ï¿½ï¿½Ô²ï¿½Ç±ß¿ï¿½
  * new color();
  * 
  */
@@ -22,14 +22,14 @@ import javax.swing.border.Border;
 public class RoundBorderUI implements Border{
 	private Color color;
 	 
-	public RoundBorderUI(Color color) {// ÓÐ²ÎÊýµÄ¹¹Ôì·½·¨
+	public RoundBorderUI(Color color) {// ï¿½Ð²ï¿½ï¿½ï¿½ï¿½Ä¹ï¿½ï¿½ì·½ï¿½ï¿½
 		this.color = color;
 	}
 	 
-	public RoundBorderUI() {// ÎÞ²Î¹¹Ôì·½·¨
+	public RoundBorderUI() {// ï¿½Þ²Î¹ï¿½ï¿½ì·½ï¿½ï¿½
 		this.color = Color.BLACK;
-		// Èç¹ûÊµÀý»¯Ê±£¬Ã»ÓÐ´«Öµ
-		// Ä¬ÈÏÊÇºÚÉ«±ß¿ò
+		// ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½Ã»ï¿½Ð´ï¿½Öµ
+		// Ä¬ï¿½ï¿½ï¿½Çºï¿½É«ï¿½ß¿ï¿½
 	}
 	public Insets getBorderInsets(Component c) {
 		return new Insets(0, 0, 0, 0);
@@ -39,7 +39,7 @@ public class RoundBorderUI implements Border{
 		return false;
 	}
 	 
-	// ÊµÏÖBorder£¨¸¸Àà£©·½·¨
+	// Êµï¿½ï¿½Borderï¿½ï¿½ï¿½ï¿½ï¿½à£©ï¿½ï¿½ï¿½ï¿½
 	@Override
 	public void paintBorder(Component c, Graphics g, int x, int y, int width,
 			int height) {

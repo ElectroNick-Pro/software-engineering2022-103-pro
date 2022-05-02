@@ -5,9 +5,9 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class RoundButtonUI extends JButton{
-	private Color color, color_initial, color_pressed; // °´Å¥ÑÕÉ«ºÍ°´×¡Ö®ºóµÄÑÕÉ«
-	private Color color_border = null;// ±ß¿òÑÕÉ« Ä¬ÈÏÃ»ÓÐ±ß¿ò
-	private int arc = 8;// Ä¬ÈÏ»¡¶È´óÐ¡
+	private Color color, color_initial, color_pressed; // ï¿½ï¿½Å¥ï¿½ï¿½É«ï¿½Í°ï¿½×¡Ö®ï¿½ï¿½ï¿½ï¿½ï¿½É«
+	private Color color_border = null;// ï¿½ß¿ï¿½ï¿½ï¿½É« Ä¬ï¿½ï¿½Ã»ï¿½Ð±ß¿ï¿½
+	private int arc = 8;// Ä¬ï¿½Ï»ï¿½ï¿½È´ï¿½Ð¡
 	
 	public RoundButtonUI(Color c_initial, Color c_pressed) {
 		super();
@@ -31,11 +31,11 @@ public class RoundButtonUI extends JButton{
 		color = c_initial;
 		color_initial = c_initial;
 		color_pressed = c_pressed;
-		setPreferredSize(new Dimension(75, 30));// ¶¨Òå°´Å¥´óÐ¡
-		setFont(new Font("Microsoft YaHei UI", Font.BOLD, 15));// ¶¨Òå°´Å¥ÉÏµÄÎÄ±¾×ÖÌå£¬´óÐ¡
-		setFocusPainted(false);// È¥µô µã»÷°´Å¥Ê±£¬ÎÄ±¾ÖÜ±ßµÄÐéÏß
-		setContentAreaFilled(false);// °´Å¥±¾ÉíÉèÖÃÎªÍ¸Ã÷£¬Ö»ÓÐÕâÑù²ÅÄÜÏÔÊ¾³öÎÒÃÇ×Ô¼º¶¨ÒåµÄÑÕÉ«
-		addMouseListener(new MouseAdapter() {// Í¨¹ýÊó±ê¼àÌýÀ´ÉèÖÃÊó±êÒÆÈë°´ÏÂÊ±£¬°´Å¥ÑÕÉ«µÄ±ä»¯
+		setPreferredSize(new Dimension(75, 30));// ï¿½ï¿½ï¿½å°´Å¥ï¿½ï¿½Ð¡
+		setFont(new Font("Microsoft YaHei UI", Font.BOLD, 15));// ï¿½ï¿½ï¿½å°´Å¥ï¿½Ïµï¿½ï¿½Ä±ï¿½ï¿½ï¿½ï¿½å£¬ï¿½ï¿½Ð¡
+		setFocusPainted(false);// È¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Å¥Ê±ï¿½ï¿½ï¿½Ä±ï¿½ï¿½Ü±ßµï¿½ï¿½ï¿½ï¿½ï¿½
+		setContentAreaFilled(false);// ï¿½ï¿½Å¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÎªÍ¸ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É«
+		addMouseListener(new MouseAdapter() {// Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë°´ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½Å¥ï¿½ï¿½É«ï¿½Ä±ä»¯
 			public void mousePressed(MouseEvent e) {
 				color = color_pressed;
 			}
@@ -46,20 +46,20 @@ public class RoundButtonUI extends JButton{
 		});
 	}
 	
-	public void paintComponent(Graphics g) {// »æÖÆÌî³ä°´Å¥µÄÐÎ×´£ºÔ²½Ç¾ØÐÎ°´Å¥
+	public void paintComponent(Graphics g) {// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ä°´Å¥ï¿½ï¿½ï¿½ï¿½×´ï¿½ï¿½Ô²ï¿½Ç¾ï¿½ï¿½Î°ï¿½Å¥
 		Graphics2D g2d = (Graphics2D) g;
-		// ÒÔÏÂÁ½¾ä£¬ÊÇÏû³ýÔ²½ÇÖÜ±ßµÄ¾â³ÝÓÃµÄ
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ä£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô²ï¿½ï¿½ï¿½Ü±ßµÄ¾ï¿½ï¿½ï¿½Ãµï¿½
 		RenderingHints rh = new RenderingHints(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
 		g2d.addRenderingHints(rh);
-		// ÉèÖÃÌî³ä°´Å¥µÄÑÕÉ«
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ä°´Å¥ï¿½ï¿½ï¿½ï¿½É«
 		g2d.setColor(color);
-		// ÉèÖÃÌî³äÔ²½Ç¾ØÐÎÇøÓò
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô²ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		g2d.fillRoundRect(0, 0, getSize().width-1, getSize().height-1, arc,
 				arc);
 		super.paintComponent(g);
 	}
 
-	public void paintBorder(Graphics g) {// »æÖÆ°´Å¥±ß¿ò£ºÔ²½Ç¾ØÐÎ±ß¿ò
+	public void paintBorder(Graphics g) {// ï¿½ï¿½ï¿½Æ°ï¿½Å¥ï¿½ß¿ï¿½Ô²ï¿½Ç¾ï¿½ï¿½Î±ß¿ï¿½
 		if(color_border != null){
 			g.setColor(color_border);
 			g.drawRoundRect(0, 0, getSize().width-1, getSize().height-1,arc, arc);
