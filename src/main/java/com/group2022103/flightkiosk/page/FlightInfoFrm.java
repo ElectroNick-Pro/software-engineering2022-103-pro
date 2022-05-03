@@ -1,6 +1,8 @@
 package com.group2022103.flightkiosk.page;
 
 import javax.swing.*;
+
+import com.group2022103.flightkiosk.component.DemoScrollBarUI;
 import com.group2022103.flightkiosk.component.FlightInfoButtonUI;
 import com.group2022103.flightkiosk.component.FlightInfoPanelUI;
 import com.group2022103.flightkiosk.component.RoundBorderUI;
@@ -48,14 +50,14 @@ public class FlightInfoFrm extends PageFrm{
         add(new JScrollPane(buttonPane) {{
         	setBackground(Color.white);
         	setBounds(35,170,420,250);
-        	getVerticalScrollBar();
+        	getVerticalScrollBar().setUI(new DemoScrollBarUI());
         }});
         
         add(new FlightInfoPanelUI("flightbookID", "flightDate", "airline","flightTakeoff", "flightArrive",
-        	    "flightFlightNo", "flightAirport1", "flightAirport2", "flightStartTime",
+        	    "1234", "flightAirport1", "flightAirport2", "flightStartTime",
         	    "flightArriveTime","time", "flightSeat", "flightFood","12", 
         	    "5"," flightName","fligthNameID") {{
-        	    	checkLayout("Nomal","6A","sea food");
+        	   checkLayout("Nomal","6A","sea food");
         	   setBounds(500, 80, 415, 355);
         }});
         

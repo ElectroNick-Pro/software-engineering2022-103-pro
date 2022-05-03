@@ -6,14 +6,13 @@ public class TicketBack {
 	public String getSurname() {
 		return surname;
 	}
-	public void setSurname(String surName) {
-		this.surname = surName;
+	public void setSurname(String surname) {
+		this.surname = surname;
 	}
 	public String getDocumentID() {
 		return documentID;
 	}
 	public void setDocumentID(String documentID) {
 		this.documentID = documentID;
-	}
-	
+	}	
 }
