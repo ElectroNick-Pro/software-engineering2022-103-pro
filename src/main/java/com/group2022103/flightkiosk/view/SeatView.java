@@ -4,24 +4,39 @@ import javax.swing.plaf.ColorUIResource;
 
 import com.group2022103.flightkiosk.component.SeatButtonUI;
 import com.group2022103.flightkiosk.model.Seat;
+import com.group2022103.flightkiosk.vo.SeatBack;
+import com.group2022103.flightkiosk.vo.SeatFront;
 
-public class SeatService {
+public class SeatView {
     private int seatId = -1;
+    private int flightId;
     private SeatButtonUI seatChoiceBtn;
     private Seat[] allSeat;
-    public SeatService(){
+    private SeatFront seatFront;
+    private SeatBack seatBack;
+    
+
+    public SeatView(){
 
     }
 
-    public SeatService(Seat seat){
+    public SeatView(SeatBack seatBack){
+
+    }
+
+    public SeatView(SeatFront seatFront){
+
+    }
+
+    public SeatView(Seat seat){
 
     }
     
-    public SeatService(int seatId) {
+    public SeatView(int seatId) {
     	this.seatId = seatId;
     }
 
-    public SeatService(SeatButtonUI seatBtn){
+    public SeatView(SeatButtonUI seatBtn){
         this.seatChoiceBtn = seatBtn;
     }
 
