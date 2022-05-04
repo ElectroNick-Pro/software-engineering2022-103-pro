@@ -8,7 +8,8 @@ import javax.swing.plaf.ColorUIResource;
 import com.group2022103.flightkiosk.component.RoundButtonUI;
 import com.group2022103.flightkiosk.component.SeatButtonUI;
 import com.group2022103.flightkiosk.controller.SeatController;
-import com.group2022103.flightkiosk.view.SeatService;
+import com.group2022103.flightkiosk.view.SeatView;
+import com.group2022103.flightkiosk.vo.SeatBack;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -46,9 +47,13 @@ public class ChooseSeatFrm extends PageFrm{
     private int seatNum = 60;
 
     private JPanel contentPane;
-    private SeatService seatService;
+    private SeatView seatService;
     private int seatId = -1;
+    private int intervalId = 1;
     private SeatButtonUI seatChoiceBtn;
+    private SeatView seatView = new SeatView(new SeatBack() {{
+		setIntervalId(intervalId);
+	}});
     
     public ChooseSeatFrm(){
         super();
@@ -121,7 +126,7 @@ public class ChooseSeatFrm extends PageFrm{
                     seatChoiceBtn = seatBtn;
                     seatId = seatBtn.getSeatId();
                     seatBtn.setChoice();
-                    seatService = new SeatService(seatBtn);
+                    seatService = new SeatView(seatBtn);
                 }           
             });
 
