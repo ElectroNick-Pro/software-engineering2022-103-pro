@@ -2,6 +2,7 @@
 *.class
 bin/*
 test-bin/*
+data/*
 
 # Log file
 *.log
