@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 
 import com.group2022103.flightkiosk.component.ConfirmButtonUI;
 import com.group2022103.flightkiosk.component.FlightInfoPanelUI;
+import com.group2022103.flightkiosk.component.RoundButtonUI;
 import com.group2022103.flightkiosk.model.FoodPurchase;
 import com.group2022103.flightkiosk.model.Seat;
 
@@ -19,12 +20,12 @@ public class ConfirmPayFrm extends PageFrm {
     private Seat seat;
     private Double foodPrice = 50.0;
     private Double totalPrice = 100.0;
-    private ConfirmButtonUI foodBtn;
+    // private ConfirmButtonUI foodBtn = new ConfirmButtonUI("src/main/resources/image/beer3.png","Standard","Click to see the details",this.foodPrice,true);
     
 
     public ConfirmPayFrm(){
         super();
-        this.foodBtn = new ConfirmButtonUI("src/main/resources/image/beer3.png","Standard","Click to see the details",this.foodPrice,true);
+        // this.foodBtn = new ConfirmButtonUI("src/main/resources/image/beer3.png","Standard","Click to see the details",this.foodPrice,true);
         
         contentPane = new JPanel() {{
 			setLayout(null);
@@ -36,17 +37,15 @@ public class ConfirmPayFrm extends PageFrm {
             setBounds(45, 170,415,90);
         }});
         
-        add(foodBtn = new ConfirmButtonUI("src/main/resources/image/beer3.png","Standard","Click to see the details",this.foodPrice,true){{
-            //no perform
-            foodBtn.confirmButton.addActionListener(new ActionListener(){
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    new FoodChoiceFrm();
-                }
-    
-            });
-            setBounds(45, 260, 415, 85);
-        }});
+        ConfirmButtonUI foodBtn = new ConfirmButtonUI("src/main/resources/image/beer3.png", "Standard","Click to see the details", this.foodPrice, true);
+        foodBtn.confirmButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new FoodChoiceFrm();
+            }
+        });
+        foodBtn.setBounds(45, 260, 415, 85);
+        add(foodBtn);
 
         add(new ConfirmButtonUI("src/main/resources/image/child6.png","Total",this.totalPrice){{
             setBounds(45, 350, 415, 85);
