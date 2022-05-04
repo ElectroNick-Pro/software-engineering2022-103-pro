@@ -1,4 +1,4 @@
-package com.group2022103.flightkiosk.mapper.base;
+package com.group2022103.flightkiosk.base.mapper;
 
 import java.util.*;
 
