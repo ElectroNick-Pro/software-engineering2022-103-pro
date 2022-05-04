@@ -37,4 +37,8 @@ public class extraFoodUI extends foodPanelUI{
 	public int getValue() {
 		return spinner.getValue();
 	}
+
+	public void setValue(int value){
+		spinner.setValue(value);
+	}
 }

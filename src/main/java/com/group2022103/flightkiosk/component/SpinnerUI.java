@@ -76,13 +76,11 @@ public class SpinnerUI extends JPanel{
     	}else {
     		value = Integer.parseInt(textField.getText());
     	}
-		if(value > max) {
-			return max;
-		}else if(value < min) {
-			return min;
-		}else {
-			return value;
-		}
+		return value;
+	}
+
+	public void setValue(int value){
+		textField.setText(""+value);
 	}
 	
 	public static void main(String[] args) {
