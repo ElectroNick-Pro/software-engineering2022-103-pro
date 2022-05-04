@@ -41,7 +41,7 @@ public class FlightInfoPanelUI extends JPanel{
     	        
 
     	flightNo = new JLabel("Flight NO. "+flightFlightNo,JLabel.RIGHT) {{
-    		setFont(new Font("Microsoft YaHei UI", Font.BOLD, 22));
+    		setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 18));
     	}};
 
     	airport1 = new JLabel(flightAirport1, JLabel.CENTER) {{
@@ -149,11 +149,11 @@ public class FlightInfoPanelUI extends JPanel{
     	 // book,bookID,date,where,takeoff,arrive,flightNo,airport1,airport2,startTime,arriveTime,time,seat,food,
     	 // Terminal,TerminalNum,GateNo,Gate,name,ID,picture,seatClass,classNo,foodChoice
     	 bookID.setBounds(20, 15, 300, 30);
-    	 date.setBounds(290, 15, 120, 30);
+    	 date.setBounds(280, 15, 120, 30);
     	 airlineLabel.setBounds(20, 37, 150, 50);
     	 takeoff.setBounds(20, 84, 150, 42);
-    	 arrive.setBounds(260, 84, 150, 42);
-    	 flightNo.setBounds(290, 37, 200, 50);
+    	 arrive.setBounds(250, 84, 150, 42);
+    	 flightNo.setBounds(250, 37, 150, 50);
     	 airport1.setBounds(20, 135, 100, 20);
     	 airport2.setBounds(270, 135, 150, 20);
     	 startTime.setBounds(25, 174, 100, 32);
