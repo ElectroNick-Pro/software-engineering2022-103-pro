@@ -14,6 +14,10 @@ public class ApplicationContext {
 	
 	private MapperConfig mapperConfig = new MapperConfig();
 	
+	private CsvConfig csvConfig = new CsvConfig();
+	
+	private PageConfig pageConfig = new PageConfig();
+	
 	public Map<String, Object> getContext() {
 		return context;
 	}
@@ -30,4 +34,11 @@ public class ApplicationContext {
 		return mapperConfig;
 	}
 
+	public CsvConfig getCsvConfig() {
+		return csvConfig;
+	}
+
+	public PageConfig getPageConfig() {
+		return pageConfig;
+	}
 }

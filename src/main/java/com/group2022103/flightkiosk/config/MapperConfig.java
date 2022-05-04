@@ -4,9 +4,13 @@ import java.io.IOException;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Proxy;
 import java.net.URISyntaxException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
 
+import javax.swing.JOptionPane;
+
+import com.group2022103.flightkiosk.application.Application;
 import com.group2022103.flightkiosk.base.mapper.MapperHandler;
 import com.group2022103.flightkiosk.base.mapper.MapperImpl;
 import com.group2022103.flightkiosk.mapper.*;
@@ -28,6 +32,7 @@ public class MapperConfig {
 			if(!dataDirFile.mkdirs()) {
 				System.exit(1);
 			}
+			JOptionPane.showMessageDialog(null, "Data files are now in directory " + dataDir.toAbsolutePath().toString(), "File Ready", JOptionPane.PLAIN_MESSAGE);
 		}
 		
 		try {
@@ -38,8 +43,29 @@ public class MapperConfig {
 				var obj = MapperImpl.of(modelClz);
 				var storagePath = dataDir.resolve(((Class)o).getSimpleName() + ".csv");
 				
+				// File generation
 				if(!storagePath.toFile().exists()) {
-					var firstRow = new ArrayList<String>();
+					var srcStream = ClassLoader.getSystemResourceAsStream("data/"+((Class)o).getSimpleName() + ".csv");
+					if(srcStream == null) {
+						var firstRow = new ArrayList<String>();
+						for(var field: modelClz.getDeclaredFields()) {
+							firstRow.add(field.getName());
+						}
+						firstRow.sort((x,y)->{
+							if("id".equals(x)) {
+								return "".compareTo(y);
+							} else if ("id".equals(y)) {
+								return x.compareTo("");
+							} else {
+								return x.compareTo(y);
+							}
+						});
+						var firstStr = firstRow.stream().reduce((a,b)->a+","+b).get();
+						Files.createFile(storagePath);
+						Files.write(storagePath, List.of(firstStr));
+					} else {
+						Files.copy(srcStream, storagePath);
+					}
 				}
 				
 				obj.setStoragePath(storagePath);
@@ -58,13 +84,13 @@ public class MapperConfig {
 	}
 	
 	public static void main(String[] args) {
-		var _this = new MapperConfig();
+		Application.run();
+		var _this = Application.context.getMapperConfig();
 		var am = (AirlineMapper) _this.getMappers().get(AirlineMapper.class);
-		am.getById(null);
-		var pm = (PlaneMapper) _this.getMappers().get(PlaneMapper.class);
-		pm.getById(null);
-		var cm = (CustomerMapper) _this.getMappers().get(CustomerMapper.class);
-		cm.getById(null);
+		var res = am.queryAll();
+		var obj = am.getById(2);
+		res.get(0).setName("AirOneOne");
+		am.update(res.get(0));
 	}
 
 }

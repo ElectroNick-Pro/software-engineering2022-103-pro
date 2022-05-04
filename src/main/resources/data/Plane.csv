@@ -1,0 +1,6 @@
+id,airline,columnLength,rowLength,type
+1,1,4,10,PlaneTypeOne
+2,1,6,12,PlaneTypeTwo
+3,1,6,13,PlaneTypeOne
+4,2,6,10,PlaneTypeTwo
+5,2,6,12,PlaneTypeThree
