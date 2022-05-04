@@ -54,13 +54,13 @@ public class ConfirmPayFrm extends PageFrm {
 
 
 
-        // add(new FlightInfoPanelUI("flightbookID", "flightDate", "airline","flightTakeoff", "flightArrive",
-        // 	    "flightFlightNo", "flightAirport1", "flightAirport2", "flightStartTime",
-        // 	    "flightArriveTime","time", "flightSeat", "flightFood","12", 
-        // 	    "5"," flightName","fligthNameID") {{
-        // 	    checkLayout("Nomal","6A","sea food");
-        // 	   setBounds(500, 80, 415, 355);
-        // }});
+        add(new FlightInfoPanelUI("flightbookID", "flightDate", "airline","flightTakeoff", "flightArrive",
+        	    "flightFlightNo", "flightAirport1", "flightAirport2", "flightStartTime",
+        	    "flightArriveTime","time", "flightSeat", "flightFood","12", 
+        	    "5"," flightName","fligthNameID") {{
+        	    checkLayout("Nomal","6A","sea food");
+        	   setBounds(500, 80, 415, 355);
+        }});
 
         setTitleName("Confirm and Pay");
         setHintName("Please check your information and pay the bill:");
