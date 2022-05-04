@@ -11,7 +11,7 @@ public class originFoodTests {
 		JFrame f = new JFrame();
 		f.getContentPane().setBackground(Color.WHITE);
 		f.setLayout(null);
-		String image = "src/main/resources/image/standard.png";
+		String image = "src/main/resources/image/Standard1.png";
 		String name = "Standard";
 		double price = 5;
 		originFoodUI food = new originFoodUI(image,name,price,1);

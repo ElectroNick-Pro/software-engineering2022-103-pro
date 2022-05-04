@@ -47,6 +47,11 @@ public class ExtraFoodFrm extends PageFrm{
 		System.out.println("next");
 		for(int i=0;i<foodNumber;i++) {
 			if(foodContent[i].getValue() != 0) {
+				if(foodContent[i].getValue() > 10){
+					JOptionPane.showMessageDialog(null, "The upper limit of the food choice is 10.", "Error", JOptionPane.ERROR_MESSAGE);
+					foodContent[i].setValue(10);
+					return;
+				}
 				System.out.println("ID: "+foodContent[i].getFoodID()+" count: "+foodContent[i].getValue());
 			}
 		}

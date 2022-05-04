@@ -7,7 +7,6 @@ import com.group2022103.flightkiosk.component.*;
 
 public class PageFrm extends JFrame{
 	private JPanel contentPane;
-	private String title,hint;
 	private RoundButtonUI back,next;
 	private JLabel backgroundImage;
 	public PageFrm() {
@@ -16,6 +15,10 @@ public class PageFrm extends JFrame{
 			setBackground(Color.WHITE);
 		}};
 		setContentPane(contentPane);
+		setSize(965,550);
+		setResizable(false);
+		setTitle("Check-In Kiosk");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		add(new JButton() {{
 			setIcon(new ImageIcon("src/main/resources/image/exit.png") {{
