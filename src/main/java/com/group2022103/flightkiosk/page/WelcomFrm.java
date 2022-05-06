@@ -6,7 +6,7 @@ import java.awt.event.*;
 import com.group2022103.flightkiosk.component.*;
 
 public class WelcomFrm extends PageFrm{
-    private WelcomFrm(){
+    public WelcomFrm(){
         super();
        
         //setTitleName("Welcome");
