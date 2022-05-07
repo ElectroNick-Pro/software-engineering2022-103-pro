@@ -5,6 +5,10 @@ import java.awt.*;
 import java.awt.event.*;
 import com.group2022103.flightkiosk.component.*;
 
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class WelcomFrm extends PageFrm{
     public WelcomFrm(){
         super();
@@ -17,8 +21,20 @@ public class WelcomFrm extends PageFrm{
                 setBounds(257,72,445,86);
             }
         });
-        setBackgroundImage(new ImageIcon("src/main/resources/image/backgroundAirplane.png"));
-        add(new RoundButtonUI("START", new Color(0,131,255), new Color(0,105,206)){
+
+        setBackgroundImage(new ImageIcon("src/main/resources/image/welcome5.gif"));
+        long time=2500;
+        TimerTask tt=new TimerTask() {
+            public void run(){
+                setNewBackgroundImage(new ImageIcon("src/main/resources/image/welcome1.jpg"));
+                //System.out.println("Well");
+            }
+        };
+        Timer timer=new Timer(){{
+            schedule(tt, time);
+        }
+        };
+       add(new RoundButtonUI("START", new Color(0,131,255), new Color(0,105,206)){
             {
                 setForeground(Color.WHITE);
                 setFont(new Font("Microsoft YaHei UI",Font.BOLD,30));

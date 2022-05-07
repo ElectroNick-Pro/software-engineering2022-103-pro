@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch WelcomFrm",
+            "request": "launch",
+            "mainClass": "com.group2022103.flightkiosk.page.WelcomFrm",
+            "projectName": "software-engineering2022-103-pro"
+        },
+        {
+            "type": "java",
             "name": "Launch Current File",
             "request": "launch",
             "mainClass": "${file}"
