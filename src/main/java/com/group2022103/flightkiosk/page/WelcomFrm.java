@@ -23,7 +23,7 @@ public class WelcomFrm extends PageFrm{
         });
 
         setBackgroundImage(new ImageIcon("src/main/resources/image/welcome5.gif"));
-        long time=2500;
+        long time=3000;
         TimerTask tt=new TimerTask() {
             public void run(){
                 setNewBackgroundImage(new ImageIcon("src/main/resources/image/welcome1.jpg"));
