@@ -1,12 +1,15 @@
 package com.group2022103.flightkiosk.page;
 
+import com.group2022103.flightkiosk.application.Application;
 import com.group2022103.flightkiosk.component.*;
+import com.group2022103.flightkiosk.exception.UnboundPageException;
 import com.group2022103.flightkiosk.view.*;
 import com.group2022103.flightkiosk.vo.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.nio.file.Path;
 
 public class PaymentFrm extends JFrame{
     private JPanel contentPane;
@@ -22,6 +25,8 @@ public class PaymentFrm extends JFrame{
         setSize(520, 400);
         setResizable(false);
         setTitle("Payment");
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        setLocationRelativeTo(null);
 
         add(new JLabel("Pay your budget"){{
             setBounds(35, 10, 350, 50);
@@ -107,10 +112,24 @@ public class PaymentFrm extends JFrame{
     public void OKAction(){
         if(panel2.isVisible()){
             // success
+            dispose();
+            try {
+                new CheckInFrm();
+                Application.context.getPageConfig().displayPage(Path.of("/Retrieve/Flight Information/Choose Seat/Choose Food/Extra Food/Confirm and Pay/Check in"));
+            } catch (UnboundPageException e1) {
+                e1.printStackTrace();
+            }
         }else{
             new CustomerView(new CustomerBack()){{
                 if(isValid(creditId.getText(),password.getText())){
                     // success
+                    dispose();
+                    try {
+                        new CheckInFrm();
+                        Application.context.getPageConfig().displayPage(Path.of("/Retrieve/Flight Information/Choose Seat/Choose Food/Extra Food/Confirm and Pay/Check in"));
+                    } catch (UnboundPageException e1) {
+                        e1.printStackTrace();
+                    }
                 }else{
                     creditId.setText("");
                     password.setText("");

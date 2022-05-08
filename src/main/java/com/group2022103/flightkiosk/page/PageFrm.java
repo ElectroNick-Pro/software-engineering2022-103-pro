@@ -3,7 +3,10 @@ package com.group2022103.flightkiosk.page;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+
+import com.group2022103.flightkiosk.application.Application;
 import com.group2022103.flightkiosk.component.*;
+import com.group2022103.flightkiosk.exception.UnboundPageException;
 
 public class PageFrm extends JFrame{
 	private JPanel contentPane;
@@ -88,6 +91,12 @@ public class PageFrm extends JFrame{
 	}
 	
 	public void setBackAction() {
+		System.out.println("back");
+		try {
+			Application.context.getPageConfig().goBack();
+		} catch (UnboundPageException e1) {
+			e1.printStackTrace();
+		}
 	}
 	
 	public void setNextAction() {

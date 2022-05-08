@@ -179,6 +179,13 @@ public class RetrieveFrm extends PageFrm{
 					}else{
 						Application.context.getContext().put("customerID",customerID);
 						// jump to the Flight Information page
+						try {
+							new FlightInfoFrm();
+							Application.context.getPageConfig().displayPage(path.resolve(Path.of("/Retrieve/Flight Information")));
+						} catch (UnboundPageException e1) {
+							e1.printStackTrace();
+							return;
+						}
 					}
 				}
 			}

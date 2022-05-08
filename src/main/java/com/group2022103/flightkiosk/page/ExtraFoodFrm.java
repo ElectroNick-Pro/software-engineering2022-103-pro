@@ -2,23 +2,27 @@ package com.group2022103.flightkiosk.page;
 
 import com.group2022103.flightkiosk.application.Application;
 import com.group2022103.flightkiosk.component.*;
+import com.group2022103.flightkiosk.exception.UnboundPageException;
 import com.group2022103.flightkiosk.view.*;
 import com.group2022103.flightkiosk.vo.FoodBack;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.nio.file.Path;
 import java.util.ArrayList;
 
 public class ExtraFoodFrm extends PageFrm{
 	private extraFoodUI[] foodContent;	
 	private int foodNumber;
+	private Path path = Path.of("/Retrieve/Flight Information/Choose Seat/Choose Food/Extra Food");
 	public ExtraFoodFrm() {
 		super();
 		setTitleName("Extra Food");
 		setHintName("You can choose some extra food:");
 		setBackButton();
 		setNextButton();
+		Application.context.getPageConfig().bindPage(this.path, this);
 
 		// OriginFood originFood = (OriginFood)Application.context.getContext().get("OriginFood");
 		// int FoodID = originFood.getFoodID();
@@ -46,10 +50,6 @@ public class ExtraFoodFrm extends PageFrm{
 		}});
 	}
 	
-	public void setBackAction() {
-		System.out.println("back");
-	}
-	
 	public void setNextAction() {
 		System.out.println("next");
 		ArrayList<OriginFood> ExtraFood = new ArrayList<OriginFood>();
@@ -69,8 +69,13 @@ public class ExtraFoodFrm extends PageFrm{
 				}
 			}
 			Application.context.getContext().put("ExtraFood",ExtraFood);
-			this.dispose();
-			new ConfirmPayFrm().setVisible(true);
+			try {
+				new ConfirmPayFrm();
+				Application.context.getPageConfig().displayPage(path.resolve(Path.of("/Retrieve/Flight Information/Choose Seat/Choose Food/Extra Food/Confirm and Pay")));
+			} catch (UnboundPageException e1) {
+				e1.printStackTrace();
+				return;
+			}
 		}else{
 			JOptionPane.showMessageDialog(null, "The upper limit of the food choice is 10.", "Error", JOptionPane.ERROR_MESSAGE);
 		}

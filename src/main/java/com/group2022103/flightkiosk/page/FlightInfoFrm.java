@@ -7,6 +7,7 @@ import com.group2022103.flightkiosk.component.DemoScrollBarUI;
 import com.group2022103.flightkiosk.component.FlightInfoButtonUI;
 import com.group2022103.flightkiosk.component.FlightInfoPanelUI;
 import com.group2022103.flightkiosk.component.RoundBorderUI;
+import com.group2022103.flightkiosk.exception.UnboundPageException;
 import com.group2022103.flightkiosk.view.TicketView;
 import com.group2022103.flightkiosk.vo.TicketBack;
 
@@ -66,12 +67,16 @@ public class FlightInfoFrm extends PageFrm{
         }});
         
 	}
-	public void setBackAction() {
-		System.out.println("back");
-	}
 	
 	public void setNextAction() {
 		System.out.println("next");
+		try {
+			new ChooseSeatFrm();
+			Application.context.getPageConfig().displayPage(path.resolve(Path.of("/Retrieve/Flight Information/Choose Seat")));
+		} catch (UnboundPageException e1) {
+			e1.printStackTrace();
+			return;
+		}
 	}
 	public static void main(String[] args) {
 		FlightInfoFrm f = new FlightInfoFrm();

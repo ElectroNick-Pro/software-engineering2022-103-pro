@@ -37,7 +37,7 @@ public class WelcomeFrm extends PageFrm {
                 schedule(tt, time);
             }
         };
-        add(new RoundButtonUI("START", new Color(0, 131, 255), new Color(0, 105, 206)) {
+        add(new RoundButtonUI("START", new Color(0,131,255), new Color(0,105,206)) {
             {
                 setForeground(Color.WHITE);
                 setFont(new Font("Microsoft YaHei UI", Font.BOLD, 30));

@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.WindowConstants;
 
 import com.group2022103.flightkiosk.component.ConfirmButtonUI;
 import com.group2022103.flightkiosk.component.DemoScrollBarUI;
@@ -16,12 +17,7 @@ public class FoodChoiceFrm extends PageFrm{
     private JPanel contentPane;
     public FoodChoiceFrm(){
         super();
-        
-        contentPane = new JPanel() {{
-            setLayout(null);
-            setBackground(Color.WHITE);
-        }};
-        setContentPane(contentPane);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
         add(new JLabel("Details of food choice"){{
             setBounds(26, 25, 360, 42);

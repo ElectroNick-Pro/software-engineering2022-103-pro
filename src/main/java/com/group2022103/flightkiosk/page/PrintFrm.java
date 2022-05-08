@@ -7,10 +7,13 @@ import java.awt.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import com.group2022103.flightkiosk.application.Application;
 import com.group2022103.flightkiosk.component.RoundBorderUI;
+import com.group2022103.flightkiosk.exception.UnboundPageException;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.nio.file.Path;
 
 public class PrintFrm extends PageFrm{
 	private static final int MIN_PROGRESS = 0;
@@ -20,6 +23,7 @@ public class PrintFrm extends PageFrm{
     public PrintFrm() {
     	super();
 		setBackgroundImage(new ImageIcon(ClassLoader.getSystemResource("image/backgroundBlue.png")));
+		setLocationRelativeTo(null);
 
         image = new ImageIcon(ClassLoader.getSystemResource("image/loading.gif"));// background picture
 		image.setImage(image.getImage().getScaledInstance(300,210,Image.SCALE_DEFAULT));// setSize
@@ -47,13 +51,20 @@ public class PrintFrm extends PageFrm{
         }};
         add(progressBar);
 
-        new Timer(200, new ActionListener() {
+        new Timer(20, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 currentProgress++;
                 progressBar.setValue(currentProgress);
                 if (currentProgress >= MAX_PROGRESS) {
                     ((Timer) e.getSource()).stop();
+					dispose();
+					try {
+						new WelcomeFrm();
+						Application.context.getPageConfig().displayPage(Path.of("Welcome"));
+					} catch (UnboundPageException e1) {
+						e1.printStackTrace();
+					}
                 }
             }
         }).start();

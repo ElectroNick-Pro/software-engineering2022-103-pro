@@ -4,8 +4,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.event.ActionEvent;
+
+import com.group2022103.flightkiosk.application.Application;
 import com.group2022103.flightkiosk.component.*;
+import com.group2022103.flightkiosk.exception.UnboundPageException;
+
 import java.awt.event.ActionListener;
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,7 +42,7 @@ public class Notice extends JFrame implements ActionListener {
         });
 
         setContentPane(panel1);
-        add(new RoundButtonUI("I have noticed", Color.WHITE, new Color(226, 226, 226)) {
+        add(new RoundButtonUI("I have noticed", new Color(0,131,255), new Color(0,105,206)) {
             {
                 setForeground(Color.WHITE);
                 setBackground(Color.red);
@@ -52,7 +57,13 @@ public class Notice extends JFrame implements ActionListener {
                         if (cmd.equals("I have noticed")) {
                             setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                             dispose();
-                            new RetrieveFrm();
+                            try {
+                                new RetrieveFrm();
+                                Application.context.getPageConfig().displayPage(Path.of("/Retrieve"));
+                            } catch (UnboundPageException e1) {
+                                e1.printStackTrace();
+                                return;
+                            }
                         }
 
                     }

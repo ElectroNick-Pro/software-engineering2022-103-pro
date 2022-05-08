@@ -31,7 +31,8 @@ public class SeatButtonUI extends JPanel {
         setLayout(null);
         setBounds(position[0], position[1], 40, 40);
         ColorUIResource[] color =  seatView.getButtonColor(seatId);
-        setBackground(Color.WHITE);
+        // setBackground(Color.WHITE);
+        setOpaque(false);
 
         add(choose = new JLabel(new ImageIcon("src/main/resources/image/success1.png")) {{
 			setBounds(0,0, 35, 35);
