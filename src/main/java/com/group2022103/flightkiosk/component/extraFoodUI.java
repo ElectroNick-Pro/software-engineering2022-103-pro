@@ -2,17 +2,21 @@ package com.group2022103.flightkiosk.component;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 
 public class extraFoodUI extends foodPanelUI{
 	public RoundButtonUI foodButton;
-	private int foodID;
-	private int count;
 	private SpinnerUI spinner;
-	public extraFoodUI(String image,String name,double price,int foodID) {
+	private String image;
+	private String name;
+	private double price;
+	private int foodID;
+	public extraFoodUI(int foodID,String image,String name,double price) {
 		super(image,name);
 		
 		this.foodID = foodID;
+		this.image = image;
+		this.name = name;
+		this.price = price;
 		
 		add(new JLabel("$"+price,SwingConstants.CENTER) {{
 			setBounds(0,100,100,50);
@@ -32,6 +36,18 @@ public class extraFoodUI extends foodPanelUI{
 	
 	public int getFoodID() {
 		return foodID;
+	}
+
+	public String getImage(){
+		return this.image;
+	}
+
+	public String getName(){
+		return this.name;
+	}
+
+	public double getPrice(){
+		return this.price;
 	}
 	
 	public int getValue() {

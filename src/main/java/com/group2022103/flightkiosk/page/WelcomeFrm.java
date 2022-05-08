@@ -5,8 +5,8 @@ import java.awt.*;
 import java.awt.event.*;
 import com.group2022103.flightkiosk.component.*;
 
-public class WelcomFrm extends PageFrm{
-    private WelcomFrm(){
+public class WelcomeFrm extends PageFrm{
+    public WelcomeFrm(){
         super();
        
         //setTitleName("Welcome");
@@ -38,7 +38,7 @@ public class WelcomFrm extends PageFrm{
         setSize(960,540);
     }
     public static void main (String[] args){
-        WelcomFrm w=new WelcomFrm();
+        WelcomeFrm w=new WelcomeFrm();
         w.setLocationRelativeTo(null);
         w.setVisible(true);
     }

@@ -2,7 +2,6 @@ package com.group2022103.flightkiosk.component;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 
 public class originFoodUI extends foodPanelUI{
 	public RoundButtonUI foodButton;
@@ -10,7 +9,7 @@ public class originFoodUI extends foodPanelUI{
 	private double price;
 	private int foodID;
 	private JLabel ok;
-	public originFoodUI(String image,String name,double price,int foodID) {
+	public originFoodUI(int foodID,String image,String name,double price) {
 		super(image,name);
 		
 		this.foodID = foodID;

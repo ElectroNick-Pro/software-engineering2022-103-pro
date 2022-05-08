@@ -1,6 +1,12 @@
 package com.group2022103.flightkiosk.page;
 
+import com.group2022103.flightkiosk.application.Application;
 import com.group2022103.flightkiosk.component.*;
+import com.group2022103.flightkiosk.view.CustomerView;
+import com.group2022103.flightkiosk.view.TicketView;
+import com.group2022103.flightkiosk.vo.CustomerBack;
+import com.group2022103.flightkiosk.vo.TicketBack;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -9,6 +15,7 @@ import java.util.*;
 
 public class RetrieveFrm extends PageFrm{
 	private JPanel contentPane,panel1,panel2,panel3;
+	private JTextField bookingIdField,surnameField,customerIdField;
 	public RetrieveFrm(){
 		super();
 		setTitleName("Retrieve");
@@ -17,6 +24,11 @@ public class RetrieveFrm extends PageFrm{
 		add(new RoundButtonUI("Retrieve",new Color(0,131,255), new Color(0,105,206)){{
 			setBounds(45,370,435,38);
 			setForeground(Color.WHITE);
+			addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    RetrieveAction();
+                }
+            });
 		}});
 
 		add(panel1 = new JPanel() {{
@@ -28,7 +40,7 @@ public class RetrieveFrm extends PageFrm{
 				setFont(new Font("Microsoft YaHei UI",Font.LAYOUT_LEFT_TO_RIGHT,18));
 				setBounds(0,0,435,70);
 			}});
-			add(new JTextField() {{
+			add(bookingIdField = new JTextField() {{
 				setBounds(1,95,435,38);
 			}});
 		}});
@@ -42,14 +54,14 @@ public class RetrieveFrm extends PageFrm{
 				setFont(new Font("Microsoft YaHei UI",Font.LAYOUT_LEFT_TO_RIGHT,18));
 				setBounds(0,0,435,70);
 			}});
-			add(new JTextField() {{
+			add(surnameField = new JTextField() {{
 				setBounds(1,63,435,38);
 			}});
 			add(new JLabel("Please enter your ID number:") {{
 				setFont(new Font("Microsoft YaHei UI",Font.LAYOUT_LEFT_TO_RIGHT,18));
 				setBounds(0,90,435,70);
 			}});
-			add(new JTextField() {{
+			add(customerIdField = new JTextField() {{
 				setBounds(1,155,435,38);
 			}});
 		}});
@@ -115,5 +127,59 @@ public class RetrieveFrm extends PageFrm{
 	            }
 	        });
 		}});
+	}
+
+	public void RetrieveAction(){
+		var bookingID = bookingIdField.getText();
+		var surname = surnameField.getText();
+		var customerID = customerIdField.getText();
+		TicketView ticketView;
+		CustomerView customerView;
+		if(panel1.isVisible()){
+			if(bookingID.equals("")){
+				JOptionPane.showMessageDialog(null, "Please enter your bookingID.", "Error", JOptionPane.ERROR_MESSAGE);
+			}else{
+				ticketView = new TicketView(new TicketBack(){{
+					setBookingID(bookingID);
+				}});
+				if(ticketView.getTicketNumber() == 0){
+					JOptionPane.showMessageDialog(null, "This bookingID does not exist!", "Error", JOptionPane.ERROR_MESSAGE);
+				}else{
+					Application.context.getContext().put("bookingID",bookingID);
+					// jump to the Flight Information page
+				}
+			}
+		}else if(panel2.isVisible()){
+			if(surname.equals("") || (customerID.equals(""))){
+				JOptionPane.showMessageDialog(null,"Please enter your surname and ID number.","Error",JOptionPane.ERROR_MESSAGE);
+			}else{
+				customerView = new CustomerView(new CustomerBack(){{
+					setCustomerID(customerID);
+				}});
+				if(customerView.getSurname().equals("")){
+					JOptionPane.showMessageDialog(null, "The ID number you entered does not exist!", "Error", JOptionPane.ERROR_MESSAGE);
+				}else if(!surname.equals(customerView.getSurname())){
+					JOptionPane.showMessageDialog(null, "Your surname and ID number does not match!", "Error", JOptionPane.ERROR_MESSAGE);
+				}else{
+					ticketView = new TicketView(new TicketBack(){{
+						setDocumentID(customerID);
+					}});
+					if(ticketView.getTicketNumber() == 0){
+						JOptionPane.showMessageDialog(null, "This bookingID does not exist!", "Error", JOptionPane.ERROR_MESSAGE);
+					}else{
+						Application.context.getContext().put("customerID",customerID);
+						// jump to the Flight Information page
+					}
+				}
+			}
+		}else{
+			
+		}
+	}
+
+	public static void main(String args[]) {
+		Application.run();
+		RetrieveFrm f = new RetrieveFrm();
+		f.setVisible(true);
 	}
 }

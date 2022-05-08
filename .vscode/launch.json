@@ -6,6 +6,34 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch RetrieveFrm",
+            "request": "launch",
+            "mainClass": "com.group2022103.flightkiosk.page.RetrieveFrm",
+            "projectName": "software-engineering2022-103-pro"
+        },
+        {
+            "type": "java",
+            "name": "Launch PaymentFrm",
+            "request": "launch",
+            "mainClass": "com.group2022103.flightkiosk.page.PaymentFrm",
+            "projectName": "software-engineering2022-103-pro"
+        },
+        {
+            "type": "java",
+            "name": "Launch ExtraFoodFrm",
+            "request": "launch",
+            "mainClass": "com.group2022103.flightkiosk.page.ExtraFoodFrm",
+            "projectName": "software-engineering2022-103-pro"
+        },
+        {
+            "type": "java",
+            "name": "Launch ChooseFoodFrm",
+            "request": "launch",
+            "mainClass": "com.group2022103.flightkiosk.page.ChooseFoodFrm",
+            "projectName": "software-engineering2022-103-pro"
+        },
+        {
+            "type": "java",
             "name": "Launch Current File",
             "request": "launch",
             "mainClass": "${file}"

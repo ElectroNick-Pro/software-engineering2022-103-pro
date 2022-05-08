@@ -11,7 +11,7 @@ public class TicketViewTest {
 	public void test() {
 		TicketView ticketView = new TicketView(new TicketBack() {{
 			setSurname("");
-			setDocumentID("");
+			setCustomerID("");
 		}});
 		assertEquals(1,ticketView.getTicketFront().getTickets().size());
 		var tickets = ticketView.getTicketFront().getTickets().toArray();

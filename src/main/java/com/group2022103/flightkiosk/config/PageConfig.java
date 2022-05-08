@@ -6,7 +6,7 @@ import java.util.*;
 import javax.swing.JFrame;
 
 import com.group2022103.flightkiosk.exception.UnboundPageException;
-import com.group2022103.flightkiosk.page.WelcomFrm;
+import com.group2022103.flightkiosk.page.WelcomeFrm;
 
 
 public class PageConfig {
@@ -48,7 +48,7 @@ public class PageConfig {
     @SuppressWarnings("unchecked")
     public PageConfig() {
         try {
-            pagePathMap.put(Path.of("Welcome"), new WelcomFrm());
+            pagePathMap.put(Path.of("Welcome"), new WelcomeFrm());
             displayPage(Path.of("Welcome"));
         } catch (UnboundPageException e) {
             e.printStackTrace();

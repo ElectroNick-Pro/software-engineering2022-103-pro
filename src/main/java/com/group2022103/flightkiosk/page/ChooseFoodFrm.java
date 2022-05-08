@@ -1,16 +1,19 @@
 package com.group2022103.flightkiosk.page;
 
+import com.group2022103.flightkiosk.application.Application;
 import com.group2022103.flightkiosk.component.*;
+import com.group2022103.flightkiosk.model.Food;
+import com.group2022103.flightkiosk.view.*;
+import com.group2022103.flightkiosk.vo.*;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 public class ChooseFoodFrm extends PageFrm{
 	private originFoodUI[] foodContent;	
-	private int foodNumber = 9;
-	private String image,name;
-	private double price;
-	private int foodID;
+	private int foodNumber;
 	private originFoodUI foodChoice;
 	public ChooseFoodFrm() {
 		super();
@@ -18,17 +21,11 @@ public class ChooseFoodFrm extends PageFrm{
 		setHintName("You can choose a type of food you perfer:");
 		setBackButton();
 		setNextButton();
-		
-		foodContent = new originFoodUI[foodNumber];
-		foodContent[0] = new originFoodUI("src/main/resources/image/Standard1.png","Standard",0,1);
-		foodContent[1] = new originFoodUI("src/main/resources/image/Hamburger3.png","Hamburger",6,2);
-		foodContent[2] = new originFoodUI("src/main/resources/image/child6.png","Children",7,3);
-		foodContent[3] = new originFoodUI("src/main/resources/image/Standard1.png","Standard",5,4);
-		foodContent[4] = new originFoodUI("src/main/resources/image/Hamburger3.png","Hamburger",6,5);
-		foodContent[5] = new originFoodUI("src/main/resources/image/child6.png","Children",7,6);
-		foodContent[6] = new originFoodUI("src/main/resources/image/Standard1.png","Standard",5,7);
-		foodContent[7] = new originFoodUI("src/main/resources/image/Hamburger3.png","Hamburger",6,8);
-		foodContent[8] = new originFoodUI("src/main/resources/image/child6.png","Children",7,9);
+
+		new FoodView(new FoodBack()){{
+			foodContent = getOriginFoodUI();
+			foodNumber = foodContent.length;
+		}};
 		
 		add(new JScrollPane(new JPanel() {{
 			setLayout(new GridLayout(0,4,20,0));
@@ -44,10 +41,6 @@ public class ChooseFoodFrm extends PageFrm{
                     	}
                     	newChoice.setChoice();
                     	foodChoice = newChoice;
-                    	foodID = newChoice.getFoodID();
-                    	image = newChoice.getImage();
-                    	name = newChoice.getName();
-                    	price = newChoice.getPrice();
                     }
                 });
             }
@@ -63,6 +56,14 @@ public class ChooseFoodFrm extends PageFrm{
 	
 	public void setNextAction() {
 		System.out.println("next");
-		System.out.println(foodID+" "+image+" "+name+" "+price);
+		Application.context.getContext().put("OriginFood",new OriginFood(foodChoice.getFoodID(),foodChoice.getImage(),foodChoice.getName(),foodChoice.getPrice(),1));
+		this.dispose();
+		new ExtraFoodFrm().setVisible(true);
+	}
+
+	public static void main(String args[]) {
+		Application.run();
+		ChooseFoodFrm f = new ChooseFoodFrm();
+		f.setVisible(true);
 	}
 }
