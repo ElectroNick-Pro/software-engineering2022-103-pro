@@ -2,6 +2,7 @@ package com.group2022103.flightkiosk.page;
 
 import com.group2022103.flightkiosk.application.Application;
 import com.group2022103.flightkiosk.component.*;
+import com.group2022103.flightkiosk.exception.UnboundPageException;
 import com.group2022103.flightkiosk.view.CustomerView;
 import com.group2022103.flightkiosk.view.TicketView;
 import com.group2022103.flightkiosk.vo.CustomerBack;
@@ -16,10 +17,12 @@ import java.util.*;
 public class RetrieveFrm extends PageFrm{
 	private JPanel contentPane,panel1,panel2,panel3;
 	private JTextField bookingIdField,surnameField,customerIdField;
+	private Path path = Path.of("/Retrieve");
 	public RetrieveFrm(){
 		super();
 		setTitleName("Retrieve");
 		setBackgroundImage(new ImageIcon("src/main/resources/image/travel.png"));
+		Application.context.getPageConfig().bindPage(this.path, this);
 		
 		add(new RoundButtonUI("Retrieve",new Color(0,131,255), new Color(0,105,206)){{
 			setBounds(45,370,435,38);
@@ -147,6 +150,13 @@ public class RetrieveFrm extends PageFrm{
 				}else{
 					Application.context.getContext().put("bookingID",bookingID);
 					// jump to the Flight Information page
+					try {
+                        new FlightInfoFrm();
+                        Application.context.getPageConfig().displayPage(path.resolve(Path.of("/Retrieve/Flight Information")));
+                    } catch (UnboundPageException e1) {
+                        e1.printStackTrace();
+                        return;
+                    }
 				}
 			}
 		}else if(panel2.isVisible()){
