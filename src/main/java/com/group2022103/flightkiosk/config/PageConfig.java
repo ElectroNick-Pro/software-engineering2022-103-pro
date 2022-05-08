@@ -45,7 +45,6 @@ public class PageConfig {
         displayPage(pagePathStack.get(idx - 1));
     }
 
-    @SuppressWarnings("unchecked")
     public PageConfig() {
         try {
             pagePathMap.put(Path.of("Welcome"), new WelcomeFrm());
