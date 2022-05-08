@@ -5,6 +5,7 @@ import java.util.Map;
 import com.group2022103.flightkiosk.model.Flight;
 
 public class FlightFront {
+	// flightId-flight
 	private Map<Integer, Flight> flights;
 
 	public Map<Integer, Flight> getFlights() {
