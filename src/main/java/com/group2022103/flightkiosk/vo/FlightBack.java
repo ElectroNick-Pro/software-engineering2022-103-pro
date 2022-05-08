@@ -5,14 +5,14 @@ import java.util.List;
 import com.group2022103.flightkiosk.model.Flight;
 
 public class FlightBack {
-	private List<String> ticketID;
+	private List<String> flightID;
 
-	public List<String> getTicketID() {
-		return ticketID;
+	public List<String> getFlightID() {
+		return flightID;
 	}
 
-	public void setTicketID(List<String> ticketID) {
-		this.ticketID = ticketID;
+	public void setFlightID(List<String> flightID) {
+		this.flightID = flightID;
 	}
 	
 }
