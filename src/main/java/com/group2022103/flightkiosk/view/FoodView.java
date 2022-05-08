@@ -25,7 +25,7 @@ public class FoodView {
         originFood.add(new Food(){{setId(7); setImage("src/main/resources/image/Hamburger3.png"); setName("Hamburger"); setPrice(4.5);}});
         originFood.add(new Food(){{setId(8); setImage("src/main/resources/image/Hamburger3.png"); setName("Hamburger"); setPrice(4.5);}});
         originFood.add(new Food(){{setId(9); setImage("src/main/resources/image/Hamburger3.png"); setName("Hamburger"); setPrice(4.5);}});
-        originFoodFront.setFoodContent(originFood);
+        originFoodFront.setOriginFood(originFood);
 
         extraFoodFront = new FoodFront();
         ArrayList<Food> extraFood = new ArrayList<Food>();
@@ -38,7 +38,7 @@ public class FoodView {
         extraFood.add(new Food(){{setId(7); setImage("src/main/resources/image/Hamburger3.png"); setName("Hamburger"); setPrice(4.5);}});
         extraFood.add(new Food(){{setId(8); setImage("src/main/resources/image/Hamburger3.png"); setName("Hamburger"); setPrice(4.5);}});
         extraFood.add(new Food(){{setId(9); setImage("src/main/resources/image/Hamburger3.png"); setName("Hamburger"); setPrice(4.5);}});
-        extraFoodFront.setFoodContent(extraFood);
+        extraFoodFront.setExtraFood(extraFood);
 
         // setOriginFoodFront(new FoodController().getOriginFood(FoodBack));
         // setExtraFoodFront(new FoodController().getExtraFood(FoodBack));
@@ -53,15 +53,15 @@ public class FoodView {
     }
 
     public ArrayList<Food> getOriginFood(){
-        return originFoodFront.getFoodContent();
+        return originFoodFront.getOriginFood();
     }
 
     public ArrayList<Food> getExtraFood(){
-        return extraFoodFront.getFoodContent();
+        return extraFoodFront.getExtraFood();
     }
 
     public originFoodUI[] getOriginFoodUI(){
-        ArrayList<Food> food = originFoodFront.getFoodContent();
+        ArrayList<Food> food = originFoodFront.getOriginFood();
         originFood = new originFoodUI[food.size()];
         for(int i=0;i<food.size();i++){
 			originFood[i] = new originFoodUI(food.get(i).getId(), food.get(i).getImage(), food.get(i).getName(), food.get(i).getPrice());
@@ -70,7 +70,7 @@ public class FoodView {
     }
 
     public extraFoodUI[] getExtraFoodUI(){
-        ArrayList<Food> food = extraFoodFront.getFoodContent();
+        ArrayList<Food> food = extraFoodFront.getExtraFood();
         extraFood = new extraFoodUI[food.size()];
         for(int i=0;i<food.size();i++){
 			extraFood[i] = new extraFoodUI(food.get(i).getId(), food.get(i).getImage(), food.get(i).getName(), food.get(i).getPrice());

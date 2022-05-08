@@ -2,6 +2,7 @@ package com.group2022103.flightkiosk.page;
 
 import javax.swing.*;
 
+import com.group2022103.flightkiosk.application.Application;
 import com.group2022103.flightkiosk.component.DemoScrollBarUI;
 import com.group2022103.flightkiosk.component.FlightInfoButtonUI;
 import com.group2022103.flightkiosk.component.FlightInfoPanelUI;
@@ -10,8 +11,10 @@ import com.group2022103.flightkiosk.view.TicketView;
 import com.group2022103.flightkiosk.vo.TicketBack;
 
 import java.awt.*;
+import java.nio.file.Path;
 
 public class FlightInfoFrm extends PageFrm{
+	private Path path = Path.of("/Retrieve/Flight Information");
 	private TicketView ticketView = new TicketView(new TicketBack() {{
 		setSurname("");
 		setDocumentID("");
@@ -24,6 +27,7 @@ public class FlightInfoFrm extends PageFrm{
 		setBackButton();
 		setNextButton();
 		setBackgroundImage(new ImageIcon(ClassLoader.getSystemResource("image/background0.png")));
+		Application.context.getPageConfig().bindPage(this.path, this);
         
 		//add button of all the ticket he or she have
 		int NUM = 4;//Number of tickets
