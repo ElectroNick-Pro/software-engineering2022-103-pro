@@ -4,11 +4,14 @@ import javax.swing.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import com.group2022103.flightkiosk.application.Application;
 import com.group2022103.flightkiosk.component.ConfirmButtonUI;
 import com.group2022103.flightkiosk.component.FlightInfoPanelUI;
 import com.group2022103.flightkiosk.component.RoundButtonUI;
 import com.group2022103.flightkiosk.model.FoodPurchase;
 import com.group2022103.flightkiosk.model.Seat;
+import com.group2022103.flightkiosk.view.ConfirmPayView;
+import com.group2022103.flightkiosk.view.SeatChoice;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -16,23 +19,17 @@ import java.awt.event.ActionListener;
 
 
 public class ConfirmPayFrm extends PageFrm {
-    private JPanel contentPane;
-    private Seat seat;
+	private ConfirmPayView confirmPayView = new ConfirmPayView();
+//    private SeatChoice seatChoice = (SeatChoice)Application.context.getContext().get("SeatChoice");
+//    private Seat chosenSeat = confirmPayView.getSeat();
     private Double foodPrice = 50.0;
     private Double totalPrice = 100.0;
-    // private ConfirmButtonUI foodBtn = new ConfirmButtonUI("src/main/resources/image/beer3.png","Standard","Click to see the details",this.foodPrice,true);
     
 
     public ConfirmPayFrm(){
         super();
-        // this.foodBtn = new ConfirmButtonUI("src/main/resources/image/beer3.png","Standard","Click to see the details",this.foodPrice,true);
         
-        contentPane = new JPanel() {{
-			setLayout(null);
-			setBackground(Color.WHITE);
-		}};
-		setContentPane(contentPane);
-
+        
         add(new ConfirmButtonUI("src/main/resources/image/cola2.png","Economy Class","A Seat with Extra Space",50,false){{
             setBounds(45, 170,415,90);
         }});
@@ -79,5 +76,11 @@ public class ConfirmPayFrm extends PageFrm {
 	
 	public void setNextAction() {
 		System.out.println("next");
+	}
+	
+	public static void main(String args[]) {
+		Application.run();
+	     ConfirmPayFrm f = new ConfirmPayFrm();
+//        FoodChoiceFrm f = new FoodChoiceFrm();
 	}
 }

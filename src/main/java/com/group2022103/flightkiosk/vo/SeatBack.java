@@ -3,7 +3,9 @@ package com.group2022103.flightkiosk.vo;
 public class SeatBack {
     private int ticketId;
     private int intervalId;
-    public int getTicketId() {
+    private int seatId;
+    
+   	public int getTicketId() {
 		return ticketId;
 	}
 	public void setTicketId(int ticketId) {
@@ -15,5 +17,10 @@ public class SeatBack {
 	public void setIntervalId(int intervalId) {
 		this.intervalId = intervalId;
 	}
-	
+	public int getSeatId() {
+		return seatId;
+	}
+	public void setSeatId(int seatId) {
+		this.seatId = seatId;
+	}
 }

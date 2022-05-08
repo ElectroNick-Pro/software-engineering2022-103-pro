@@ -4,10 +4,13 @@ import javax.swing.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.plaf.ColorUIResource;
+import javax.swing.tree.RowMapper;
 
+import com.group2022103.flightkiosk.application.Application;
 import com.group2022103.flightkiosk.component.RoundButtonUI;
 import com.group2022103.flightkiosk.component.SeatButtonUI;
 import com.group2022103.flightkiosk.controller.SeatController;
+import com.group2022103.flightkiosk.view.SeatChoice;
 import com.group2022103.flightkiosk.view.SeatView;
 import com.group2022103.flightkiosk.vo.SeatBack;
 
@@ -47,13 +50,10 @@ public class ChooseSeatFrm extends PageFrm{
     private int seatNum = 60;
 
     private JPanel contentPane;
-    private SeatView seatService;
     private int seatId = -1;
     private int intervalId = 1;
     private SeatButtonUI seatChoiceBtn;
-    private SeatView seatView = new SeatView(new SeatBack() {{
-		setIntervalId(intervalId);
-	}});
+    private SeatView seatView = new SeatView(new SeatBack());
     
     public ChooseSeatFrm(){
         super();
@@ -126,8 +126,8 @@ public class ChooseSeatFrm extends PageFrm{
                     seatChoiceBtn = seatBtn;
                     seatId = seatBtn.getSeatId();
                     seatBtn.setChoice();
-                    seatService = new SeatView(seatBtn);
-                }           
+                    seatView.chooseSeat(seatBtn);
+                } 
             });
 
             if(i == 0){
@@ -181,7 +181,34 @@ public class ChooseSeatFrm extends PageFrm{
 	
 	public void setNextAction() {
 		System.out.println("next");
+		
+		//save user's choice in GlobalData
+		SeatChoice seatChoice = (SeatChoice)Application.context.getContext().get("SeatChoice");
+		int intervalId = seatChoice.getIntervalId();
+		int ticketId = seatChoice.getTicketId();
+		int seatId = seatChoice.getTicketId();
+		int columnNo = seatChoice.getColumnNo();
+		int rowNo = seatChoice.getRowNo();
+		String seatNo = seatChoice.getSeatNo();
+		String seatClass = seatChoice.getSeatClass();
+		String type = seatChoice.getType();
+		Double price = seatChoice.getPrice();
+		boolean upgrade = seatChoice.isUpgrade();
+		
+		System.out.println("intervalId: "+intervalId);
+		System.out.println("ticketId: "+ticketId);
+		System.out.println("seatId: "+seatId);
+		System.out.println("columnNo: "+columnNo);
+		System.out.println("rowNo: "+rowNo);
+		System.out.println("seatNo: "+seatNo);
+		System.out.println("seatClass: "+seatClass);
+		System.out.println("type: "+type);
+		System.out.println("price: "+price);
+		System.out.println("upgrade: "+upgrade);
 	}
-
+	public static void main(String args[]) {
+//		Application.run();
+		ChooseSeatFrm f = new ChooseSeatFrm();
+	}
     
 }
