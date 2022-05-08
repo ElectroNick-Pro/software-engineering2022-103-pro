@@ -9,8 +9,8 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class WelcomFrm extends PageFrm{
-    public WelcomFrm(){
+public class WelcomeFrm extends PageFrm{
+    public WelcomeFrm(){
         super();
        
         //setTitleName("Welcome");
