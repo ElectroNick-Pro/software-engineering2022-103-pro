@@ -11,7 +11,7 @@ public class FlightFront {
 		return flights;
 	}
 
-	public void setFight(Map<Integer, Flight> flights) {
+	public void setFlights(Map<Integer, Flight> flights) {
 		this.flights = flights;
 	}
 }

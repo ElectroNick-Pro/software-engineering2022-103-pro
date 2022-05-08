@@ -3,13 +3,13 @@ package com.group2022103.flightkiosk.vo;
 import java.util.List;
 
 public class PlaneBack {
-	private List<String> flightID;
+	private List<String> planeID;
 
-	public List<String> getFlightID() {
-		return flightID;
+	public List<String> getPlaneID() {
+		return planeID;
 	}
 
-	public void setFlightID(List<String> flightID) {
-		this.flightID = flightID;
+	public void setPlaneID(List<String> planeID) {
+		this.planeID = planeID;
 	}
 }
