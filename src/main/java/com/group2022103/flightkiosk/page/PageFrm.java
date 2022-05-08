@@ -102,4 +102,14 @@ public class PageFrm extends JFrame{
         this.getLayeredPane().add(backgroundImage, new Integer(Integer.MIN_VALUE));
         this.getLayeredPane().setBackground(Color.WHITE);
 	}
+		
+	public void setNewBackgroundImage(ImageIcon image) {
+		contentPane.add(backgroundImage = new JLabel(image) {{
+			setBounds(0, 0, image.getIconWidth(), image.getIconHeight());
+		}}, JLayeredPane.DEFAULT_LAYER);
+        contentPane.setOpaque(false);
+        this.getLayeredPane().setLayout(null);
+        this.getLayeredPane().add(backgroundImage,new Integer(Integer.MIN_VALUE+1));
+        this.getLayeredPane().setBackground(Color.WHITE);
+	}
 }
