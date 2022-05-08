@@ -13,6 +13,7 @@ import javax.swing.plaf.ColorUIResource;
 
 import com.group2022103.flightkiosk.model.Seat;
 import com.group2022103.flightkiosk.view.SeatView;
+import com.group2022103.flightkiosk.vo.SeatBack;
 
 public class SeatButtonUI extends JPanel {
     public RoundButtonUI seatChoiceBtn;
@@ -20,16 +21,16 @@ public class SeatButtonUI extends JPanel {
     private int seatId;
     private Seat seat;
     private SeatButtonUI seatChoice;
-    private SeatView seatService;
+    private SeatView seatView;
 
     public SeatButtonUI(int seatId, int[] position) {
         super();
         this.seatId = seatId;
-        this.seatService = new SeatView(seatId);
+        this.seatView = new SeatView(new SeatBack());
         this.seatChoice = this;
         setLayout(null);
         setBounds(position[0], position[1], 40, 40);
-        ColorUIResource[] color =  seatService.getButtonColor();
+        ColorUIResource[] color =  seatView.getButtonColor(seatId);
         setBackground(Color.WHITE);
 
         add(choose = new JLabel(new ImageIcon("src/main/resources/image/success1.png")) {{
@@ -61,7 +62,7 @@ public class SeatButtonUI extends JPanel {
     }
 
 	public void chooseSeat(){
-        seatService.chooseSeat(seatChoice);
+        seatView.chooseSeat(seatChoice);
 	}
 
     public void setChoice(){
