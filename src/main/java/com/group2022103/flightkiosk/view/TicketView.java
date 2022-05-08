@@ -3,6 +3,7 @@ package com.group2022103.flightkiosk.view;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import com.group2022103.flightkiosk.controller.TicketController;
 import com.group2022103.flightkiosk.model.Ticket;
@@ -34,5 +35,13 @@ public class TicketView {
 	}
 	public void setTicketFront(TicketFront ticketFront) {
 		this.ticketFront = ticketFront;
+	}
+	public Ticket getTicket(int i) {
+		List<Ticket> tickets = this.getTicketFront().getTickets();
+		Ticket ticket = tickets.get(i);
+		return ticket;
+	}
+	public int getTicketNumber(){
+		return getTicketFront().getTickets().size();
 	}
 }
