@@ -2,6 +2,7 @@ package com.group2022103.flightkiosk.page;
 
 import com.group2022103.flightkiosk.application.Application;
 import com.group2022103.flightkiosk.component.*;
+import com.group2022103.flightkiosk.exception.UnboundPageException;
 import com.group2022103.flightkiosk.model.Food;
 import com.group2022103.flightkiosk.view.*;
 import com.group2022103.flightkiosk.vo.*;
@@ -9,9 +10,11 @@ import com.group2022103.flightkiosk.vo.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.nio.file.Path;
 import java.util.ArrayList;
 
 public class ChooseFoodFrm extends PageFrm{
+	private Path path = Path.of("/Retrieve/Flight Information/Choose Seat/Choose Food");
 	private originFoodUI[] foodContent;	
 	private int foodNumber;
 	private originFoodUI foodChoice;
@@ -21,6 +24,7 @@ public class ChooseFoodFrm extends PageFrm{
 		setHintName("You can choose a type of food you perfer:");
 		setBackButton();
 		setNextButton();
+		Application.context.getPageConfig().bindPage(this.path, this);
 
 		new FoodView(new FoodBack()){{
 			foodContent = getOriginFoodUI();
@@ -50,15 +54,20 @@ public class ChooseFoodFrm extends PageFrm{
 		}});
 	}
 	
-	public void setBackAction() {
-		System.out.println("back");
-	}
-	
 	public void setNextAction() {
 		System.out.println("next");
+		if(foodChoice == null){
+			JOptionPane.showMessageDialog(null, "Please choose a type of food you perfer.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+		}
 		Application.context.getContext().put("OriginFood",new OriginFood(foodChoice.getFoodID(),foodChoice.getImage(),foodChoice.getName(),foodChoice.getPrice(),1));
-		this.dispose();
-		new ExtraFoodFrm().setVisible(true);
+        try {
+			new ExtraFoodFrm();
+			Application.context.getPageConfig().displayPage(path.resolve(Path.of("/Retrieve/Flight Information/Choose Seat/Choose Food/Extra Food")));
+		} catch (UnboundPageException e1) {
+			e1.printStackTrace();
+			return;
+		}
 	}
 
 	public static void main(String args[]) {

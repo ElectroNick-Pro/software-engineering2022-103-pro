@@ -10,6 +10,7 @@ import com.group2022103.flightkiosk.application.Application;
 import com.group2022103.flightkiosk.component.RoundButtonUI;
 import com.group2022103.flightkiosk.component.SeatButtonUI;
 import com.group2022103.flightkiosk.controller.SeatController;
+import com.group2022103.flightkiosk.exception.UnboundPageException;
 import com.group2022103.flightkiosk.view.SeatChoice;
 import com.group2022103.flightkiosk.view.SeatView;
 import com.group2022103.flightkiosk.vo.SeatBack;
@@ -17,8 +18,10 @@ import com.group2022103.flightkiosk.vo.SeatBack;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.nio.file.Path;
 
 public class ChooseSeatFrm extends PageFrm{
+    private Path path = Path.of("/Retrieve/Flight Information/Choose Seat");
     private ColorUIResource[] iconColor = {new ColorUIResource(255,239,0),
                                             new ColorUIResource(169,242,255),
                                             new ColorUIResource(102,178,91),
@@ -58,11 +61,7 @@ public class ChooseSeatFrm extends PageFrm{
     public ChooseSeatFrm(){
         super();
         
-        contentPane = new JPanel() {{
-			setLayout(null);
-			setBackground(Color.WHITE);
-		}};
-		setContentPane(contentPane);
+        Application.context.getPageConfig().bindPage(this.path, this);
 
         //buttons of hints
         for(i = 0; i < 6; i ++){
@@ -170,20 +169,17 @@ public class ChooseSeatFrm extends PageFrm{
 		setBackgroundImage(new ImageIcon("src/main/resources/image/backgroundAirplane.png"));
 
         setTitle("Choose Seat");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setResizable(false);
-	    setSize(965,550);
-		setVisible(true);
     }
-    public void setBackAction() {
-		System.out.println("back");
-	}
 	
 	public void setNextAction() {
 		System.out.println("next");
 		
 		//save user's choice in GlobalData
 		SeatChoice seatChoice = (SeatChoice)Application.context.getContext().get("SeatChoice");
+        if(seatChoice == null){
+            JOptionPane.showMessageDialog(null, "Please choose a seat before jumping to the next page", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 		int intervalId = seatChoice.getIntervalId();
 		int ticketId = seatChoice.getTicketId();
 		int seatId = seatChoice.getTicketId();
@@ -205,6 +201,14 @@ public class ChooseSeatFrm extends PageFrm{
 		System.out.println("type: "+type);
 		System.out.println("price: "+price);
 		System.out.println("upgrade: "+upgrade);
+
+        try {
+			new ChooseFoodFrm();
+			Application.context.getPageConfig().displayPage(path.resolve(Path.of("/Retrieve/Flight Information/Choose Seat/Choose Food")));
+		} catch (UnboundPageException e1) {
+			e1.printStackTrace();
+			return;
+		}
 	}
 	public static void main(String args[]) {
 //		Application.run();

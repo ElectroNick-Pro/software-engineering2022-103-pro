@@ -4,23 +4,28 @@ import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.nio.file.Path;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.WindowConstants;
 
+import com.group2022103.flightkiosk.application.Application;
 import com.group2022103.flightkiosk.component.FlightInfoPanelUI;
 import com.group2022103.flightkiosk.component.RoundButtonUI;
 
 public class CheckInFrm extends PageFrm{
 	private ImageIcon image;
 	private JButton checkIn;
+	private Path path = Path.of("/Retrieve/Flight Information/Choose Seat/Choose Food/Extra Food/Confirm and Pay/Check in");
 	public CheckInFrm() {
 		super();
 		setTitleName("Confirm and Print");
 		setHintName("Please scan your ID document");
 		setBackgroundImage(new ImageIcon(ClassLoader.getSystemResource("image/background0.png")));
+		Application.context.getPageConfig().bindPage(this.path, this);
 		
 		image = new ImageIcon(ClassLoader.getSystemResource("image/scanIDcard.png"));// background picture
 		image.setImage(image.getImage().getScaledInstance(350,200,Image.SCALE_DEFAULT));// setSize
@@ -34,7 +39,7 @@ public class CheckInFrm extends PageFrm{
 			setBounds(50,400,360,30);
 			addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					//TODO
+					new PrintFrm().setVisible(true);
 				}
 			});
 		}});
