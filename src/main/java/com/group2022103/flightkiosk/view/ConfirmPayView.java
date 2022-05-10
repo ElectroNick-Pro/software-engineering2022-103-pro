@@ -16,16 +16,12 @@ public class ConfirmPayView {
 	private Seat seat;
 	private OriginFood originFood;
 	private ArrayList<OriginFood> allFoodChoice;
-	private ArrayList<FoodPurchase> allFoodPurchases;
+	private List<FoodPurchase> allFoodPurchases;
 	private boolean getExtraFood;
 	private ConfirmPayBack confirmPayBack;
 	private ConfirmPayFront confirmPayFront;
 	
-	public ConfirmPayView() {}
-	
 	public ConfirmPayView(ConfirmPayBack confirmPayBack){}
-
-    public ConfirmPayView(ConfirmPayFront confirmPayFront){}
 
 	public Seat getSeat() {
 		SeatChoice seatChoice = (SeatChoice)Application.context.getContext().get("SeatChoice");
@@ -72,7 +68,7 @@ public class ConfirmPayView {
 		return allFoodChoice;
 	}
 	
-	public ArrayList<FoodPurchase> getAllFoodPurchases() {
+	public List<FoodPurchase> getAllFoodPurchases() {
 		OriginFood originFood = (OriginFood)Application.context.getContext().get("OriginFood");
 		FoodPurchase foodChoice = new FoodPurchase();
 		
