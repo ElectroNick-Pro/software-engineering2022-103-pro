@@ -39,11 +39,21 @@ public class FlightInfoView {
 		this.setArriveAirport(interval.getDestAirport());
 		this.setSeatClass(ticket.getSeatClass());
 		this.setFoodType("Food Provided");
+		if(this.isCheckIn(ticket.getIsCheckin())) {
+			//TODO
+		};
 	}
 	public String lastTimeFormat(Date departDt, Date destDt) {
 		var timeDelta = Duration.between(departDt.toInstant(), destDt.toInstant());
 		String lastTimeStr = "" + timeDelta.toHours() + "h" + timeDelta.toMinutes() % 60 + "min";
 		return lastTimeStr;
+	}
+	public boolean isCheckIn(int checkIn) {
+		if(checkIn == 0) {
+			return false;
+		}else {
+			return true;
+		}
 	}
 	public String setDateFormat(Date departDt) {
         String dateFormat = "a";

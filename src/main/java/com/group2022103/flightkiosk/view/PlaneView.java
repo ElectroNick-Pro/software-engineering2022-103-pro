@@ -1,9 +1,12 @@
 package com.group2022103.flightkiosk.view;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import com.group2022103.flightkiosk.model.Flight;
 import com.group2022103.flightkiosk.model.Plane;
 import com.group2022103.flightkiosk.model.Ticket;
 import com.group2022103.flightkiosk.vo.PlaneBack;
@@ -31,5 +34,14 @@ public class PlaneView {
 		Plane plane = planes.get(flightID);
 		return plane;
 	}
+	public List<String> getPlaneId(){
+		int num = this.getPlaneFront().getPlanes().size();
+		List<String> planeID = new ArrayList<>();
+		for (Map.Entry<Integer, Plane> entry : this.getPlaneFront().getPlanes().entrySet()) {
+			 planeID.add(entry.getValue().getId().toString());
+		}
+		return planeID;
+	}
+	
 	
 }

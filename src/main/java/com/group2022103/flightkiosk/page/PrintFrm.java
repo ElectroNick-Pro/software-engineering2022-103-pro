@@ -71,6 +71,7 @@ public class PrintFrm extends PageFrm{
         
     }
     public static void main(String[] args) {
+    	Application.run();
     	PrintFrm f = new PrintFrm();
 		f.setTitle("Check-In Kiosk");
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
