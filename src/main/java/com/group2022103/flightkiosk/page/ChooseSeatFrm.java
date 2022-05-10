@@ -7,8 +7,7 @@ import javax.swing.plaf.ColorUIResource;
 import javax.swing.tree.RowMapper;
 
 import com.group2022103.flightkiosk.application.Application;
-import com.group2022103.flightkiosk.component.RoundButtonUI;
-import com.group2022103.flightkiosk.component.SeatButtonUI;
+import com.group2022103.flightkiosk.component.*;
 import com.group2022103.flightkiosk.controller.SeatController;
 import com.group2022103.flightkiosk.exception.UnboundPageException;
 import com.group2022103.flightkiosk.view.SeatChoice;
@@ -62,6 +61,10 @@ public class ChooseSeatFrm extends PageFrm{
         super();
         
         Application.context.getPageConfig().bindPage(this.path, this);
+        Application.context.getContext().put("curPath",this.path);
+        add(new BreadCrumbUI(path){{
+			setBounds(80,25,800,25);
+		}});
 
         //buttons of hints
         for(i = 0; i < 6; i ++){
