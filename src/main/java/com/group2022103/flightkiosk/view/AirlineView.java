@@ -29,7 +29,7 @@ public class AirlineView {
 		this.airlineFront = airlineFront;
 	}
 	
-	public Airline getAirline(String airlineID) {
+	public Airline getAirline(int airlineID) {
 		Map<Integer,Airline> airlines = this.getAirlineFront().getAirlines();
 		Airline airline = airlines.get(airlineID);
 		return airline;

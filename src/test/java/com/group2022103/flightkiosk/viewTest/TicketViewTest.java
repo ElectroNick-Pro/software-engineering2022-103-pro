@@ -55,8 +55,8 @@ public class TicketViewTest {
 			Flight flight = flights.getFlight(ticket.getFlight());
 			Interval interval =  intervals.getInterval(ticket.getFlight());
 			Plane plane = planes.getPlane(flight.getId());
-			FlightInfoView flightInfoView = new FlightInfoView(ticket,flight,plane,interval);
-			System.out.println(flightInfoView.getArriveAirport()+" "+flightInfoView.getArrivePlace());
+			// FlightInfoView flightInfoView = new FlightInfoView(ticket,flight,plane,interval);
+			// System.out.println(flightInfoView.getArriveAirport()+" "+flightInfoView.getArrivePlace());
 		}
 	}
 }	
