@@ -11,6 +11,8 @@ import com.group2022103.flightkiosk.component.*;
 import com.group2022103.flightkiosk.controller.SeatController;
 import com.group2022103.flightkiosk.exception.UnboundPageException;
 import com.group2022103.flightkiosk.model.Seat;
+import com.group2022103.flightkiosk.model.Ticket;
+import com.group2022103.flightkiosk.view.FlightInfoView;
 import com.group2022103.flightkiosk.view.SeatChoice;
 import com.group2022103.flightkiosk.view.SeatView;
 import com.group2022103.flightkiosk.vo.SeatBack;
@@ -24,8 +26,6 @@ import java.util.List;
 
 public class ChooseSeatFrm extends PageFrm{
     private Path path = Path.of("/Retrieve/Flight Information/Choose Seat");
-    private SeatBack seatBack;
-    private SeatFront seatFront;
     private SeatView seatView;
     private List<Seat> seats;
     //colors for buttons of hints
@@ -47,7 +47,7 @@ public class ChooseSeatFrm extends PageFrm{
     private int seatWidth = frameWidth - 150;
     private int seatHeight = 280;
     private int aisle_space = 30;
-    private int rowLength = 14;
+    private int rowLength = 10;
     private int columnLength = 4;
     private int row_spacing = (seatWidth - rowLength * 35 ) / rowLength;
     private int column_spacing = (seatHeight - columnLength * 35 - aisle_space) / columnLength;
@@ -56,13 +56,24 @@ public class ChooseSeatFrm extends PageFrm{
 
     private int seatId = -1;
     private int intervalId = 1;
+    private int ticketId = -1;
     private SeatButtonUI seatChoiceBtn;
-    
+    private FlightInfoView flightInfo;
+    private boolean canChoose = true;
     
     public ChooseSeatFrm(){
         super();
         Application.context.getPageConfig().bindPage(this.path, this);
         Application.context.getContext().put("curPath",this.path);
+        this.intervalId = ((FlightInfoView)Application.context.getContext().get("flightInfo")).getIntervalID();
+        this.ticketId = ((FlightInfoView)Application.context.getContext().get("flightInfo")).getTicketID();
+        seatView = new SeatView(new SeatBack() {{
+        	setTicketId(-1);
+        	setIntervalId(intervalId);
+        	setSeatId(-1);
+        }});
+        canChoose = seatView.canChooseSeat();
+        System.out.println("Origin: "+canChoose);
         add(new BreadCrumbUI(path){{
 			setBounds(80,25,800,25);
 		}});
@@ -107,17 +118,24 @@ public class ChooseSeatFrm extends PageFrm{
         }
 
         //seat buttons
-
-        for(i = 0, j = 0; i < this.rowLength;){
-            int rowNo = i % this.rowLength;
-            int columnNo = j % this.columnLength;
+        seatView = new SeatView(new SeatBack() {{
+        	setIntervalId(intervalId);
+        	setSeatId(-1);
+        	setTicketId(-1);
+        }});
+        seats = seatView.getAllSeats();
+        Seat seat;
+        for(i = 0, j = 0, k = 0; k < seats.size(); k ++){
+        	seat = seats.get(k);
+            int rowNo = seat.getRowNo() - 1;
+            int columnNo = seat.getColumnNo() - 1;
             x = 75 + rowNo * btnWidth + rowNo * row_spacing;
             y = 180 + columnNo * btnHeight+ columnNo * column_spacing;
             if(j >= (columnLength / 2)){
                 y = y + aisle_space;
             }
             int[] position = {x,y};
-            SeatButtonUI seatBtn = new SeatButtonUI(j+i*this.columnLength, position);
+            SeatButtonUI seatBtn = new SeatButtonUI(seat.getId(), position);
             add(seatBtn);
             seatBtn.seatChoiceBtn.addActionListener(new ActionListener(){
                 @Override
@@ -125,38 +143,62 @@ public class ChooseSeatFrm extends PageFrm{
                     if(seatChoiceBtn != null){ //have chosen a seat before
                         seatChoiceBtn.cancelChoice();
                     }
-                    //check if he can change seat
-                    seatChoiceBtn = seatBtn;
-                    seatId = seatBtn.getSeatId();
-                    seatBtn.setChoice();
-                    seatView = new SeatView(new SeatBack() {{
-                    	setSeatId(seatId);
-                    	setTicketId(-1);
-                    	setIntervalId(-1);
-                    }});
-                    seatView.chooseSeat(seatBtn);
+                    System.out.println(canChoose);
+                    if(canChoose) {
+                    	seatChoiceBtn = seatBtn;
+                        seatBtn.setChoice();
+                        seatId = seatBtn.getSeatId();
+                        seatView = new SeatView(new SeatBack() {{
+                        	setTicketId(-1);
+                        	setIntervalId(-1);
+                        	setSeatId(seatId);
+                        }});
+                        seatView.chooseSeat(seatBtn);
+                    }else {
+                    	JOptionPane.showMessageDialog(null, "You have already choose a seat!\nPlease don't choose again!", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                 } 
             });
 
             if(i == 0){
                 String column = "";
-                if((j+1) == 1){
-                    column = "A";
-                }else if((j+1) == 2 && (j+1) != columnLength / 2 ){
-                    column = "B";
-                }else if((j+1) == columnLength/2){
-                    column = "C";
-                }else if((j+1) == columnLength / 2 + 1){
-                    column = "D";
-                }else if((j+1) == columnLength - 1){
-                    column = "E";
-                }else if((j+1) == columnLength){
-                    column = "F";
-                }
+            	switch(seat.getColumnNo()) {
+            		case 1:
+            			column = "A";
+            			break;
+            		case 2:
+            			if(columnLength == 4) {
+            				column = "C";
+            			}else if(columnLength == 6) {
+            				column = "B";
+            			}
+            			break;
+            		case 3:
+            			if(columnLength == 4) {
+            				column = "D";
+            			}else if(columnLength == 6) {
+            				column = "C";
+            			}
+            			break;
+            		case 4:
+            			if(columnLength == 4) {
+            				column = "F";
+            			}else if(columnLength == 6) {
+            				column = "D";
+            			}
+            			break;
+            		case 5:
+            			column = "E";
+            			break;
+            		case 6:
+            			column = "F";
+            			break;
+            	}
                 add(new JLabel(column){{
                     setFont(new Font("Microsoft YaHei UI", Font.BOLD, 14));
                     setBounds(45,y+6,20,20);
                 }});
+                System.out.println(column);
             }
             if(j == 0){
                 add(new JLabel(i+1+""){{
@@ -189,7 +231,7 @@ public class ChooseSeatFrm extends PageFrm{
         }else {
         	int intervalId = seatChoice.getIntervalId();
     		int ticketId = seatChoice.getTicketId();
-    		int seatId = seatChoice.getTicketId();
+    		int seatId = seatChoice.getSeatId();
     		int columnNo = seatChoice.getColumnNo();
     		int rowNo = seatChoice.getRowNo();
     		String seatNo = seatChoice.getSeatNo();

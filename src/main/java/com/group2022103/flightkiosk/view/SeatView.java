@@ -1,12 +1,14 @@
 package com.group2022103.flightkiosk.view;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.swing.plaf.ColorUIResource;
 
 import com.group2022103.flightkiosk.application.Application;
 import com.group2022103.flightkiosk.component.SeatButtonUI;
 import com.group2022103.flightkiosk.controller.SeatController;
+import com.group2022103.flightkiosk.mapper.SeatMapper;
 import com.group2022103.flightkiosk.model.Seat;
 import com.group2022103.flightkiosk.vo.SeatBack;
 import com.group2022103.flightkiosk.vo.SeatFront;
@@ -14,25 +16,56 @@ import com.group2022103.flightkiosk.vo.SeatFront;
 public class SeatView {
     private int seatId = -1;
     private int ticketId = -1;
-    private int flightId;
     private SeatButtonUI seatChoiceBtn;
     private List<Seat> seats;
     private SeatFront seatFront;
     private SeatBack seatBack;
+    private String originSeatClass;
+    private FlightInfoView flightInfo;
+    private boolean isChosen = false;
     
     public SeatView(SeatBack seatBack){
     	//get this user's ticketId
     	this.seatFront = new SeatController().get(seatBack);
+    	this.originSeatClass = ((FlightInfoView)Application.context.getContext().get("flightInfo")).getSeatClass();
+    	this.ticketId = ((FlightInfoView)Application.context.getContext().get("flightInfo")).getTicketID();
+    	this.seats = getSeatFront();
     }
     
     public List<Seat> getSeatFront() {
     	return seatFront.getSeats();
     }
     
-    public ColorUIResource[] getButtonColor(int seatId){
-//    	int status = getSeatStatus(seatId);
-		ColorUIResource[] color = new ColorUIResource[2];
-		color[0] = new ColorUIResource(255,239,0);
+    public ColorUIResource[] getButtonColor(){
+    	/*
+    	 * 0: no others choose it
+    	 * 1: others choose it
+    	 */
+    	int status = getSeatStatus();
+    	String seatClass = seats.get(0).getSeatClass();
+    	String seatType = seats.get(0).getType();
+    	ColorUIResource[] color = new ColorUIResource[2];
+    	switch (status) {
+    		case 0:
+    			if(seatClass.equals("First")) {
+    				if(seatType.equals("Extra")) {
+    					color[0] = new ColorUIResource(255,115,0);
+    				}else {
+    					color[0] = new ColorUIResource(255,239,0);
+    				}
+    			}else {
+    				if(seatType.equals("Extra")) {
+    					color[0] = new ColorUIResource(255,189,52);
+    				}else {
+    					color[0] = new ColorUIResource(169,242,255);
+    				}
+    			}
+    			break;
+    		case 1:
+    			color[0] = new ColorUIResource(151,151,151);
+    			break;
+    	}
+		
 		color[1] = new ColorUIResource(151,151,151);
 
 		return color;
@@ -41,37 +74,87 @@ public class SeatView {
 	public void chooseSeat(SeatButtonUI seatChoiceBtn){
 		System.out.println(seatChoiceBtn.getSeatId());
         this.seatChoiceBtn = seatChoiceBtn;
-        this.seatId = seatChoiceBtn.getSeatId();
-        
-        //get information of ticket and intervalId from GlobalData
-        int intervalId = 1;
-        int ticketId = 3;
-        int columnNo = 4;
-        int rowNo = 10;
-        String seatNo = seatId+"A";
-        String seatClass = "First";
-        Double price = 50.0; //decide according to if "upgrade"
-        String type = "Window";
+        seatId = seatChoiceBtn.getSeatId();
+        Seat seat = seats.get(0);
+        int intervalId = seat.getInterval();
+        int ticketId = this.ticketId;
+        int columnNo = seat.getColumnNo();
+        int rowNo = seat.getRowNo();
+        String seatNo = seat.getSeatNo();
+        String seatClass = seat.getSeatClass();
         boolean upgrade = false;
+        Double price = seat.getPrice();
+        String type = seat.getType();
+        if(seatClass.equals("First")) {
+        	if(originSeatClass.equals("Normal")) {
+        		upgrade = true;
+        	}else {
+        		SeatFront seatFront2 = new SeatController().get(new SeatBack() {{
+        			setIntervalId(seat.getInterval());
+        			setTicketId(-1);
+        			setSeatId(-1);
+        		}});
+        		price = price - seatFront2.getSeats().get(0).getPrice();
+        	}
+        }
+        
+        
         SeatChoice seatChoice = new SeatChoice(intervalId, ticketId, seatId, columnNo, rowNo, seatNo, seatClass, price, type, upgrade);
         Application.context.getContext().put("SeatChoice", seatChoice);
 	}
 	
+	public boolean canChooseSeat() {
+		boolean canChoose = true;
+		System.out.println("ÊýÁ¿"+seats.size());
+		Seat seat = seats.get(0);
+		for(int i = 0; i < seats.size(); i ++) {
+			seat = seats.get(i);
+			if(seat.getTicket() != null) {
+				if(seat.getTicket() == ticketId) {
+					canChoose = false;
+			        int intervalId = seat.getInterval();
+			        int ticketId = this.ticketId;
+			        int columnNo = seat.getColumnNo();
+			        int rowNo = seat.getRowNo();
+			        String seatNo = seat.getSeatNo();
+			        String seatClass = seat.getSeatClass();
+			        boolean upgrade = false;
+			        Double price = seat.getPrice();
+			        String type = seat.getType();
+			        if(seatClass.equals("First")) {
+			        	if(originSeatClass.equals("Normal")) {
+			        		upgrade = true;
+			        	}else {
+			        		SeatFront seatFront2 = new SeatController().get(new SeatBack() {{
+			        			setIntervalId(intervalId);
+			        			setTicketId(-1);
+			        			setSeatId(-1);
+			        		}});
+			        		price = price - seatFront2.getSeats().get(0).getPrice();
+			        	}
+			        }
+			        SeatChoice seatChoice = new SeatChoice(intervalId, ticketId, seatId, columnNo, rowNo, seatNo, seatClass, price, type, upgrade);
+			        Application.context.getContext().put("SeatChoice", seatChoice);
+					break;
+				}
+			}
+		}
+		
+		return canChoose;
+	}
 	
-    public int getSeatStatus(int seatId){
+    public int getSeatStatus(){
     	/*
     	 * 0: no one choose it
     	 * 1: others choose it
     	 * 2: this user choose it
     	 */
     	int status = -1;
-    	this.seatId = seatId;
     	
-    	seatBack.setSeatId(seatId);
-    	Seat seat = seatFront.getSeats().get(0);
+    	Seat seat = seats.get(0);
     	if(seat.getTicket() != null) {
     		if(seat.getTicket() == this.ticketId) {
-    			status = 2;
+    			isChosen = true;
     		}else {
     			status = 1;
     		}
@@ -80,5 +163,13 @@ public class SeatView {
     	}
     	
     	return status;
+    }
+    
+    public boolean isChosen() {
+    	return this.isChosen;
+    }
+    
+    public List<Seat> getAllSeats(){
+    	return this.seats;
     }
 }
