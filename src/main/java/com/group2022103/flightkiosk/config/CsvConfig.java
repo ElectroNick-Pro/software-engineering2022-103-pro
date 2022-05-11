@@ -13,19 +13,19 @@ public class CsvConfig {
 
 	public CsvConfig () {
 		parseMethodMap.put(Integer.class, (s)-> {
-			return Integer.parseInt(s);
+			return s.equals("") ? null : Integer.parseInt(s);
 		});
 		
 		toStringMap.put(Integer.class, (obj) -> {
-			return obj.toString();
+			return obj == null ? "" : obj.toString();
 		});
 		
 		parseMethodMap.put(Double.class, (s)-> {
-			return Double.parseDouble(s);
+			return s.equals("") ? null : Double.parseDouble(s);
 		});
 		
 		toStringMap.put(Double.class, (obj)-> {
-			return obj.toString();
+			return obj == null ? "" : obj.toString();
 		});
 		
 		parseMethodMap.put(String.class, (s)-> {
@@ -38,7 +38,7 @@ public class CsvConfig {
 		
 		parseMethodMap.put(Date.class, (s)-> {
 			try {
-				return Application.context.getAppConfig().getTimezone().parse(s);
+				return s.equals("") ? null : Application.context.getAppConfig().getTimezone().parse(s);
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -47,7 +47,7 @@ public class CsvConfig {
 		});
 		
 		toStringMap.put(Date.class, (obj)->{
-			return Application.context.getAppConfig().getTimezone().format((Date)obj);
+			return obj == null ? "" : Application.context.getAppConfig().getTimezone().format((Date)obj);
 		});
 	}
 

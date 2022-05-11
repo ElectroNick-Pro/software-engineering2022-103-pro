@@ -45,11 +45,11 @@ public class FlightInfoPanelUI extends JPanel{
     	}};
 
     	airport1 = new JLabel(flightAirport1, JLabel.CENTER) {{
-    		setFont(new Font("Microsoft YaHei UI", Font.BOLD, 13));
+    		setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 13));
     	}};
 
     	airport2 = new JLabel(flightAirport2,JLabel.CENTER) {{
-    		setFont(new Font("Microsoft YaHei UI", Font.BOLD, 13));
+    		setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 13));
     	}};
 
     	startTime = new JLabel(flightStartTime,JLabel.CENTER) {{
@@ -154,11 +154,11 @@ public class FlightInfoPanelUI extends JPanel{
     	 takeoff.setBounds(20, 84, 150, 42);
     	 arrive.setBounds(250, 84, 150, 42);
     	 flightNo.setBounds(250, 37, 150, 50);
-    	 airport1.setBounds(20, 135, 100, 20);
+    	 airport1.setBounds(10, 135, 120, 20);
     	 airport2.setBounds(270, 135, 150, 20);
-    	 startTime.setBounds(25, 174, 100, 32);
+    	 startTime.setBounds(15, 174, 100, 32);
     	 arriveTime.setBounds(300, 174, 100, 32);
-    	 time.setBounds(165, 180, 80, 17);
+    	 time.setBounds(165, 180, 100, 17);
     	 seat.setBounds(20, 210, 100, 32);
     	 food.setBounds(20, 232, 98, 32);
     	 Terminal.setBounds(160, 240, 100, 25);
