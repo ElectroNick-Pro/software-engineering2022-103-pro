@@ -23,7 +23,10 @@ public class SeatView {
     public SeatView(SeatBack seatBack){
     	//get this user's ticketId
     	this.seatFront = new SeatController().get(seatBack);
-    	this.seatBack = seatBack;
+    }
+    
+    public List<Seat> getSeatFront() {
+    	return seatFront.getSeats();
     }
     
     public ColorUIResource[] getButtonColor(int seatId){
@@ -78,19 +81,4 @@ public class SeatView {
     	
     	return status;
     }
-
-    public List<Seat> getSeat(int anyTypeOfId, String IdType){
-    	if(IdType.equals("ticket")) {
-    		this.seatBack.setTicketId(anyTypeOfId);
-    	}else if(IdType.equals("seat")) {
-    		this.seatBack.setSeatId(anyTypeOfId);
-    	}else if(IdType.equals("interval")) {
-    		this.seatBack.setIntervalId(anyTypeOfId);
-    	}
-    	
-    	this.seats = new SeatController().get(this.seatBack).getSeats();
-    	
-        return this.seats;
-    }
-
 }

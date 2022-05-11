@@ -129,6 +129,11 @@ public class ChooseSeatFrm extends PageFrm{
                     seatChoiceBtn = seatBtn;
                     seatId = seatBtn.getSeatId();
                     seatBtn.setChoice();
+                    seatView = new SeatView(new SeatBack() {{
+                    	setSeatId(seatId);
+                    	setTicketId(-1);
+                    	setIntervalId(-1);
+                    }});
                     seatView.chooseSeat(seatBtn);
                 } 
             });
