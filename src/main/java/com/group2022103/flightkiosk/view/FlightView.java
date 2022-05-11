@@ -41,5 +41,12 @@ public class FlightView {
 		}
 		return flightID;
 	}
-	
+	public List<String> getPlaneID(){
+		int number = this.getFlightFront().getFlights().size();
+		List<String> planeID = new ArrayList<>();
+		for (Map.Entry<Integer, Flight> entry : this.getFlightFront().getFlights().entrySet()) {
+			 planeID.add(entry.getValue().getPlane().toString());
+		}
+		return planeID;
+	}
 }

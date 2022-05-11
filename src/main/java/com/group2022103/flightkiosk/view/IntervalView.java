@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.group2022103.flightkiosk.controller.IntervalController;
 import com.group2022103.flightkiosk.model.Interval;
 import com.group2022103.flightkiosk.model.Plane;
 import com.group2022103.flightkiosk.vo.IntervalBack;
@@ -13,11 +14,11 @@ import com.group2022103.flightkiosk.vo.PlaneFront;
 public class IntervalView {
 	private IntervalFront intervalFront;
 	public IntervalView(IntervalBack intervalBack) {
-		var map = new HashMap<Integer,List<Interval>>();
+//		var map = new HashMap<Integer,List<Interval>>();
 		intervalFront = new IntervalFront();
-		this.intervalFront.setIntervals(map);
+//		this.intervalFront.setIntervals(map);
 		/*Bypass backend ends*/
-		// setIntervalFront(new IntervalController().getInterval(intervalBack));
+		 setIntervalFront(new IntervalController().get(intervalBack));
 	}
 	public IntervalFront getIntervalFront() {
 		return intervalFront;
