@@ -1,4 +1,4 @@
-package com.group2022103.flightkiosk.view;
+package com.group2022103.flightkiosk.viewTest;
 
 import static org.junit.Assert.assertEquals;
 
@@ -8,6 +8,7 @@ import com.group2022103.flightkiosk.application.Application;
 import com.group2022103.flightkiosk.controller.SeatController;
 import com.group2022103.flightkiosk.model.Seat;
 import com.group2022103.flightkiosk.model.Ticket;
+import com.group2022103.flightkiosk.view.SeatView;
 import com.group2022103.flightkiosk.vo.SeatBack;
 import com.group2022103.flightkiosk.vo.SeatFront;
 import com.group2022103.flightkiosk.vo.TicketBack;
