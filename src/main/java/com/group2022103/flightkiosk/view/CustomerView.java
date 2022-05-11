@@ -32,4 +32,24 @@ public class CustomerView {
     public String getSurname(){
         return customerFront.getSurname();
     }
+
+    public String getCustomerID(){
+        return customerFront.getCustomerID();
+    }
+    
+    public String getCreditID(){
+        return customerFront.getCreditID();
+    }
+
+    public String getPassword(){
+        return customerFront.getPassword();
+    }
+
+	public String getFirstName(){
+        return customerFront.getFirstName();
+    }
+
+    public int getID(){
+        return customerFront.getID();
+    }
 }
