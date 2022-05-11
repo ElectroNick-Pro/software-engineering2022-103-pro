@@ -30,13 +30,13 @@ public class FlightInfoView {
 	private String userName, userID;
 	private int ticketID,flightID,intervalID,customerID;
 
-	public FlightInfoView(Ticket ticket,Flight flight,Plane plane,Interval interval/*,Airline airline*/) {
+	public FlightInfoView(Ticket ticket,Flight flight,Plane plane,Interval interval,Airline airline) {
 		Date departDt = interval.getDepartureTime();
 		Date destDt = interval.getDestTime();
 		this.setLastTime(this.lastTimeFormat(departDt, destDt));
 		this.setBookingID(ticket.getBookingId());
 		this.setDate(this.setDateFormat(departDt));
-//		this.setAirline(airline.getName());
+		this.setAirline(airline.getName());
 		this.setFlightNo(flight.getFlightNo());
 		this.setDepartureTime(this.setTimeFormat(departDt));
 		this.setArriveTime(this.setTimeFormat(destDt)); 
@@ -53,6 +53,7 @@ public class FlightInfoView {
 		this.setFlightID(flight.getId());
 		this.setCustomerID(ticket.getCustomer());
 		this.setSeatClass(this.seatClassFormat(ticket.getSeatClass()));
+		this.getCustomer(ticket.getCustomer().toString());
 		if(this.isCheckIn(ticket.getIsCheckin())) {
 			//TODO  
 		};
@@ -62,8 +63,15 @@ public class FlightInfoView {
 			setCustomerID(customerID);
 		}});
 		String surName = customerView.getSurname();
-//		String userID = customerView.
+		String firstName = customerView.getFirstName();
+		this.setUserName(this.getNameFormat(surName, firstName));
+		this.setCustomerID(customerView.getCustemorID());
 	}
+	public String getNameFormat(String surName,String firstName) {
+		String name = firstName+" "+surName;
+		return name;
+	}
+
 	public String seatClassFormat(String seatClass) {
 		String seatClassFormat = "";
 		if(seatClass=="Normal") {

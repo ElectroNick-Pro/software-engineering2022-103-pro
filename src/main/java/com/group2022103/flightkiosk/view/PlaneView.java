@@ -35,13 +35,13 @@ public class PlaneView {
 		Plane plane = planes.get(flightID);
 		return plane;
 	}
-	public List<String> getPlaneId(){
+	public List<Integer> getAirlineId(){
 		int num = this.getPlaneFront().getPlanes().size();
-		List<String> planeID = new ArrayList<>();
+		List<Integer> airlineID = new ArrayList<>();
 		for (Map.Entry<Integer, Plane> entry : this.getPlaneFront().getPlanes().entrySet()) {
-			 planeID.add(entry.getValue().getId().toString());
+			 airlineID.add(entry.getValue().getAirline());
 		}
-		return planeID;
+		return airlineID;
 	}
 	
 	
