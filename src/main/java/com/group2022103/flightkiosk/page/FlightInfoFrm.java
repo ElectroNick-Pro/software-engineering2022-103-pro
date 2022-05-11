@@ -10,6 +10,7 @@ import com.group2022103.flightkiosk.model.Flight;
 import com.group2022103.flightkiosk.model.Interval;
 import com.group2022103.flightkiosk.model.Plane;
 import com.group2022103.flightkiosk.model.Ticket;
+import com.group2022103.flightkiosk.view.CustomerView;
 import com.group2022103.flightkiosk.view.FlightInfoView;
 import com.group2022103.flightkiosk.view.FlightView;
 import com.group2022103.flightkiosk.view.IntervalView;
@@ -28,6 +29,7 @@ public class FlightInfoFrm extends PageFrm{
 	private TicketView ticketView = new TicketView(new TicketBack() {{
 		setSurname("");
 		setDocumentID("123456789012345678");
+		setBookingID("");
 	}});
 	private FlightView flightView = new FlightView(new FlightBack() {{
 		setFlightID(ticketView.getTicketId());
@@ -38,9 +40,10 @@ public class FlightInfoFrm extends PageFrm{
 	private IntervalView intervalView = new IntervalView(new IntervalBack() {{
 		setFlightID(flightView.getFlightID());
 	}});
+	
 	private JPanel buttonPane;
 	private JPanel rightPanel;
-	private int chooseTicket = 0;
+	private int chooseTicket;
 	public FlightInfoFrm() {
 		super();
 		setTitleName("Flight Information");
@@ -86,9 +89,10 @@ public class FlightInfoFrm extends PageFrm{
         	getVerticalScrollBar().setUI(new DemoScrollBarUI());
         }});
         for(int i = 0;i < NUM;i++) {
-        	chooseTicket = i;
+        	int number = i;
         	 button[i].addActionListener(new ActionListener() {
                  public void actionPerformed(ActionEvent e) {
+                	chooseTicket = number;
                 	rightPanel.setVisible(false);
                 	add(rightPanel = addPanel(chooseTicket));
              		System.out.println("I click button "+chooseTicket);
