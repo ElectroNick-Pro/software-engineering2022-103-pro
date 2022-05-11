@@ -28,10 +28,9 @@ public class FlightInfoView {
 	private String foodType;
 	private String terminalNo,gateNo;
 	private String userName, userID;
-	private int ticketID,flightID,intervalID,customerID;
+	private int ticketID,flightID,intervalID,customerID,planeID;
 
-	public FlightInfoView(Ticket ticket,Flight flight,Plane plane,Interval interval,Airline airline,
-			Customer customer) {
+	public FlightInfoView(Ticket ticket,Flight flight,Plane plane,Interval interval,Airline airline) {
 		Date departDt = interval.getDepartureTime();
 		Date destDt = interval.getDestTime();
 		this.setLastTime(this.lastTimeFormat(departDt, destDt));
@@ -54,8 +53,9 @@ public class FlightInfoView {
 		this.setFlightID(flight.getId());
 		this.setCustomerID(ticket.getCustomer());
 		this.setSeatClass(this.seatClassFormat(ticket.getSeatClass()));
-		this.setUserName(this.getNameFormat(customer.getSurname(), customer.getFirstname()));
-		this.setUserID(customer.getCustomerId());
+		this.setPlaneID(plane.getId());
+//		this.setUserName(this.getNameFormat(customer.getSurname(), customer.getFirstname()));
+//		this.setUserID(customer.getCustomerId());
 		if(this.isCheckIn(ticket.getIsCheckin())) {
 			//TODO  
 		};
@@ -229,6 +229,14 @@ public class FlightInfoView {
 	}
 	public void setCustomerID(int customerID) {
 		this.customerID = customerID;
+	}
+
+	public int getPlaneID() {
+		return planeID;
+	}
+
+	public void setPlaneID(int planeID) {
+		this.planeID = planeID;
 	}
 	
 	
