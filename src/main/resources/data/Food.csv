@@ -48,3 +48,6 @@ id,flight,name,price,type,image
 47,3,Rice ball,8,Extra,src/main/resources/image/rice ball7.png
 48,3,Sushi,4,Extra,src/main/resources/image/sushi8.png
 49,3,Coffee,2,Extra,src/main/resources/image/coffee1.png
+50,1,No Need,0.0,Origin,src/main/resources/image/noNeed0.png
+51,2,No Need,0.0,Origin,src/main/resources/image/noNeed0.png
+52,3,No Need,0.0,Origin,src/main/resources/image/noNeed0.png
