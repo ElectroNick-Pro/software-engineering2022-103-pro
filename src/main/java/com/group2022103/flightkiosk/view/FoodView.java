@@ -2,6 +2,7 @@ package com.group2022103.flightkiosk.view;
 
 import java.util.ArrayList;
 
+import com.group2022103.flightkiosk.application.Application;
 import com.group2022103.flightkiosk.component.extraFoodUI;
 import com.group2022103.flightkiosk.component.originFoodUI;
 import com.group2022103.flightkiosk.controller.FoodController;
@@ -18,12 +19,13 @@ public class FoodView {
     
     public FoodView(FoodBack foodBack){
         // flightId should be got from the global data
+        int flightId = ((FlightInfoView)Application.context.getContext().get("flightInfo")).getFlightID();
         setOriginFoodFront(new FoodController().get(new FoodBack(){{
-            setFlightId(1);
+            setFlightId(flightId);
         }}));
         originFoodNumber = originFoodFront.getOriginFood().size();
         setExtraFoodFront(new FoodController().get(new FoodBack(){{
-            setFlightId(1);
+            setFlightId(flightId);
         }}));
         extraFoodNumber = extraFoodFront.getExtraFood().size();
     }
