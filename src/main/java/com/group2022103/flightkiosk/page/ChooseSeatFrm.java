@@ -7,27 +7,29 @@ import javax.swing.plaf.ColorUIResource;
 import javax.swing.tree.RowMapper;
 
 import com.group2022103.flightkiosk.application.Application;
-import com.group2022103.flightkiosk.component.RoundButtonUI;
-import com.group2022103.flightkiosk.component.SeatButtonUI;
+import com.group2022103.flightkiosk.component.*;
 import com.group2022103.flightkiosk.controller.SeatController;
 import com.group2022103.flightkiosk.exception.UnboundPageException;
+import com.group2022103.flightkiosk.model.Seat;
 import com.group2022103.flightkiosk.view.SeatChoice;
 import com.group2022103.flightkiosk.view.SeatView;
 import com.group2022103.flightkiosk.vo.SeatBack;
+import com.group2022103.flightkiosk.vo.SeatFront;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.nio.file.Path;
+import java.util.List;
 
 public class ChooseSeatFrm extends PageFrm{
     private Path path = Path.of("/Retrieve/Flight Information/Choose Seat");
-    private ColorUIResource[] iconColor = {new ColorUIResource(255,239,0),
-                                            new ColorUIResource(169,242,255),
-                                            new ColorUIResource(102,178,91),
-                                            new ColorUIResource(151,151,151),
-                                            new ColorUIResource(255,115,0),
-                                            new ColorUIResource(255,189,52)}; //colors for buttons of hints
+    private SeatBack seatBack;
+    private SeatFront seatFront;
+    private SeatView seatView;
+    private List<Seat> seats;
+    //colors for buttons of hints
+    private ColorUIResource[] iconColor = {new ColorUIResource(255,239,0), new ColorUIResource(169,242,255), new ColorUIResource(102,178,91), new ColorUIResource(151,151,151), new ColorUIResource(255,115,0), new ColorUIResource(255,189,52)}; 
     private int[] btnHintPosition = {295,70,455,70,295,110,455,110,646,70,646,110};
     private int[] textHintPosition = {340,73,80,25,
                                         500,73,112,25,
@@ -52,16 +54,18 @@ public class ChooseSeatFrm extends PageFrm{
     private int btnWidth = 35, btnHeight = 35;
     private int seatNum = 60;
 
-    private JPanel contentPane;
     private int seatId = -1;
     private int intervalId = 1;
     private SeatButtonUI seatChoiceBtn;
-    private SeatView seatView = new SeatView(new SeatBack());
+    
     
     public ChooseSeatFrm(){
         super();
-        
         Application.context.getPageConfig().bindPage(this.path, this);
+        Application.context.getContext().put("curPath",this.path);
+        add(new BreadCrumbUI(path){{
+			setBounds(80,25,800,25);
+		}});
 
         //buttons of hints
         for(i = 0; i < 6; i ++){
@@ -171,48 +175,47 @@ public class ChooseSeatFrm extends PageFrm{
         setTitle("Choose Seat");
     }
 	
-	public void setNextAction() {
-		System.out.println("next");
-		
-		//save user's choice in GlobalData
+	public void setNextAction() {		
+		//check if user choose a seat
 		SeatChoice seatChoice = (SeatChoice)Application.context.getContext().get("SeatChoice");
         if(seatChoice == null){
             JOptionPane.showMessageDialog(null, "Please choose a seat before jumping to the next page", "Error", JOptionPane.ERROR_MESSAGE);
             return;
+        }else {
+        	int intervalId = seatChoice.getIntervalId();
+    		int ticketId = seatChoice.getTicketId();
+    		int seatId = seatChoice.getTicketId();
+    		int columnNo = seatChoice.getColumnNo();
+    		int rowNo = seatChoice.getRowNo();
+    		String seatNo = seatChoice.getSeatNo();
+    		String seatClass = seatChoice.getSeatClass();
+    		String type = seatChoice.getType();
+    		Double price = seatChoice.getPrice();
+    		boolean upgrade = seatChoice.isUpgrade();
+    		
+    		System.out.println("intervalId: "+intervalId);
+    		System.out.println("ticketId: "+ticketId);
+    		System.out.println("seatId: "+seatId);
+    		System.out.println("columnNo: "+columnNo);
+    		System.out.println("rowNo: "+rowNo);
+    		System.out.println("seatNo: "+seatNo);
+    		System.out.println("seatClass: "+seatClass);
+    		System.out.println("type: "+type);
+    		System.out.println("price: "+price);
+    		System.out.println("upgrade: "+upgrade);
+    		
+    		try {
+    			new ChooseFoodFrm();
+    			Application.context.getPageConfig().displayPage(path.resolve(Path.of("/Retrieve/Flight Information/Choose Seat/Choose Food")));
+    		} catch (UnboundPageException e1) {
+    			e1.printStackTrace();
+    			return;
+    		}
         }
-		int intervalId = seatChoice.getIntervalId();
-		int ticketId = seatChoice.getTicketId();
-		int seatId = seatChoice.getTicketId();
-		int columnNo = seatChoice.getColumnNo();
-		int rowNo = seatChoice.getRowNo();
-		String seatNo = seatChoice.getSeatNo();
-		String seatClass = seatChoice.getSeatClass();
-		String type = seatChoice.getType();
-		Double price = seatChoice.getPrice();
-		boolean upgrade = seatChoice.isUpgrade();
-		
-		System.out.println("intervalId: "+intervalId);
-		System.out.println("ticketId: "+ticketId);
-		System.out.println("seatId: "+seatId);
-		System.out.println("columnNo: "+columnNo);
-		System.out.println("rowNo: "+rowNo);
-		System.out.println("seatNo: "+seatNo);
-		System.out.println("seatClass: "+seatClass);
-		System.out.println("type: "+type);
-		System.out.println("price: "+price);
-		System.out.println("upgrade: "+upgrade);
-
-        try {
-			new ChooseFoodFrm();
-			Application.context.getPageConfig().displayPage(path.resolve(Path.of("/Retrieve/Flight Information/Choose Seat/Choose Food")));
-		} catch (UnboundPageException e1) {
-			e1.printStackTrace();
-			return;
-		}
 	}
 	public static void main(String args[]) {
-//		Application.run();
-		ChooseSeatFrm f = new ChooseSeatFrm();
+		Application.run();
+//		ChooseSeatFrm f = new ChooseSeatFrm();
 	}
     
 }

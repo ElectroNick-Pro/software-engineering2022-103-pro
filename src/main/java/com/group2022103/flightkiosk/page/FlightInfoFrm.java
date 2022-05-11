@@ -4,10 +4,7 @@ import javax.swing.*;
 import java.awt.event.*; 
 
 import com.group2022103.flightkiosk.application.Application;
-import com.group2022103.flightkiosk.component.DemoScrollBarUI;
-import com.group2022103.flightkiosk.component.FlightInfoButtonUI;
-import com.group2022103.flightkiosk.component.FlightInfoPanelUI;
-import com.group2022103.flightkiosk.component.RoundBorderUI;
+import com.group2022103.flightkiosk.component.*;
 import com.group2022103.flightkiosk.exception.UnboundPageException;
 import com.group2022103.flightkiosk.model.Flight;
 import com.group2022103.flightkiosk.model.Interval;
@@ -51,8 +48,13 @@ public class FlightInfoFrm extends PageFrm{
 		setBackButton();
 		setNextButton();
 		setBackgroundImage(new ImageIcon(ClassLoader.getSystemResource("image/background0.png")));
-//		Application.context.getPageConfig().bindPage(this.path, this);
-		
+		Application.context.getPageConfig().bindPage(this.path, this);
+		Application.context.getContext().put("curPath",this.path);
+
+		add(new BreadCrumbUI(path){{
+			setBounds(80,25,800,25);
+		}});
+        
 		//add button of all the ticket he or she have
 		int NUM = ticketView.getTicketNumber();//Number of tickets
         buttonPane = new JPanel() {{

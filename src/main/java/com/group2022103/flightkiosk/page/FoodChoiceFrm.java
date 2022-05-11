@@ -12,12 +12,13 @@ import javax.swing.WindowConstants;
 import com.group2022103.flightkiosk.component.ConfirmButtonUI;
 import com.group2022103.flightkiosk.component.DemoScrollBarUI;
 import com.group2022103.flightkiosk.model.FoodPurchase;
+import com.group2022103.flightkiosk.view.OriginFood;
 
-public class FoodChoiceFrm extends PageFrm{
-    private JPanel contentPane;
-    public FoodChoiceFrm(){
+public class FoodChoiceFrm extends JFrame{
+	private ArrayList<OriginFood> allFoodChoice;
+    public FoodChoiceFrm(ArrayList<OriginFood> allFoodChoice){
         super();
-        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        this.allFoodChoice = allFoodChoice;
 
         add(new JLabel("Details of food choice"){{
             setBounds(26, 25, 360, 42);
@@ -41,17 +42,11 @@ public class FoodChoiceFrm extends PageFrm{
         }});
         
         setTitle("Food Choice");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+//		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setBackground(Color.white);
 		setResizable(false);
 	    setSize(530,570);
 		setVisible(true);
     }
-
-    public void setBackAction() {
-		System.out.println("back");
-	}
-	
-	public void setNextAction() {
-		System.out.println("next");
-	}
 }

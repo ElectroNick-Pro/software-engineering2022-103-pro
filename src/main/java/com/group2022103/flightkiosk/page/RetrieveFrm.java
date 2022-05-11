@@ -23,6 +23,11 @@ public class RetrieveFrm extends PageFrm{
 		setTitleName("Retrieve");
 		setBackgroundImage(new ImageIcon("src/main/resources/image/travel.png"));
 		Application.context.getPageConfig().bindPage(this.path, this);
+		Application.context.getContext().put("curPath",this.path);
+
+		add(new BreadCrumbUI(path){{
+			setBounds(80,25,800,25);
+		}});
 		
 		add(new RoundButtonUI("Retrieve",new Color(0,131,255), new Color(0,105,206)){{
 			setBounds(45,370,435,38);
@@ -150,13 +155,7 @@ public class RetrieveFrm extends PageFrm{
 				}else{
 					Application.context.getContext().put("bookingID",bookingID);
 					// jump to the Flight Information page
-					try {
-                        new FlightInfoFrm();
-                        Application.context.getPageConfig().displayPage(path.resolve(Path.of("/Retrieve/Flight Information")));
-                    } catch (UnboundPageException e1) {
-                        e1.printStackTrace();
-                        return;
-                    }
+					navigateTo();
 				}
 			}
 		}else if(panel2.isVisible()){
@@ -179,18 +178,23 @@ public class RetrieveFrm extends PageFrm{
 					}else{
 						Application.context.getContext().put("customerID",customerID);
 						// jump to the Flight Information page
-						try {
-							new FlightInfoFrm();
-							Application.context.getPageConfig().displayPage(path.resolve(Path.of("/Retrieve/Flight Information")));
-						} catch (UnboundPageException e1) {
-							e1.printStackTrace();
-							return;
-						}
+						navigateTo();
 					}
 				}
 			}
 		}else{
-			
+			Application.context.getContext().put("customerID","123456789012345678");
+			navigateTo();
+		}
+	}
+
+	public void navigateTo(){
+		try {
+			new FlightInfoFrm();
+			Application.context.getPageConfig().displayPage(path.resolve(Path.of("/Retrieve/Flight Information")));
+		} catch (UnboundPageException e1) {
+			e1.printStackTrace();
+			return;
 		}
 	}
 
