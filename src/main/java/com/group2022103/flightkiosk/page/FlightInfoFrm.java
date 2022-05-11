@@ -6,20 +6,13 @@ import java.awt.event.*;
 import com.group2022103.flightkiosk.application.Application;
 import com.group2022103.flightkiosk.component.*;
 import com.group2022103.flightkiosk.exception.UnboundPageException;
+import com.group2022103.flightkiosk.model.Airline;
 import com.group2022103.flightkiosk.model.Flight;
 import com.group2022103.flightkiosk.model.Interval;
 import com.group2022103.flightkiosk.model.Plane;
 import com.group2022103.flightkiosk.model.Ticket;
-import com.group2022103.flightkiosk.view.CustomerView;
-import com.group2022103.flightkiosk.view.FlightInfoView;
-import com.group2022103.flightkiosk.view.FlightView;
-import com.group2022103.flightkiosk.view.IntervalView;
-import com.group2022103.flightkiosk.view.PlaneView;
-import com.group2022103.flightkiosk.view.TicketView;
-import com.group2022103.flightkiosk.vo.FlightBack;
-import com.group2022103.flightkiosk.vo.IntervalBack;
-import com.group2022103.flightkiosk.vo.PlaneBack;
-import com.group2022103.flightkiosk.vo.TicketBack;
+import com.group2022103.flightkiosk.view.*;
+import com.group2022103.flightkiosk.vo.*;
 
 import java.awt.*;
 import java.nio.file.Path;
@@ -40,7 +33,9 @@ public class FlightInfoFrm extends PageFrm{
 	private IntervalView intervalView = new IntervalView(new IntervalBack() {{
 		setFlightID(flightView.getFlightID());
 	}});
-	
+	private AirlineView airlineView = new AirlineView(new AirlineBack() {{
+		setAirlineID(planeView.getAirlineId());
+	}});
 	private JPanel buttonPane;
 	private JPanel rightPanel;
 	private int chooseTicket;
@@ -72,7 +67,7 @@ public class FlightInfoFrm extends PageFrm{
         	//TODO
 			FlightInfoView flightInfo = getData(i);
         	button[i] = new FlightInfoButtonUI(flightInfo.getDepartPlace(),flightInfo.getArrivePlace(),
-        			flightInfo.getBookingID(),flightInfo.getDate(),"AirChina",flightInfo.getDepartureTime(),flightInfo.getArriveTime(),
+        			flightInfo.getBookingID(),flightInfo.getDate(),flightInfo.getAirline(),flightInfo.getDepartureTime(),flightInfo.getArriveTime(),
         			flightInfo.getLastTime());
         	//TODO
         	if(i > 1) {
@@ -116,13 +111,14 @@ public class FlightInfoFrm extends PageFrm{
 	}
 	public JPanel addPanel(int num) {
   		FlightInfoView flightInfo = getData(num);
-  		FlightInfoPanelUI flightInfoPanel = new FlightInfoPanelUI(flightInfo.getBookingID(), flightInfo.getDate(), "airline",
+  		FlightInfoPanelUI flightInfoPanel = new FlightInfoPanelUI(flightInfo.getBookingID(), 
+  				flightInfo.getDate(), flightInfo.getAirline(),
   				flightInfo.getDepartPlace(), flightInfo.getArrivePlace(),
           	    flightInfo.getFlightNo(), flightInfo.getDepartureAirport(), flightInfo.getArriveAirport(), 
           	    flightInfo.getDepartureTime(),flightInfo.getArriveTime(),
           	    flightInfo.getLastTime(), "flightSeat", "flightFood", 
           	    flightInfo.getTerminalNo(),flightInfo.getGateNo(),
-          	    " flightName","fligthNameID") {{
+          	    flightInfo.getUserName(),flightInfo.getUserID()) {{
           	   checkLayout("Nomal","6A","sea food");
           	   setBounds(500, 80, 415, 355);
           }};
@@ -133,7 +129,8 @@ public class FlightInfoFrm extends PageFrm{
   		Flight flight = flightView.getFlight(ticket.getFlight());
   		Interval interval =  intervalView.getInterval(ticket.getFlight());
   		Plane plane = planeView.getPlane(flight.getId());
-  		FlightInfoView flightInfo = new FlightInfoView(ticket,flight,plane,interval);
+  		Airline airline = airlineView.getAirline(plane.getAirline().toString());
+  		FlightInfoView flightInfo = new FlightInfoView(ticket,flight,plane,interval,airline);
   		return flightInfo;
 	}
 	public static void main(String[] args) {

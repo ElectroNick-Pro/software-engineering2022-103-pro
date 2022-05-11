@@ -3,6 +3,7 @@ package com.group2022103.flightkiosk.view;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.group2022103.flightkiosk.controller.AirlineController;
 import com.group2022103.flightkiosk.model.Airline;
 import com.group2022103.flightkiosk.model.Flight;
 import com.group2022103.flightkiosk.vo.AirlineBack;
@@ -11,12 +12,12 @@ import com.group2022103.flightkiosk.vo.FlightFront;
 
 public class AirlineView {
 	private AirlineFront airlineFront;
-	public AirlineView(AirlineFront airlineFront){
-		var map = new HashMap<Integer,Airline>();
+	public AirlineView(AirlineBack airlineBack){
+//		var map = new HashMap<Integer,Airline>();
 		airlineFront = new AirlineFront();
-		this.airlineFront.setAirlines(map);
+//		this.airlineFront.setAirlines(map);
 		/*Bypass backend ends*/
-//		setFlightFront(new AirlineController().get(airlineBack));
+		setAirlineFront(new AirlineController().get(airlineBack));
 	}
 	
 	public AirlineFront getAirlineFront() {
