@@ -154,6 +154,7 @@ public class RetrieveFrm extends PageFrm{
 					JOptionPane.showMessageDialog(null, "This bookingID does not exist!", "Error", JOptionPane.ERROR_MESSAGE);
 				}else{
 					Application.context.getContext().put("bookingID",bookingID);
+					Application.context.getContext().put("customerID",null);
 					// jump to the Flight Information page
 					navigateTo();
 				}
@@ -177,6 +178,7 @@ public class RetrieveFrm extends PageFrm{
 						JOptionPane.showMessageDialog(null, "This bookingID does not exist!", "Error", JOptionPane.ERROR_MESSAGE);
 					}else{
 						Application.context.getContext().put("customerID",customerID);
+						Application.context.getContext().put("bookingID",null);
 						// jump to the Flight Information page
 						navigateTo();
 					}
@@ -184,6 +186,7 @@ public class RetrieveFrm extends PageFrm{
 			}
 		}else{
 			Application.context.getContext().put("customerID","123456789012345678");
+			Application.context.getContext().put("bookingID",null);
 			navigateTo();
 		}
 	}

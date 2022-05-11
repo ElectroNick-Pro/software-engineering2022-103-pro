@@ -121,7 +121,9 @@ public class PaymentFrm extends JFrame{
             }
         }else{
             new CustomerView(new CustomerBack(){{
-                String customerID = (String)Application.context.getContext().get("customerID");
+                // String customerID = (String)Application.context.getContext().get("customerID");
+                String customerID = ((FlightInfoView)Application.context.getContext().get("flightInfo")).getUserID();
+                // setID(ID);
                 setCustomerID(customerID);
             }}){{
                 if(isValid(creditId.getText(),password.getText())){
