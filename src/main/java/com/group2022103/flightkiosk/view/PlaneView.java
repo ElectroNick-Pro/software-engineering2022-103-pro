@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.group2022103.flightkiosk.controller.PlaneController;
 import com.group2022103.flightkiosk.model.Flight;
 import com.group2022103.flightkiosk.model.Plane;
 import com.group2022103.flightkiosk.model.Ticket;
@@ -17,11 +18,11 @@ public class PlaneView {
 	private PlaneFront planeFront;
 	public PlaneView(PlaneBack planeBack) {
 		/*Bypass backend begins*/
-		var map = new HashMap<Integer,Plane>();
+//		var map = new HashMap<Integer,Plane>();
 		planeFront = new PlaneFront();
-		this.planeFront.setPlanes(map);
+//		this.planeFront.setPlanes(map);
 		/*Bypass backend ends*/
-		// setPlaneFront(new PlaneController().getPlane(planeBack));
+		 setPlaneFront(new PlaneController().get(planeBack));
 	}
 	public PlaneFront getPlaneFront() {
 		return planeFront;

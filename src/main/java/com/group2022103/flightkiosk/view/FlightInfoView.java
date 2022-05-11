@@ -2,9 +2,12 @@ package com.group2022103.flightkiosk.view;
 
 import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import com.group2022103.flightkiosk.model.Airline;
 import com.group2022103.flightkiosk.model.Flight;
@@ -22,14 +25,15 @@ public class FlightInfoView {
 	private String foodType;
 	private String terminalNo,gateNo;
 	private String userName, userID;
+	private int ticketID,flightID,intervalID;
 
-	public FlightInfoView(Ticket ticket,Flight flight,Plane plane,Interval interval,Airline airline) {
+	public FlightInfoView(Ticket ticket,Flight flight,Plane plane,Interval interval/*,Airline airline*/) {
 		Date departDt = interval.getDepartureTime();
 		Date destDt = interval.getDestTime();
 		this.setLastTime(this.lastTimeFormat(departDt, destDt));
 		this.setBookingID(ticket.getBookingId());
 		this.setDate(this.setDateFormat(departDt));
-		this.setAirline(airline.getName());
+//		this.setAirline(airline.getName());
 		this.setFlightNo(flight.getFlightNo());
 		this.setDepartureTime(this.setTimeFormat(departDt));
 		this.setArriveTime(this.setTimeFormat(destDt)); 
@@ -39,6 +43,11 @@ public class FlightInfoView {
 		this.setArriveAirport(interval.getDestAirport());
 		this.setSeatClass(ticket.getSeatClass());
 		this.setFoodType("Food Provided");
+		this.setTerminalNo(interval.getTerminal());
+		this.setGateNo(interval.getGate());
+		this.setIntervalID(interval.getId());
+		this.setTicketID(ticket.getId());
+		this.setFlightID(flight.getId());
 		if(this.isCheckIn(ticket.getIsCheckin())) {
 			//TODO
 		};
@@ -56,11 +65,20 @@ public class FlightInfoView {
 		}
 	}
 	public String setDateFormat(Date departDt) {
-        String dateFormat = "a";
-        return dateFormat;
+		SimpleDateFormat sdf = new SimpleDateFormat("MM");
+	    sdf = new SimpleDateFormat("MMMMM dd,yyyy",Locale.US);
+	    String timeFormat = sdf.format(departDt);
+	    return timeFormat;
 	}
 	public String setTimeFormat(Date time) {
-		String timeFormat = "q";
+		int hour = (int)time.getHours();
+		int minute = (int)time.getMinutes();
+		String timeFormat = "";
+		if(minute == 0) {
+			timeFormat = hour+":"+minute+"0";
+		}else {
+			timeFormat = hour+":"+minute;
+		}
 		return timeFormat;
 	}
 	public String getBookingID() {
@@ -165,6 +183,25 @@ public class FlightInfoView {
 	public void setUserID(String userID) {
 		this.userID = userID;
 	}
+	public int getTicketID() {
+		return ticketID;
+	}
+	public void setTicketID(int ticketID) {
+		this.ticketID = ticketID;
+	}
+	public int getFlightID() {
+		return flightID;
+	}
+	public void setFlightID(int flightID) {
+		this.flightID = flightID;
+	}
+	public int getIntervalID() {
+		return intervalID;
+	}
+	public void setIntervalID(int intervalID) {
+		this.intervalID = intervalID;
+	}
+	
 	
 	
 }

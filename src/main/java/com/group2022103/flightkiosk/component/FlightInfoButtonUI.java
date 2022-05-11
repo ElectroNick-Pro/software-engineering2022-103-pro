@@ -60,15 +60,15 @@ public class FlightInfoButtonUI extends JButton{
    }
 
 	public void buttonLayout() {
-		picture.setBounds(175, 7, 50, 50);
+		picture.setBounds(175, 9, 50, 50);
 		takeoffLabel.setBounds(25, 18, 100, 30);
-		arriveLabel.setBounds(270, 18, 100, 30);
+		arriveLabel.setBounds(285, 18, 100, 30);
 		flightNoLabel.setBounds(80, 1, 100, 20);
-		dateLabel.setBounds(270, 1, 100, 20);
+		dateLabel.setBounds(285, 1, 100, 20);
 		airlineLabel.setBounds(25, 1, 100, 20);
 		departTimeLabel.setBounds(25,34,80,50);
-		arriveTimeLabel.setBounds(270,34,120,50);
-		timeLabel.setBounds(160,34,80,50);
+		arriveTimeLabel.setBounds(285,34,120,50);
+		timeLabel.setBounds(140,36,120,50);
 		       
 		 this.setLayout(null);
 		 this.add(picture);
