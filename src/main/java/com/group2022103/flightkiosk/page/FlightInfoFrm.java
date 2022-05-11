@@ -5,7 +5,9 @@ import javax.swing.*;
 import com.group2022103.flightkiosk.application.Application;
 import com.group2022103.flightkiosk.component.*;
 import com.group2022103.flightkiosk.exception.UnboundPageException;
+import com.group2022103.flightkiosk.view.FlightView;
 import com.group2022103.flightkiosk.view.TicketView;
+import com.group2022103.flightkiosk.vo.FlightBack;
 import com.group2022103.flightkiosk.vo.TicketBack;
 
 import java.awt.*;
@@ -15,7 +17,10 @@ public class FlightInfoFrm extends PageFrm{
 	private Path path = Path.of("/Retrieve/Flight Information");
 	private TicketView ticketView = new TicketView(new TicketBack() {{
 		setSurname("");
-		setDocumentID("");
+		setDocumentID("123456789012345678");
+	}});
+	private FlightView flightView = new FlightView(new FlightBack() {{
+		setFlightID(ticketView.getTicketId());
 	}});
 	private JPanel buttonPane;
 	public FlightInfoFrm() {
@@ -81,6 +86,7 @@ public class FlightInfoFrm extends PageFrm{
 		}
 	}
 	public static void main(String[] args) {
+		Application.run();
 		FlightInfoFrm f = new FlightInfoFrm();
 		f.setTitle("Check-In Kiosk");
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

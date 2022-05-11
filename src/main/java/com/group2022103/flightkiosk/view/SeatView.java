@@ -6,6 +6,7 @@ import javax.swing.plaf.ColorUIResource;
 
 import com.group2022103.flightkiosk.application.Application;
 import com.group2022103.flightkiosk.component.SeatButtonUI;
+import com.group2022103.flightkiosk.controller.SeatController;
 import com.group2022103.flightkiosk.model.Seat;
 import com.group2022103.flightkiosk.vo.SeatBack;
 import com.group2022103.flightkiosk.vo.SeatFront;
@@ -15,16 +16,16 @@ public class SeatView {
     private int ticketId = -1;
     private int flightId;
     private SeatButtonUI seatChoiceBtn;
-    private List<Seat> allSeat;
-    private SeatFront seatFront = new SeatFront();
-    private SeatBack seatBack = new SeatBack();
+    private List<Seat> seats;
+    private SeatFront seatFront;
+    private SeatBack seatBack;
     
-
     public SeatView(SeatBack seatBack){
     	//get this user's ticketId
+    	this.seatFront = new SeatController().get(seatBack);
+    	this.seatBack = seatBack;
     }
     
-
     public ColorUIResource[] getButtonColor(int seatId){
 //    	int status = getSeatStatus(seatId);
 		ColorUIResource[] color = new ColorUIResource[2];
@@ -78,8 +79,18 @@ public class SeatView {
     	return status;
     }
 
-    public List<Seat> getAllSeat(){
-        return allSeat;
+    public List<Seat> getSeat(int anyTypeOfId, String IdType){
+    	if(IdType.equals("ticket")) {
+    		this.seatBack.setTicketId(anyTypeOfId);
+    	}else if(IdType.equals("seat")) {
+    		this.seatBack.setSeatId(anyTypeOfId);
+    	}else if(IdType.equals("interval")) {
+    		this.seatBack.setIntervalId(anyTypeOfId);
+    	}
+    	
+    	this.seats = new SeatController().get(this.seatBack).getSeats();
+    	
+        return this.seats;
     }
 
 }
