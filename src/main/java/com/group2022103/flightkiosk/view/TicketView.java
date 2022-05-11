@@ -16,14 +16,14 @@ public class TicketView {
 	protected TicketView() {}
 	public TicketView(TicketBack ticketBack) {
 		/*Bypass backend begins*/
-		var ls = new ArrayList<Ticket>();
-		ls.add(new Ticket() {{
-			this.setBookingId("123123123");
-		}});
+//		var ls = new ArrayList<Ticket>();
+//		ls.add(new Ticket() {{
+//			this.setBookingId("123123123");
+//		}});
 		ticketFront = new TicketFront();
-		this.ticketFront.setTickets(ls);
+//		this.ticketFront.setTickets(ls);
 		/*Bypass backend ends*/
-		// setTicketFront(new TicketController().getTicket(ticketBack));
+		ticketFront = new TicketController().get(ticketBack);
 	}
 	/*template ends*/
 	public boolean isOutOfDate(Ticket ticket) {
@@ -43,5 +43,13 @@ public class TicketView {
 	}
 	public int getTicketNumber(){
 		return getTicketFront().getTickets().size();
+	}
+	public List<String> getTicketId(){
+		List<String> ticketId = new ArrayList<>();
+		int number = this.getTicketNumber();
+		for(int i = 0;i < number;i++) {
+			ticketId.add(this.getTicket(i).getId().toString());
+		}
+		return ticketId;
 	}
 }

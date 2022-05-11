@@ -13,8 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.WindowConstants;
 
 import com.group2022103.flightkiosk.application.Application;
-import com.group2022103.flightkiosk.component.FlightInfoPanelUI;
-import com.group2022103.flightkiosk.component.RoundButtonUI;
+import com.group2022103.flightkiosk.component.*;
 
 public class CheckInFrm extends PageFrm{
 	private ImageIcon image;
@@ -26,6 +25,11 @@ public class CheckInFrm extends PageFrm{
 		setHintName("Please scan your ID document");
 		setBackgroundImage(new ImageIcon(ClassLoader.getSystemResource("image/background0.png")));
 		Application.context.getPageConfig().bindPage(this.path, this);
+		Application.context.getContext().put("curPath",this.path);
+
+		add(new BreadCrumbUI(path){{
+			setBounds(80,25,800,25);
+		}});
 		
 		image = new ImageIcon(ClassLoader.getSystemResource("image/scanIDcard.png"));// background picture
 		image.setImage(image.getImage().getScaledInstance(350,200,Image.SCALE_DEFAULT));// setSize

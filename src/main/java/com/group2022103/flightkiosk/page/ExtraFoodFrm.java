@@ -23,6 +23,11 @@ public class ExtraFoodFrm extends PageFrm{
 		setBackButton();
 		setNextButton();
 		Application.context.getPageConfig().bindPage(this.path, this);
+		Application.context.getContext().put("curPath",this.path);
+
+		add(new BreadCrumbUI(path){{
+			setBounds(80,25,800,25);
+		}});
 
 		// OriginFood originFood = (OriginFood)Application.context.getContext().get("OriginFood");
 		// int FoodID = originFood.getFoodID();

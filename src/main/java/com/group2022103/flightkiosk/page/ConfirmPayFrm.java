@@ -5,9 +5,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import com.group2022103.flightkiosk.application.Application;
-import com.group2022103.flightkiosk.component.ConfirmButtonUI;
-import com.group2022103.flightkiosk.component.FlightInfoPanelUI;
-import com.group2022103.flightkiosk.component.RoundButtonUI;
+import com.group2022103.flightkiosk.component.*;
 import com.group2022103.flightkiosk.exception.UnboundPageException;
 import com.group2022103.flightkiosk.model.FoodPurchase;
 import com.group2022103.flightkiosk.model.Seat;
@@ -40,6 +38,11 @@ public class ConfirmPayFrm extends PageFrm {
     public ConfirmPayFrm(){
         super();
         Application.context.getPageConfig().bindPage(this.path, this);
+        Application.context.getContext().put("curPath",this.path);
+
+        add(new BreadCrumbUI(path){{
+			setBounds(80,25,800,25);
+		}});
         
         confirmPayBack = new ConfirmPayBack();
         confirmPayFront = new ConfirmPayFront();
