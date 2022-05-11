@@ -153,8 +153,11 @@ public class RetrieveFrm extends PageFrm{
 				if(ticketView.getTicketNumber() == 0){
 					JOptionPane.showMessageDialog(null, "This bookingID does not exist!", "Error", JOptionPane.ERROR_MESSAGE);
 				}else{
+					customerView = new CustomerView(new CustomerBack(){{
+						setBookingID(bookingID);
+					}});
 					Application.context.getContext().put("bookingID",bookingID);
-					Application.context.getContext().put("customerID",null);
+					Application.context.getContext().put("customer",customerView.getCustomer());
 					// jump to the Flight Information page
 					navigateTo();
 				}
@@ -166,9 +169,9 @@ public class RetrieveFrm extends PageFrm{
 				customerView = new CustomerView(new CustomerBack(){{
 					setCustomerID(customerID);
 				}});
-				if(customerView.getSurname().equals("")){
+				if(customerView.getCustomer().getSurname().equals("")){
 					JOptionPane.showMessageDialog(null, "The ID number you entered does not exist!", "Error", JOptionPane.ERROR_MESSAGE);
-				}else if(!surname.equals(customerView.getSurname())){
+				}else if(!surname.equals(customerView.getCustomer().getSurname())){
 					JOptionPane.showMessageDialog(null, "Your surname and ID number does not match!", "Error", JOptionPane.ERROR_MESSAGE);
 				}else{
 					ticketView = new TicketView(new TicketBack(){{
@@ -177,7 +180,7 @@ public class RetrieveFrm extends PageFrm{
 					if(ticketView.getTicketNumber() == 0){
 						JOptionPane.showMessageDialog(null, "This bookingID does not exist!", "Error", JOptionPane.ERROR_MESSAGE);
 					}else{
-						Application.context.getContext().put("customerID",customerID);
+						Application.context.getContext().put("customer",customerView.getCustomer());
 						Application.context.getContext().put("bookingID",null);
 						// jump to the Flight Information page
 						navigateTo();
@@ -185,7 +188,10 @@ public class RetrieveFrm extends PageFrm{
 				}
 			}
 		}else{
-			Application.context.getContext().put("customerID","123456789012345678");
+			customerView = new CustomerView(new CustomerBack(){{
+				setCustomerID("123456789012345678");
+			}});
+			Application.context.getContext().put("customerID",customerView.getCustomer());
 			Application.context.getContext().put("bookingID",null);
 			navigateTo();
 		}

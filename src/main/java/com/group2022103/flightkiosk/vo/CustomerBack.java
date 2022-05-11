@@ -3,6 +3,13 @@ package com.group2022103.flightkiosk.vo;
 public class CustomerBack {
     private String customerID;
 	private int id;
+	private String bookingID;
+	public void setBookingID(String bookingID){
+		this.bookingID = bookingID;
+	}
+	public String getBookingID(){
+		return bookingID;
+	}
 	public int getID(){
 		return id;
 	}
