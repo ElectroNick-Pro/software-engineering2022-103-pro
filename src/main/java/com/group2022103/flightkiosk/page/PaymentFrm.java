@@ -120,7 +120,10 @@ public class PaymentFrm extends JFrame{
                 e1.printStackTrace();
             }
         }else{
-            new CustomerView(new CustomerBack()){{
+            new CustomerView(new CustomerBack(){{
+                String customerID = (String)Application.context.getContext().get("customerID");
+                setCustomerID(customerID);
+            }}){{
                 if(isValid(creditId.getText(),password.getText())){
                     // success
                     dispose();

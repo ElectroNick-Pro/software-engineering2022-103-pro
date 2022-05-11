@@ -18,6 +18,7 @@ public class ChooseFoodFrm extends PageFrm{
 	private originFoodUI[] foodContent;	
 	private int foodNumber;
 	private originFoodUI foodChoice;
+	private int rows = 2;
 	public ChooseFoodFrm() {
 		super();
 		setTitleName("Choose Food");
@@ -34,12 +35,13 @@ public class ChooseFoodFrm extends PageFrm{
 		new FoodView(new FoodBack()){{
 			foodContent = getOriginFoodUI();
 			foodNumber = foodContent.length;
+			rows = getOriginFoodNumber();
 		}};
 		
 		add(new JScrollPane(new JPanel() {{
 			setLayout(new GridLayout(0,4,20,0));
             setBackground(Color.WHITE);
-            setPreferredSize(new Dimension(0, 150*3));
+            setPreferredSize(new Dimension(0, 150*rows));
             for(int i = 0; i < foodNumber; i ++) {
             	originFoodUI newChoice = foodContent[i];
             	add(newChoice);
