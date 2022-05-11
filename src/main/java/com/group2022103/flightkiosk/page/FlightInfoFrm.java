@@ -8,7 +8,9 @@ import com.group2022103.flightkiosk.component.FlightInfoButtonUI;
 import com.group2022103.flightkiosk.component.FlightInfoPanelUI;
 import com.group2022103.flightkiosk.component.RoundBorderUI;
 import com.group2022103.flightkiosk.exception.UnboundPageException;
+import com.group2022103.flightkiosk.view.FlightView;
 import com.group2022103.flightkiosk.view.TicketView;
+import com.group2022103.flightkiosk.vo.FlightBack;
 import com.group2022103.flightkiosk.vo.TicketBack;
 
 import java.awt.*;
@@ -18,7 +20,10 @@ public class FlightInfoFrm extends PageFrm{
 	private Path path = Path.of("/Retrieve/Flight Information");
 	private TicketView ticketView = new TicketView(new TicketBack() {{
 		setSurname("");
-		setDocumentID("");
+		setDocumentID("123456789012345678");
+	}});
+	private FlightView flightView = new FlightView(new FlightBack() {{
+		setFlightID(ticketView.getTicketId());
 	}});
 	private JPanel buttonPane;
 	public FlightInfoFrm() {
@@ -28,8 +33,8 @@ public class FlightInfoFrm extends PageFrm{
 		setBackButton();
 		setNextButton();
 		setBackgroundImage(new ImageIcon(ClassLoader.getSystemResource("image/background0.png")));
-		Application.context.getPageConfig().bindPage(this.path, this);
-        
+//		Application.context.getPageConfig().bindPage(this.path, this);
+		System.out.println("All ticket... "+ticketView.getTicketFront().getTickets()+" tickets");
 		//add button of all the ticket he or she have
 		int NUM = 4;//Number of tickets
         buttonPane = new JPanel() {{
@@ -79,6 +84,7 @@ public class FlightInfoFrm extends PageFrm{
 		}
 	}
 	public static void main(String[] args) {
+		Application.run();
 		FlightInfoFrm f = new FlightInfoFrm();
 		f.setTitle("Check-In Kiosk");
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
