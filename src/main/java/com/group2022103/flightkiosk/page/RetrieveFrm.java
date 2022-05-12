@@ -169,7 +169,7 @@ public class RetrieveFrm extends PageFrm{
 				customerView = new CustomerView(new CustomerBack(){{
 					setCustomerID(customerID);
 				}});
-				if(customerView.getCustomer().getSurname().equals("")){
+				if(customerView.getCustomerFront() == null){
 					JOptionPane.showMessageDialog(null, "The ID number you entered does not exist!", "Error", JOptionPane.ERROR_MESSAGE);
 				}else if(!surname.equals(customerView.getCustomer().getSurname())){
 					JOptionPane.showMessageDialog(null, "Your surname and ID number does not match!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -191,7 +191,7 @@ public class RetrieveFrm extends PageFrm{
 			customerView = new CustomerView(new CustomerBack(){{
 				setCustomerID("123456789012345678");
 			}});
-			Application.context.getContext().put("customerID",customerView.getCustomer());
+			Application.context.getContext().put("customer",customerView.getCustomer());
 			Application.context.getContext().put("bookingID",null);
 			navigateTo();
 		}

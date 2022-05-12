@@ -20,6 +20,10 @@ public class CustomerView {
         this.customerFront = customerFront;
     }
 
+    public CustomerFront getCustomerFront(){
+        return customerFront;
+    }
+
     public boolean isValid(String creditId,String password){
         System.out.println(customerFront.getCustomer().getCreditId() + " " + customerFront.getCustomer().getPassword());
         if(customerFront.getCustomer().getCreditId().equals(creditId) && customerFront.getCustomer().getPassword().equals(password)){

@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public class ExtraFoodFrm extends PageFrm{
 	private extraFoodUI[] foodContent;	
 	private int foodNumber;
+	private int rows = 2;
 	private Path path = Path.of("/Retrieve/Flight Information/Choose Seat/Choose Food/Extra Food");
 	public ExtraFoodFrm() {
 		super();
@@ -40,12 +41,13 @@ public class ExtraFoodFrm extends PageFrm{
 		new FoodView(new FoodBack()){{
 			foodContent = getExtraFoodUI();
 			foodNumber = foodContent.length;
+			rows = getExtraFoodNumber();
 		}};
 		
 		add(new JScrollPane(new JPanel() {{
 			setLayout(new GridLayout(0,4,20,0));
             setBackground(Color.WHITE);
-            setPreferredSize(new Dimension(0, 150*3));
+            setPreferredSize(new Dimension(new Dimension(0, 150*rows)));
             for(int i = 0; i < foodNumber; i ++) {
             	add(foodContent[i]);
             }
@@ -53,6 +55,17 @@ public class ExtraFoodFrm extends PageFrm{
 			setBounds(40,150,870,305);
 			getVerticalScrollBar().setUI(new DemoScrollBarUI()); 
 		}});
+
+		ArrayList<OriginFood> oldChoice = (ArrayList<OriginFood>)Application.context.getContext().get("ExtraFood");
+		if(oldChoice != null){
+			for(int i=0;i<oldChoice.size();i++){
+				for(int j=0;j<foodNumber;j++){
+					if(oldChoice.get(i).getFoodID() == foodContent[j].getFoodID()){
+						foodContent[j].setValue(oldChoice.get(i).getCount());
+					}
+				}
+			}
+		}
 	}
 	
 	public void setNextAction() {
