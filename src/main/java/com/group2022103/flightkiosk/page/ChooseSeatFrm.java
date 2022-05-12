@@ -62,6 +62,7 @@ public class ChooseSeatFrm extends PageFrm{
     private boolean canChoose = true;
     private String originSeatClass;
     private SeatChoice chosenSeat;
+    private SeatButtonUI chosenSeatButton;
     
     public ChooseSeatFrm(){
         super();
@@ -152,6 +153,7 @@ public class ChooseSeatFrm extends PageFrm{
             if(chosenSeat != null) {
             	if(chosenSeat.getSeatId() == seatBtn.getSeatId() && chosenSeat.getIntervalId() == intervalId) {
             		seatBtn.setChoice();
+            		chosenSeatButton = seatBtn;
             	}
             }
             add(seatBtn);
@@ -167,6 +169,9 @@ public class ChooseSeatFrm extends PageFrm{
                     	JOptionPane.showMessageDialog(null, "Please choose a First-Class seat!", "Error", JOptionPane.ERROR_MESSAGE);
                     }else {
                     	if(canChoose) {
+                    		if(chosenSeatButton != null) {
+                    			chosenSeatButton.cancelChoice();
+                    		}
                     		seatId = seatBtn.getSeatId();
                     		seatView = new SeatView(new SeatBack() {{
                             	setTicketId(-1);
@@ -244,7 +249,7 @@ public class ChooseSeatFrm extends PageFrm{
         setTitleName("Choose Seat");
 		setBackButton();
 		setNextButton();
-		setBackgroundImage(new ImageIcon("src/main/resources/image/backgroundAirplane.png"));
+//		setBackgroundImage(new ImageIcon("src/main/resources/image/backgroundAirplane.png"));
 
         setTitle("Choose Seat");
     }
