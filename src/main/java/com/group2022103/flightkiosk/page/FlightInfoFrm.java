@@ -129,7 +129,7 @@ public class FlightInfoFrm extends PageFrm{
   		Flight flight = flightView.getFlight(ticket.getFlight());
   		Interval interval =  intervalView.getInterval(ticket.getFlight());
   		Plane plane = planeView.getPlane(flight.getId());
-  		Airline airline = airlineView.getAirline(plane.getAirline().toString());
+  		Airline airline = airlineView.getAirline(plane.getAirline());
   		FlightInfoView flightInfo = new FlightInfoView(ticket,flight,plane,interval,airline);
   		return flightInfo;
 	}
