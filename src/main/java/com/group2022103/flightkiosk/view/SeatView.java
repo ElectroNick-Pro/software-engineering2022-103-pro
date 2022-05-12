@@ -20,14 +20,14 @@ public class SeatView {
     private List<Seat> seats;
     private SeatFront seatFront;
     private SeatBack seatBack;
-    private String originSeatClass;
+    private String originSeatClass = "Normal";
     private FlightInfoView flightInfo;
     private boolean isChosen = false;
     
     public SeatView(SeatBack seatBack){
     	//get this user's ticketId
     	this.seatFront = new SeatController().get(seatBack);
-    	this.originSeatClass = ((FlightInfoView)Application.context.getContext().get("flightInfo")).getSeatClass();
+//    	this.originSeatClass = ((FlightInfoView)Application.context.getContext().get("flightInfo")).getSeatClass();
     	this.ticketId = ((FlightInfoView)Application.context.getContext().get("flightInfo")).getTicketID();
     	this.seats = getSeatFront();
     }
@@ -49,24 +49,28 @@ public class SeatView {
     		case 0:
     			if(seatClass.equals("First")) {
     				if(seatType.equals("Extra")) {
-    					color[0] = new ColorUIResource(255,115,0);
+    					color[0] = new ColorUIResource(255,215,185);
     				}else {
-    					color[0] = new ColorUIResource(255,239,0);
+    					color[0] = new ColorUIResource(249,237,166);
     				}
     			}else {
-    				if(seatType.equals("Extra")) {
-    					color[0] = new ColorUIResource(255,189,52);
+    				if(originSeatClass.equals("First Class")) {
+    					color[0] = new ColorUIResource(205,205,205);
     				}else {
-    					color[0] = new ColorUIResource(169,242,255);
+    					if(seatType.equals("Extra")) {
+        					color[0] = new ColorUIResource(253,231,201);
+        				}else {
+        					color[0] = new ColorUIResource(209,245,252);
+        				}
     				}
     			}
     			break;
     		case 1:
-    			color[0] = new ColorUIResource(151,151,151);
+    			color[0] = new ColorUIResource(205,205,205);
     			break;
     	}
 		
-		color[1] = new ColorUIResource(151,151,151);
+		color[1] = new ColorUIResource(205,205,205);
 
 		return color;
 	}

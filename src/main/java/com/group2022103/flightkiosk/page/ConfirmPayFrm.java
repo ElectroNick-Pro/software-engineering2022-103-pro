@@ -30,45 +30,65 @@ public class ConfirmPayFrm extends PageFrm {
     private Seat chosenSeat;
     private OriginFood originFood;
     private ArrayList<OriginFood> allFoodChoice;
+    private List<FoodPurchase> allFoodPurchases;
     private boolean isGetExtraFood;
-    private Double foodPrice = 50.0;
-    private Double totalPrice = 100.0;
+    private boolean isGetOriginFood;
+    private Double foodPrice;
+    private Double totalPrice;
     private Path path = Path.of("/Retrieve/Flight Information/Choose Seat/Choose Food/Extra Food/Confirm and Pay");
     
     public ConfirmPayFrm(){
         super();
         Application.context.getPageConfig().bindPage(this.path, this);
         Application.context.getContext().put("curPath",this.path);
-
+        ConfirmPayView confirmPayView = new ConfirmPayView();
+        
         add(new BreadCrumbUI(path){{
 			setBounds(80,25,800,25);
 		}});
         
-        confirmPayBack = new ConfirmPayBack();
-        confirmPayFront = new ConfirmPayFront();
-        confirmPayView = new ConfirmPayView(confirmPayBack);
         chosenSeat = confirmPayView.getSeat();
+        allFoodPurchases = confirmPayView.getAllFoodPurchases();
         originFood = confirmPayView.getOriginFood();
         allFoodChoice = confirmPayView.getAllFoodChoice();
         isGetExtraFood = confirmPayView.isGetExtraFood();
+        isGetOriginFood = confirmPayView.isGetOriginFood();
+        foodPrice = confirmPayView.getFoodPrice();
+        totalPrice = confirmPayView.getTotalPrice();
         
-        add(new ConfirmButtonUI("src/main/resources/image/cola2.png","Economy Class","A Seat with Extra Space",50,false){{
+        System.out.println("food number: "+allFoodChoice.size());
+        
+        
+        String seatClass = "";
+        String seatType = "";
+        if (chosenSeat.getSeatClass().equals("Normal")) {
+        	seatClass = "Economy Class";
+        } else if (chosenSeat.getSeatClass().equals("First")) {
+        	seatClass = "First Class";
+        }
+        if (chosenSeat.getType().equals("Normal") || chosenSeat.getType().equals("Window") || chosenSeat.getType().equals("Aisle")) {
+        	seatType = chosenSeat.getType() + " Seat";
+        } else if (chosenSeat.getType().equals("Extra")) {
+        	seatType = "A Seat with Extra Space";
+        }
+        
+        add(new ConfirmButtonUI("src/main/resources/image/seat1.png",seatClass,seatType,chosenSeat.getPrice(),false){{
             setBounds(45, 170,415,90);
         }});
         
         ConfirmButtonUI foodBtn = new ConfirmButtonUI("src/main/resources/image/beer3.png", "Standard","Click to see the details", this.foodPrice, true);
-        if(originFood != null) {
+        if(isGetOriginFood) {
         	if(isGetExtraFood) {
             	foodBtn = new ConfirmButtonUI("src/main/resources/image/knife and fork0.png", "Food","Click to see the details", this.foodPrice, true);
             }else {
-            	foodBtn = new ConfirmButtonUI("src/main/resources/image/beer3.png", "Standard", this.foodPrice);
+            	foodBtn = new ConfirmButtonUI(originFood.getImage(), originFood.getName(), this.foodPrice);
             }
         }else {
         	if(! isGetExtraFood) {
         		foodBtn = new ConfirmButtonUI("src/main/resources/image/knife and fork0.png", "Nothing", this.foodPrice);
         	}else {
         		if(allFoodChoice.size() == 1) {
-        			foodBtn = new ConfirmButtonUI("src/main/resources/image/beer3.png", "Cookie", this.foodPrice);
+        			foodBtn = new ConfirmButtonUI(allFoodChoice.get(0).getImage(), allFoodChoice.get(0).getName(), this.foodPrice);
         		}else {
         			foodBtn = new ConfirmButtonUI("src/main/resources/image/Dessert0.png", "Dessert","Click to see the details", this.foodPrice, true);
         		}
@@ -86,7 +106,7 @@ public class ConfirmPayFrm extends PageFrm {
         foodBtn.setBounds(45, 260, 415, 85);
         add(foodBtn);
 
-        add(new ConfirmButtonUI("src/main/resources/image/child6.png","Total",this.totalPrice){{
+        add(new ConfirmButtonUI("src/main/resources/image/pay1.png","Total",this.totalPrice){{
             setBounds(45, 350, 415, 85);
         }});
 
@@ -110,7 +130,10 @@ public class ConfirmPayFrm extends PageFrm {
 		System.out.println("next");
         if(totalPrice == 0.0){
             try {
-            	confirmPayView.confirmAllChoice();
+            	confirmPayView = new ConfirmPayView(new ConfirmPayBack() {{
+            		setFoodChoice(allFoodPurchases);
+            		setSeat(chosenSeat);
+            	}});
                 new CheckInFrm();
                 Application.context.getPageConfig().displayPage(path.resolve(Path.of("/Retrieve/Flight Information/Choose Seat/Choose Food/Extra Food/Confirm and Pay/Check in")));
             } catch (UnboundPageException e1) {
@@ -124,7 +147,7 @@ public class ConfirmPayFrm extends PageFrm {
 	
 	public static void main(String args[]) {
 		Application.run();
-	    ConfirmPayFrm f = new ConfirmPayFrm();
+//	    ConfirmPayFrm f = new ConfirmPayFrm();
 //      FoodChoiceFrm f = new FoodChoiceFrm();
 	}
 }

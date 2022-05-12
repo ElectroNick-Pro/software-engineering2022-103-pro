@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.group2022103.flightkiosk.application.Application;
+import com.group2022103.flightkiosk.controller.SeatController;
 import com.group2022103.flightkiosk.model.Food;
 import com.group2022103.flightkiosk.model.FoodPurchase;
 import com.group2022103.flightkiosk.model.Seat;
@@ -15,13 +16,19 @@ import com.group2022103.flightkiosk.vo.SeatFront;
 public class ConfirmPayView {
 	private Seat seat;
 	private OriginFood originFood;
-	private ArrayList<OriginFood> allFoodChoice;
-	private List<FoodPurchase> allFoodPurchases;
-	private boolean getExtraFood;
+	private ArrayList<OriginFood> allFoodChoice = new ArrayList<>();
+	private List<FoodPurchase> allFoodPurchases = new ArrayList<>();
+	private boolean haveExtraFood;
+	private boolean haveOriginFood;
 	private ConfirmPayBack confirmPayBack;
 	private ConfirmPayFront confirmPayFront;
 	
-	public ConfirmPayView(ConfirmPayBack confirmPayBack){}
+	public ConfirmPayView() {
+		
+	}
+	public ConfirmPayView(ConfirmPayBack confirmPayBack) {
+		
+	}
 
 	public Seat getSeat() {
 		SeatChoice seatChoice = (SeatChoice)Application.context.getContext().get("SeatChoice");
@@ -45,63 +52,96 @@ public class ConfirmPayView {
 		OriginFood originFood = (OriginFood)Application.context.getContext().get("OriginFood");
 		return originFood;
 	}
+	public boolean isGetOriginFood() {
+		OriginFood originFood = (OriginFood)Application.context.getContext().get("OriginFood");
+		if(originFood != null) {
+			haveOriginFood = true;
+		}else {
+			haveOriginFood = false;
+		}
+		return haveOriginFood;
+	}
 	
 	public boolean isGetExtraFood() {
 		ArrayList<OriginFood> extraFood = (ArrayList<OriginFood>) Application.context.getContext().get("ExtraFood");
 		if(extraFood != null) {
-			getExtraFood = true;
+			haveExtraFood = true;
 		}else {
-			getExtraFood = false;
+			haveExtraFood = false;
 		}
-		return getExtraFood;
+		return haveExtraFood;
 	}
 
 	public ArrayList<OriginFood> getAllFoodChoice() {
-		OriginFood originFood = getOriginFood();
-		allFoodChoice.add(0, originFood);
+		
+		int k = 0;
+		if(isGetOriginFood()) {
+			allFoodChoice.add(k,getOriginFood());
+			k++;
+		}
 		if(isGetExtraFood()) {
 			ArrayList<OriginFood> extraFood = (ArrayList<OriginFood>) Application.context.getContext().get("ExtraFood");
+			System.out.println("extra: "+ extraFood.size());
 			for(int i = 0; i < extraFood.size(); i ++) {
-				this.allFoodChoice.add(i+1, extraFood.get(i));
+				if(extraFood.get(i) != null) {
+					allFoodChoice.add(k,extraFood.get(i));
+					k ++;
+				}
 			}
 		}
 		return allFoodChoice;
 	}
 	
 	public List<FoodPurchase> getAllFoodPurchases() {
-		OriginFood originFood = (OriginFood)Application.context.getContext().get("OriginFood");
-		FoodPurchase foodChoice = new FoodPurchase();
-		
-		//origin food
-		foodChoice.setId(originFood.getFoodID());
-		foodChoice.setPrice(originFood.getPrice());
-		foodChoice.setName(originFood.getName());
-		foodChoice.setType("Origin");
-		foodChoice.setFlight(1);
-		foodChoice.setImage(originFood.getImage());
-		
-		this.allFoodPurchases.add(0, foodChoice);
-		
+		int k = 0;
+		FoodPurchase foodPurchase = new FoodPurchase();
+		if(isGetOriginFood()) {
+			OriginFood originFood = getOriginFood();
+			//origin food
+			foodPurchase.setId(originFood.getFoodID());
+			foodPurchase.setPrice(originFood.getPrice());
+			foodPurchase.setName(originFood.getName());
+			foodPurchase.setType("Origin");
+			foodPurchase.setFlight(1);
+			foodPurchase.setImage(originFood.getImage());
+			if(foodPurchase != null) {
+				allFoodPurchases.add(k,foodPurchase);
+				k ++;
+			}
+			
+		}
 		//extra food
 		if(isGetExtraFood()) {
 			ArrayList<OriginFood> extraFood = (ArrayList<OriginFood>) Application.context.getContext().get("ExtraFood");
 			for(int i = 0; i < extraFood.size(); i ++) {
-				foodChoice.setId(extraFood.get(i).getFoodID());
-				foodChoice.setPrice(extraFood.get(i).getPrice());
-				foodChoice.setName(extraFood.get(i).getName());
-				foodChoice.setType("Extra");
-				foodChoice.setFlight(1);
-				foodChoice.setImage(extraFood.get(i).getImage());
-				this.allFoodPurchases.add(i+1, foodChoice);
+				foodPurchase.setId(extraFood.get(i).getFoodID());
+				foodPurchase.setPrice(extraFood.get(i).getPrice());
+				foodPurchase.setName(extraFood.get(i).getName());
+				foodPurchase.setType("Extra");
+				foodPurchase.setFlight(1);
+				foodPurchase.setImage(extraFood.get(i).getImage());
+				if(foodPurchase != null) {
+					allFoodPurchases.add(k, foodPurchase);
+					k ++;
+				}
 			}
 		}
 		
 		return allFoodPurchases;
 	}
 	
-	public void confirmAllChoice() {
-		confirmPayBack.setSeat(getSeat());
-		confirmPayBack.setFoodChoice(getAllFoodPurchases());
+	public Double getFoodPrice() {
+		double foodPrice = 0.0;
+		for(int i = 0; i < allFoodChoice.size(); i ++) {
+			foodPrice = foodPrice + allFoodChoice.get(i).getPrice() * allFoodChoice.get(i).getCount();
+		}
+		return foodPrice;
+	}
+	
+	public Double getTotalPrice() {
+		Seat seat = getSeat();
+		double totalPrice = getFoodPrice() + seat.getPrice();
+		return totalPrice;
 	}
 	
 }

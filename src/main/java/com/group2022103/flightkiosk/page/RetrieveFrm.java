@@ -191,7 +191,7 @@ public class RetrieveFrm extends PageFrm{
 			customerView = new CustomerView(new CustomerBack(){{
 				setCustomerID("123456789012345678");
 			}});
-			Application.context.getContext().put("customerID",customerView.getCustomer());
+			Application.context.getContext().put("customer",customerView.getCustomer());
 			Application.context.getContext().put("bookingID",null);
 			navigateTo();
 		}
