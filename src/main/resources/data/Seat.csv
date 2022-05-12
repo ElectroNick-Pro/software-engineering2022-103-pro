@@ -3,7 +3,7 @@ id,columnNo,interval,rowNo,ticket,price,seatClass,seatNo,type
 2,2,1,1,,100,First,1C,Aisle
 3,3,1,1,,100,First,1D,Aisle
 4,4,1,1,,100,First,1F,Window
-5,1,1,2,1,100,First,2A,Window
+5,1,1,2,,100,First,2A,Window
 6,2,1,2,,100,First,2C,Aisle
 7,3,1,2,,100,First,2D,Aisle
 8,4,1,2,,100,First,2F,Window

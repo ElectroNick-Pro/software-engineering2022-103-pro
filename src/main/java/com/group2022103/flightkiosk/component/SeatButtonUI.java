@@ -22,28 +22,37 @@ public class SeatButtonUI extends JPanel {
     private Seat seat;
     private SeatButtonUI seatChoice;
     private SeatView seatView;
+    private boolean isChosen = false;
 
     public SeatButtonUI(int seatId, int[] position) {
         super();
         this.seatId = seatId;
-        this.seatView = new SeatView(new SeatBack());
+        this.seatView = new SeatView(new SeatBack() {{
+        	setSeatId(seatId);
+        	setTicketId(-1);
+        	setIntervalId(-1);
+        }});
         this.seatChoice = this;
         setLayout(null);
         setBounds(position[0], position[1], 40, 40);
-        ColorUIResource[] color =  seatView.getButtonColor(seatId);
+        ColorUIResource[] color =  seatView.getButtonColor();
+        isChosen = seatView.isChosen();
         // setBackground(Color.WHITE);
         setOpaque(false);
 
         add(choose = new JLabel(new ImageIcon("src/main/resources/image/success1.png")) {{
 			setBounds(0,0, 35, 35);
 			setVisible(false);
+			if(isChosen) {
+				setVisible(true);
+			}
 		}});
         add(seatChoiceBtn = new RoundButtonUI(color[0],color[1]) {{
             setBounds(0,0, 35, 35);
             addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    chooseSeat();              
+                                
                 }
             });
         }});
@@ -61,10 +70,6 @@ public class SeatButtonUI extends JPanel {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
     }
-
-	public void chooseSeat(){
-        seatView.chooseSeat(seatChoice);
-	}
 
     public void setChoice(){
 		choose.setVisible(true);
