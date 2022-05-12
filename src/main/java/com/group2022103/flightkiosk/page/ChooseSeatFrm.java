@@ -47,12 +47,12 @@ public class ChooseSeatFrm extends PageFrm{
     private int seatWidth = frameWidth - 150;
     private int seatHeight = 280;
     private int aisle_space = 30;
-    private int rowLength = 10;
-    private int columnLength = 4;
-    private int row_spacing = (seatWidth - rowLength * 35 ) / rowLength;
-    private int column_spacing = (seatHeight - columnLength * 35 - aisle_space) / columnLength;
+    private int rowLength;
+    private int columnLength;
+    private int row_spacing;
+    private int column_spacing;
     private int btnWidth = 35, btnHeight = 35;
-    private int seatNum = 60;
+    private int seatNum;
 
     private int seatId = -1;
     private int intervalId = 1;
@@ -60,7 +60,8 @@ public class ChooseSeatFrm extends PageFrm{
     private SeatButtonUI seatChoiceBtn;
     private FlightInfoView flightInfo;
     private boolean canChoose = true;
-    private String originSeatClass = "Normal";
+    private String originSeatClass;
+    private SeatChoice chosenSeat;
     
     public ChooseSeatFrm(){
         super();
@@ -68,14 +69,24 @@ public class ChooseSeatFrm extends PageFrm{
         Application.context.getContext().put("curPath",this.path);
         this.intervalId = ((FlightInfoView)Application.context.getContext().get("flightInfo")).getIntervalID();
         this.ticketId = ((FlightInfoView)Application.context.getContext().get("flightInfo")).getTicketID();
-//        this.originSeatClass = ((FlightInfoView)Application.context.getContext().get("flightInfo")).getSeatClass();
-        System.out.println("origin seat class: "+originSeatClass);
+        this.originSeatClass = ((FlightInfoView)Application.context.getContext().get("flightInfo")).getSeatClass();
+        if(Application.context.getContext().get("SeatChoice") != null) {
+        	chosenSeat = (SeatChoice)Application.context.getContext().get("SeatChoice");
+        }
         seatView = new SeatView(new SeatBack() {{
         	setTicketId(-1);
         	setIntervalId(intervalId);
         	setSeatId(-1);
         }});
         canChoose = seatView.canChooseSeat();
+        rowLength = seatView.getRowLength();
+        columnLength = seatView.getColumnLength();
+        System.out.println("Line 81: row length = "+rowLength+" column length = "+columnLength);
+        row_spacing = (seatWidth - rowLength * 35 ) / rowLength;
+        column_spacing = (seatHeight - columnLength * 35 - aisle_space) / columnLength;
+        seatNum = seatView.getAllSeats().size();
+        
+        
         add(new BreadCrumbUI(path){{
 			setBounds(80,25,800,25);
 		}});
@@ -138,6 +149,11 @@ public class ChooseSeatFrm extends PageFrm{
             }
             int[] position = {x,y};
             SeatButtonUI seatBtn = new SeatButtonUI(seat.getId(), position);
+            if(chosenSeat != null) {
+            	if(chosenSeat.getSeatId() == seatBtn.getSeatId() && chosenSeat.getIntervalId() == intervalId) {
+            		seatBtn.setChoice();
+            	}
+            }
             add(seatBtn);
             seatBtn.seatChoiceBtn.addActionListener(new ActionListener(){
                 @Override
@@ -151,15 +167,19 @@ public class ChooseSeatFrm extends PageFrm{
                     	JOptionPane.showMessageDialog(null, "Please choose a First-Class seat!", "Error", JOptionPane.ERROR_MESSAGE);
                     }else {
                     	if(canChoose) {
-                        	seatChoiceBtn = seatBtn;
-                            seatBtn.setChoice();
-                            seatId = seatBtn.getSeatId();
-                            seatView = new SeatView(new SeatBack() {{
+                    		seatId = seatBtn.getSeatId();
+                    		seatView = new SeatView(new SeatBack() {{
                             	setTicketId(-1);
                             	setIntervalId(-1);
                             	setSeatId(seatId);
                             }});
-                            seatView.chooseSeat(seatBtn);
+                    		if(seatView.getSeatStatus() == 1) {
+                    			JOptionPane.showMessageDialog(null, "Sorry, this seat has been chosen by others!\nPlease choose another one.", "Error", JOptionPane.ERROR_MESSAGE);
+                    		}else if(seatView.getSeatStatus() == 0) {
+                    			seatChoiceBtn = seatBtn;
+                                seatBtn.setChoice();
+                                seatView.chooseSeat(seatBtn);
+                    		}
                         }else {
                         	JOptionPane.showMessageDialog(null, "You have already choose a seat!\nPlease don't choose again!", "Error", JOptionPane.ERROR_MESSAGE);
                         }
