@@ -51,12 +51,12 @@ public class TicketController {
 			var xDep = intervalMap.get(x.getFlight()).get(0).getDepartureTime();
 			var yDep = intervalMap.get(y.getFlight()).get(0).getDepartureTime();
 			var now = new Date();
-			// var now = (Date)Application.context.getCsvConfig().getParseMethodMap().get(Date.class).apply("2022-04-03 00:00:00");
+			// now = (Date)Application.context.getCsvConfig().getParseMethodMap().get(Date.class).apply("2022-04-03 00:00:00");
 			if(xDep.after(now) ^ yDep.after(now)) {
 				return yDep.compareTo(xDep);
 			} else {
 				return Duration.between(xDep.toInstant(), now.toInstant()).abs()
-					.compareTo(Duration.between(yDep.toInstant(), now.toInstant()));
+					.compareTo(Duration.between(yDep.toInstant(), now.toInstant()).abs());
 			}
 		});
 		
