@@ -1,5 +1,6 @@
 package com.group2022103.flightkiosk.view;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDate;
@@ -86,16 +87,17 @@ public class FlightInfoView {
 	}
 	public boolean isOutOfDate(Interval interval) {
 		//TODO
-		//beginTime.compareTo(endTime)<0 beginTime earlier than endTime
-		String beginTime = interval.getDestTime().toString();
-		Date date = new Date();
-		SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd :hh:mm:ss");
-		String endTime = dateFormat.format(date);
-		if(beginTime.compareTo(endTime)<0) {
-			return false;
-		}else {
-			return true;
-		}
+		String testtime = "2022-04-06 12:00:00";
+		SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        String flightTime=simpleDateFormat.format(interval.getDepartureTime());
+        System.out.println(flightTime);
+        if (testtime.compareTo(flightTime) > 0)
+        {
+            return true;
+        }
+        else{
+            return false;
+        } 
 	}
 	public boolean isCheckIn(Ticket ticket) {
 		if(ticket.getIsCheckin() == 0) {
