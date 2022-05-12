@@ -28,8 +28,8 @@ public class HrefButtonUI extends JButton{
         addMouseListener(new MouseAdapter() {
             private Color defaultColor;
 			public void mouseEntered(MouseEvent e) {
-				setForeground(new Color(0,131,255));
                 defaultColor = getForeground();
+                setForeground(new Color(0,131,255));
 			}
 
 			public void mouseExited(MouseEvent e) {

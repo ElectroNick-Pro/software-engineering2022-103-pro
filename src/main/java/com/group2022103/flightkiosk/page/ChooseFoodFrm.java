@@ -59,6 +59,21 @@ public class ChooseFoodFrm extends PageFrm{
 			setBounds(40,150,870,305);
 			getVerticalScrollBar().setUI(new DemoScrollBarUI()); 
 		}});
+		
+		OriginFood oldChoice = (OriginFood)Application.context.getContext().get("OriginFood");
+		if(oldChoice != null){
+			int foodID = oldChoice.getFoodID();
+			for(int i=0;i<foodNumber;i++){
+				originFoodUI newChoice = foodContent[i];
+				if(newChoice.getFoodID() == foodID){
+					if(foodChoice != null) {
+						foodChoice.cancelChoice();
+					}
+					newChoice.setChoice();
+					foodChoice = newChoice;
+				}
+			}
+		}
 	}
 	
 	public void setNextAction() {
