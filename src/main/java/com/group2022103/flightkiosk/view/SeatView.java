@@ -1,15 +1,21 @@
 package com.group2022103.flightkiosk.view;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.swing.plaf.ColorUIResource;
 
 import com.group2022103.flightkiosk.application.Application;
 import com.group2022103.flightkiosk.component.SeatButtonUI;
+import com.group2022103.flightkiosk.controller.PlaneController;
 import com.group2022103.flightkiosk.controller.SeatController;
 import com.group2022103.flightkiosk.mapper.SeatMapper;
+import com.group2022103.flightkiosk.model.Plane;
 import com.group2022103.flightkiosk.model.Seat;
+import com.group2022103.flightkiosk.vo.PlaneBack;
+import com.group2022103.flightkiosk.vo.PlaneFront;
 import com.group2022103.flightkiosk.vo.SeatBack;
 import com.group2022103.flightkiosk.vo.SeatFront;
 
@@ -20,20 +26,41 @@ public class SeatView {
     private List<Seat> seats;
     private SeatFront seatFront;
     private SeatBack seatBack;
-    private String originSeatClass = "Normal";
+    private String originSeatClass;
     private FlightInfoView flightInfo;
     private boolean isChosen = false;
+    private Plane plane;
     
     public SeatView(SeatBack seatBack){
     	//get this user's ticketId
     	this.seatFront = new SeatController().get(seatBack);
-//    	this.originSeatClass = ((FlightInfoView)Application.context.getContext().get("flightInfo")).getSeatClass();
+    	this.originSeatClass = ((FlightInfoView)Application.context.getContext().get("flightInfo")).getSeatClass();
     	this.ticketId = ((FlightInfoView)Application.context.getContext().get("flightInfo")).getTicketID();
     	this.seats = getSeatFront();
+    	
+    	int planeId = ((FlightInfoView)Application.context.getContext().get("flightInfo")).getPlaneID();
+    	List<String> planeIDList = new ArrayList<String>();
+    	planeIDList.add(planeId+"");
+    	PlaneBack planeBack = new PlaneBack();
+    	planeBack.setPlaneID(planeIDList);
+    	PlaneView planeView = new PlaneView(planeBack);
+    	PlaneFront planeFront = new PlaneController().get(planeBack);
+    	Map<Integer,Plane> planes = planeFront.getPlanes();
+    	for(Plane value : planes.values()) {
+    		this.plane = value;
+    	}
     }
     
     public List<Seat> getSeatFront() {
     	return seatFront.getSeats();
+    }
+    
+    public int getRowLength() {
+    	return this.plane.getRowLength();
+    }
+    
+    public int getColumnLength() {
+    	return this.plane.getColumnLength();
     }
     
     public ColorUIResource[] getButtonColor(){
@@ -165,7 +192,6 @@ public class SeatView {
     	}else {
     		status = 0;
     	}
-    	
     	return status;
     }
     
