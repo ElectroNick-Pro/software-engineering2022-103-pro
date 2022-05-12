@@ -29,7 +29,7 @@ public class ChooseSeatFrm extends PageFrm{
     private SeatView seatView;
     private List<Seat> seats;
     //colors for buttons of hints
-    private ColorUIResource[] iconColor = {new ColorUIResource(255,239,0), new ColorUIResource(169,242,255), new ColorUIResource(102,178,91), new ColorUIResource(151,151,151), new ColorUIResource(255,215,185), new ColorUIResource(255,189,52)}; 
+    private ColorUIResource[] iconColor = {new ColorUIResource(249,237,166), new ColorUIResource(209,245,252), new ColorUIResource(102,178,91), new ColorUIResource(205,205,205), new ColorUIResource(255,215,185), new ColorUIResource(253,231,201)}; 
     private int[] btnHintPosition = {295,70,455,70,295,110,455,110,646,70,646,110};
     private int[] textHintPosition = {340,73,80,25,
                                         500,73,112,25,
@@ -60,7 +60,7 @@ public class ChooseSeatFrm extends PageFrm{
     private SeatButtonUI seatChoiceBtn;
     private FlightInfoView flightInfo;
     private boolean canChoose = true;
-    private String originSeatClass;
+    private String originSeatClass = "Normal";
     
     public ChooseSeatFrm(){
         super();
@@ -68,7 +68,7 @@ public class ChooseSeatFrm extends PageFrm{
         Application.context.getContext().put("curPath",this.path);
         this.intervalId = ((FlightInfoView)Application.context.getContext().get("flightInfo")).getIntervalID();
         this.ticketId = ((FlightInfoView)Application.context.getContext().get("flightInfo")).getTicketID();
-        this.originSeatClass = ((FlightInfoView)Application.context.getContext().get("flightInfo")).getSeatClass();
+//        this.originSeatClass = ((FlightInfoView)Application.context.getContext().get("flightInfo")).getSeatClass();
         System.out.println("origin seat class: "+originSeatClass);
         seatView = new SeatView(new SeatBack() {{
         	setTicketId(-1);
@@ -224,7 +224,7 @@ public class ChooseSeatFrm extends PageFrm{
         setTitleName("Choose Seat");
 		setBackButton();
 		setNextButton();
-//		setBackgroundImage(new ImageIcon("src/main/resources/image/backgroundAirplane.png"));
+		setBackgroundImage(new ImageIcon("src/main/resources/image/backgroundAirplane.png"));
 
         setTitle("Choose Seat");
     }
