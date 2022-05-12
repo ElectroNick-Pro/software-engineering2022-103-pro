@@ -49,24 +49,28 @@ public class SeatView {
     		case 0:
     			if(seatClass.equals("First")) {
     				if(seatType.equals("Extra")) {
-    					color[0] = new ColorUIResource(255,115,0);
+    					color[0] = new ColorUIResource(255,215,185);
     				}else {
     					color[0] = new ColorUIResource(255,239,0);
     				}
     			}else {
-    				if(seatType.equals("Extra")) {
-    					color[0] = new ColorUIResource(255,189,52);
+    				if(originSeatClass.equals("First Class")) {
+    					color[0] = new ColorUIResource(205,205,205);
     				}else {
-    					color[0] = new ColorUIResource(169,242,255);
+    					if(seatType.equals("Extra")) {
+        					color[0] = new ColorUIResource(255,189,52);
+        				}else {
+        					color[0] = new ColorUIResource(169,242,255);
+        				}
     				}
     			}
     			break;
     		case 1:
-    			color[0] = new ColorUIResource(151,151,151);
+    			color[0] = new ColorUIResource(205,205,205);
     			break;
     	}
 		
-		color[1] = new ColorUIResource(151,151,151);
+		color[1] = new ColorUIResource(205,205,205);
 
 		return color;
 	}
