@@ -7,6 +7,7 @@ import com.group2022103.flightkiosk.application.Application;
 import com.group2022103.flightkiosk.component.*;
 import com.group2022103.flightkiosk.exception.UnboundPageException;
 import com.group2022103.flightkiosk.model.Airline;
+import com.group2022103.flightkiosk.model.Customer;
 import com.group2022103.flightkiosk.model.Flight;
 import com.group2022103.flightkiosk.model.Interval;
 import com.group2022103.flightkiosk.model.Plane;
@@ -19,10 +20,11 @@ import java.nio.file.Path;
 
 public class FlightInfoFrm extends PageFrm{
 	private Path path = Path.of("/Retrieve/Flight Information");
+	private Customer customer = (Customer)Application.context.getContext().get("customer");
 	private TicketView ticketView = new TicketView(new TicketBack() {{
 		setSurname("");
-		setDocumentID("123456789012345678");
-		setBookingID("");
+		setDocumentID(customer.getCustomerId());
+		setBookingID((String)Application.context.getContext().get("bookingID"));
 	}});
 	private FlightView flightView = new FlightView(new FlightBack() {{
 		setFlightID(ticketView.getTicketId());
@@ -70,7 +72,7 @@ public class FlightInfoFrm extends PageFrm{
         			flightInfo.getBookingID(),flightInfo.getDate(),flightInfo.getAirline(),flightInfo.getDepartureTime(),flightInfo.getArriveTime(),
         			flightInfo.getLastTime());
         	//TODO
-        	if(i > 1) {
+        	if(flightInfo.isOutOfDate()) {
         		button[i].setStyle();
         	}
             button[i].buttonLayout();
@@ -100,14 +102,7 @@ public class FlightInfoFrm extends PageFrm{
 		System.out.println("next");
 		FlightInfoView flightInfo = getData(chooseTicket);
 		Application.context.getContext().put("flightInfo",flightInfo);
-		
-		try {
-			new ChooseSeatFrm();
-			Application.context.getPageConfig().displayPage(path.resolve(Path.of("/Retrieve/Flight Information/Choose Seat")));
-		} catch (UnboundPageException e1) {
-			e1.printStackTrace();
-			return;
-		}
+		judgeNext(flightInfo);	
 	}
 	public JPanel addPanel(int num) {
   		FlightInfoView flightInfo = getData(num);
@@ -130,8 +125,27 @@ public class FlightInfoFrm extends PageFrm{
   		Interval interval =  intervalView.getInterval(ticket.getFlight());
   		Plane plane = planeView.getPlane(flight.getId());
   		Airline airline = airlineView.getAirline(plane.getAirline());
-  		FlightInfoView flightInfo = new FlightInfoView(ticket,flight,plane,interval,airline);
+  		FlightInfoView flightInfo = new FlightInfoView(ticket,flight,plane,interval,airline,customer);
   		return flightInfo;
+	}
+	public void judgeNext(FlightInfoView flightInfo) {
+		if(flightInfo.isOutOfDate()) {
+			JOptionPane.showMessageDialog(null, "This ticket is out of date!",
+		    "Expired!",JOptionPane.INFORMATION_MESSAGE);
+		}else {
+			if(flightInfo.isCheckIn()) {
+				 JOptionPane.showMessageDialog(null, "This ticket has been checked in!",
+		         "Expired!",JOptionPane.INFORMATION_MESSAGE);
+			}else {
+				try {
+					new ChooseSeatFrm();
+					Application.context.getPageConfig().displayPage(path.resolve(Path.of("/Retrieve/Flight Information/Choose Seat")));
+				} catch (UnboundPageException e1) {
+					e1.printStackTrace();
+					return;
+				}
+			}
+		}
 	}
 	public static void main(String[] args) {
 		Application.run();

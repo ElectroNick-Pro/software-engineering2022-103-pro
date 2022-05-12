@@ -22,7 +22,6 @@ public class PrintFrm extends PageFrm{
     private ImageIcon  image;
     public PrintFrm() {
     	super();
-		setBackgroundImage(new ImageIcon(ClassLoader.getSystemResource("image/backgroundBlue.png")));
 		setLocationRelativeTo(null);
 
         image = new ImageIcon(ClassLoader.getSystemResource("image/loading.gif"));// background picture

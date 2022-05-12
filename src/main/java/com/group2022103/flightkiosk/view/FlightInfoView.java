@@ -28,9 +28,11 @@ public class FlightInfoView {
 	private String foodType;
 	private String terminalNo,gateNo;
 	private String userName, userID;
+	private boolean checkIn,outOfDate;
 	private int ticketID,flightID,intervalID,customerID,planeID;
 
-	public FlightInfoView(Ticket ticket,Flight flight,Plane plane,Interval interval,Airline airline) {
+	public FlightInfoView(Ticket ticket,Flight flight,Plane plane,Interval interval,Airline airline
+			,Customer customer) {
 		Date departDt = interval.getDepartureTime();
 		Date destDt = interval.getDestTime();
 		this.setLastTime(this.lastTimeFormat(departDt, destDt));
@@ -54,9 +56,11 @@ public class FlightInfoView {
 		this.setCustomerID(ticket.getCustomer());
 		this.setSeatClass(this.seatClassFormat(ticket.getSeatClass()));
 		this.setPlaneID(plane.getId());
-//		this.setUserName(this.getNameFormat(customer.getSurname(), customer.getFirstname()));
-//		this.setUserID(customer.getCustomerId());
-		if(this.isCheckIn(ticket.getIsCheckin())) {
+		this.setCheckIn(this.isCheckIn(ticket));
+		this.setOutOfDate(this.isOutOfDate(interval));
+		this.setUserName(this.getNameFormat(customer.getSurname(), customer.getFirstname()));
+		this.setUserID(customer.getCustomerId());
+		if(this.isCheckIn()) {
 			//TODO  
 		};
 	}
@@ -80,8 +84,21 @@ public class FlightInfoView {
 		String lastTimeStr = "" + timeDelta.toHours() + "h" + timeDelta.toMinutes() % 60 + "min";
 		return lastTimeStr;
 	}
-	public boolean isCheckIn(int checkIn) {
-		if(checkIn == 0) {
+	public boolean isOutOfDate(Interval interval) {
+		//TODO
+		//beginTime.compareTo(endTime)<0 beginTime earlier than endTime
+		String beginTime = interval.getDestTime().toString();
+		Date date = new Date();
+		SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd :hh:mm:ss");
+		String endTime = dateFormat.format(date);
+		if(beginTime.compareTo(endTime)<0) {
+			return false;
+		}else {
+			return true;
+		}
+	}
+	public boolean isCheckIn(Ticket ticket) {
+		if(ticket.getIsCheckin() == 0) {
 			return false;
 		}else {
 			return true;
@@ -238,7 +255,21 @@ public class FlightInfoView {
 	public void setPlaneID(int planeID) {
 		this.planeID = planeID;
 	}
-	
-	
-	
+
+	public boolean isCheckIn() {
+		return checkIn;
+	}
+
+	public void setCheckIn(boolean checkIn) {
+		this.checkIn = checkIn;
+	}
+
+	public boolean isOutOfDate() {
+		return outOfDate;
+	}
+
+	public void setOutOfDate(boolean outOfDate) {
+		this.outOfDate = outOfDate;
+	}
+
 }
