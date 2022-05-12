@@ -26,6 +26,13 @@ public class TicketView {
 		ticketFront = new TicketController().get(ticketBack);
 	}
 	/*template ends*/
+	public boolean isCheckIn(Ticket ticket) {
+		if(ticket.getIsCheckin() == 0) {
+			return false;
+		}else {
+			return true;
+		}
+	}
 	public boolean isOutOfDate(Ticket ticket) {
 		//TODO
 		return true;
