@@ -3,6 +3,8 @@ package com.group2022103.flightkiosk.page;
 import com.group2022103.flightkiosk.application.Application;
 import com.group2022103.flightkiosk.component.*;
 import com.group2022103.flightkiosk.exception.UnboundPageException;
+import com.group2022103.flightkiosk.model.FoodPurchase;
+import com.group2022103.flightkiosk.model.Seat;
 import com.group2022103.flightkiosk.view.*;
 import com.group2022103.flightkiosk.vo.*;
 
@@ -10,6 +12,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.nio.file.Path;
+import java.util.List;
 
 public class PaymentFrm extends JFrame{
     private JPanel contentPane;
@@ -130,6 +133,13 @@ public class PaymentFrm extends JFrame{
                     // success
                     dispose();
                     try {
+                    	ConfirmPayView confirmPayView = new ConfirmPayView();
+                    	Seat seat = confirmPayView.getSeatInData();
+                    	List<FoodPurchase> allFoodPurchases = confirmPayView.getAllFoodPurchases();
+                    	confirmPayView = new ConfirmPayView(new ConfirmPayBack(){{
+                    		setFoodChoice(allFoodPurchases);
+                    		setSeat(seat);
+                    	}});
                         new CheckInFrm();
                         Application.context.getPageConfig().displayPage(Path.of("/Retrieve/Flight Information/Choose Seat/Choose Food/Extra Food/Confirm and Pay/Check in"));
                     } catch (UnboundPageException e1) {
