@@ -23,8 +23,11 @@ public class FlightInfoFrm extends PageFrm{
 	private Customer customer = (Customer)Application.context.getContext().get("customer");
 	private TicketView ticketView = new TicketView(new TicketBack() {{
 		setSurname("");
-		setDocumentID(customer.getCustomerId());
-		setBookingID((String)Application.context.getContext().get("bookingID"));
+		if(((String)Application.context.getContext().get("bookingID")).equals("")){
+			setDocumentID(customer.getCustomerId());
+		}else{
+			setBookingID((String)Application.context.getContext().get("bookingID"));
+		}
 	}});
 	private FlightView flightView = new FlightView(new FlightBack() {{
 		setFlightID(ticketView.getTicketId());
@@ -120,7 +123,7 @@ public class FlightInfoFrm extends PageFrm{
           	    flightInfo.getLastTime(), "flightSeat", "flightFood", 
           	    flightInfo.getTerminalNo(),flightInfo.getGateNo(),
           	    flightInfo.getUserName(),flightInfo.getUserID()) {{
-          	   checkLayout("Nomal","6A","sea food");
+          	   Layout();
           	   setBounds(500, 80, 415, 355);
           }};
           return flightInfoPanel;
