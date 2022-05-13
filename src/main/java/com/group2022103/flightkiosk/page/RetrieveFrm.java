@@ -3,6 +3,7 @@ package com.group2022103.flightkiosk.page;
 import com.group2022103.flightkiosk.application.Application;
 import com.group2022103.flightkiosk.component.*;
 import com.group2022103.flightkiosk.exception.UnboundPageException;
+import com.group2022103.flightkiosk.model.Customer;
 import com.group2022103.flightkiosk.view.CustomerView;
 import com.group2022103.flightkiosk.view.TicketView;
 import com.group2022103.flightkiosk.vo.CustomerBack;
@@ -18,6 +19,8 @@ public class RetrieveFrm extends PageFrm{
 	private JPanel contentPane,panel1,panel2,panel3;
 	private JTextField bookingIdField,surnameField,customerIdField;
 	private Path path = Path.of("/Retrieve");
+	private TicketView ticketView;
+	private CustomerView customerView;
 	public RetrieveFrm(){
 		super();
 		setTitleName("Retrieve");
@@ -138,11 +141,9 @@ public class RetrieveFrm extends PageFrm{
 	}
 
 	public void RetrieveAction(){
-		var bookingID = bookingIdField.getText();
-		var surname = surnameField.getText();
-		var customerID = customerIdField.getText();
-		TicketView ticketView;
-		CustomerView customerView;
+		String bookingID = bookingIdField.getText();
+		String surname = surnameField.getText();
+		String customerID = customerIdField.getText();
 		if(panel1.isVisible()){
 			if(bookingID.equals("")){
 				JOptionPane.showMessageDialog(null, "Please enter your bookingID.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -156,10 +157,7 @@ public class RetrieveFrm extends PageFrm{
 					customerView = new CustomerView(new CustomerBack(){{
 						setBookingID(bookingID);
 					}});
-					Application.context.getContext().put("bookingID",bookingID);
-					Application.context.getContext().put("customer",customerView.getCustomer());
-					// jump to the Flight Information page
-					navigateTo();
+					navigateTo(bookingID,customerView.getCustomer());
 				}
 			}
 		}else if(panel2.isVisible()){
@@ -180,10 +178,7 @@ public class RetrieveFrm extends PageFrm{
 					if(ticketView.getTicketNumber() == 0){
 						JOptionPane.showMessageDialog(null, "This bookingID does not exist!", "Error", JOptionPane.ERROR_MESSAGE);
 					}else{
-						Application.context.getContext().put("customer",customerView.getCustomer());
-						Application.context.getContext().put("bookingID",null);
-						// jump to the Flight Information page
-						navigateTo();
+						navigateTo(bookingID,customerView.getCustomer());
 					}
 				}
 			}
@@ -191,13 +186,19 @@ public class RetrieveFrm extends PageFrm{
 			customerView = new CustomerView(new CustomerBack(){{
 				setCustomerID("123456789012345678");
 			}});
-			Application.context.getContext().put("customer",customerView.getCustomer());
-			Application.context.getContext().put("bookingID",null);
-			navigateTo();
+			navigateTo(bookingID,customerView.getCustomer());
 		}
 	}
 
-	public void navigateTo(){
+	public void navigateTo(String bookingID,Customer customer){
+		bookingIdField.setText("");
+		surnameField.setText("");
+		customerIdField.setText("");
+		Application.context.getContext().remove("bookingID");
+		Application.context.getContext().remove("customer");
+		Application.context.getContext().put("bookingID",bookingID);
+		Application.context.getContext().put("customer",customer);
+
 		try {
 			new FlightInfoFrm();
 			Application.context.getPageConfig().displayPage(path.resolve(Path.of("/Retrieve/Flight Information")));
