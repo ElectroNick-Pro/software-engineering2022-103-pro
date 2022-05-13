@@ -60,24 +60,30 @@ public class FlightInfoFrm extends PageFrm{
         buttonPane = new JPanel() {{
         	setBackground(Color.white);
         	setBorder(new RoundBorderUI());
-        	setLayout(new GridLayout(NUM,1) {{
+        	setLayout(new GridLayout(Math.max(NUM,3),1) {{
         		setVgap(10);
         	}});
         }};
         FlightInfoButtonUI[] button = new FlightInfoButtonUI[NUM];//create buttons
-        for(int i = 0; i < NUM; i++) {
-        	//TODO
-			FlightInfoView flightInfo = getData(i);
-        	button[i] = new FlightInfoButtonUI(flightInfo.getDepartPlace(),flightInfo.getArrivePlace(),
-        			flightInfo.getBookingID(),flightInfo.getDate(),flightInfo.getAirline(),flightInfo.getDepartureTime(),flightInfo.getArriveTime(),
-        			flightInfo.getLastTime());
-        	//TODO
-        	if(flightInfo.isOutOfDate()) {
-        		button[i].setStyle();
+        for(int i = 0; i < Math.max(NUM,3); i++) {
+        	if(i<NUM) {
+        		FlightInfoView flightInfo = getData(i);
+            	button[i] = new FlightInfoButtonUI(flightInfo.getDepartPlace(),flightInfo.getArrivePlace(),
+            			flightInfo.getBookingID(),flightInfo.getDate(),flightInfo.getAirline(),flightInfo.getDepartureTime(),flightInfo.getArriveTime(),
+            			flightInfo.getLastTime());
+            	//TODO
+            	if(flightInfo.isOutOfDate()) {
+            		button[i].setStyle();
+            	}
+                button[i].buttonLayout();
+                button[i].setBorder(BorderFactory.createCompoundBorder(button[i].getBorder(), BorderFactory.createEmptyBorder(20, 20, 20, 20))); 
+                buttonPane.add(button[i]);
+        	}else {
+        		buttonPane.add(new JPanel() {{
+            		setPreferredSize(new Dimension(300, 75));
+            		setBackground(Color.WHITE);
+            	}});
         	}
-            button[i].buttonLayout();
-            button[i].setBorder(BorderFactory.createCompoundBorder(button[i].getBorder(), BorderFactory.createEmptyBorder(20, 20, 20, 20))); 
-            buttonPane.add(button[i]);
         }
         add(rightPanel = addPanel(0));
         add(new JScrollPane(buttonPane) {{
