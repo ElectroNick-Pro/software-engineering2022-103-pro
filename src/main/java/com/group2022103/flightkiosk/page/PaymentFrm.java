@@ -19,7 +19,10 @@ public class PaymentFrm extends JFrame{
     private JPanel panel1,panel2;
     private JTextField creditId;
     private JPasswordField password;
+    private List<FoodPurchase> allFoodPurchases;
+    private ConfirmPayView confirmPayView = new ConfirmPayView();
     public PaymentFrm(){
+    	allFoodPurchases = confirmPayView.getAllFoodPurchases();
         contentPane = new JPanel() {{
 			setLayout(null);
 			setBackground(Color.WHITE);
@@ -135,11 +138,10 @@ public class PaymentFrm extends JFrame{
                     try {
                     	ConfirmPayView confirmPayView = new ConfirmPayView();
                     	Seat seat = confirmPayView.getSeatInData();
-                    	List<FoodPurchase> allFoodPurchases = confirmPayView.getAllFoodPurchases();
-                    	confirmPayView = new ConfirmPayView(new ConfirmPayBack(){{
-                    		setFoodChoice(allFoodPurchases);
-                    		setSeat(seat);
-                    	}});
+    	            	confirmPayView = new ConfirmPayView(new ConfirmPayBack(){{
+    	            		setFoodChoice(allFoodPurchases);
+    	            		setSeat(seat);
+    	            	}});
                         new CheckInFrm();
                         Application.context.getPageConfig().displayPage(Path.of("/Retrieve/Flight Information/Choose Seat/Choose Food/Extra Food/Confirm and Pay/Check in"));
                     } catch (UnboundPageException e1) {

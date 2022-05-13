@@ -109,16 +109,18 @@ public class ConfirmPayView {
 	
 	public List<FoodPurchase> getAllFoodPurchases() {
 		int k = 0;
-		FoodPurchase foodPurchase = new FoodPurchase();
 		FlightInfoView flightInfo = (FlightInfoView)Application.context.getContext().get("flightInfo");
 		int flightId = ((FlightInfoView)Application.context.getContext().get("flightInfo")).getFlightID();
 		if(isGetOriginFood()) {
 			OriginFood originFood = getOriginFood();
 			//origin food
+			FoodPurchase foodPurchase = new FoodPurchase();
 			foodPurchase.setFood(originFood.getFoodID());
 			foodPurchase.setTicket(flightInfo.getTicketID());
 			foodPurchase.setCount(1);
+			
 			if(foodPurchase != null) {
+				System.out.println("Origin Food ID: "+originFood.getFoodID());
 				allFoodPurchases.add(k,foodPurchase);
 				k ++;
 			}
@@ -128,14 +130,19 @@ public class ConfirmPayView {
 		if(isGetExtraFood()) {
 			ArrayList<OriginFood> extraFood = (ArrayList<OriginFood>) Application.context.getContext().get("ExtraFood");
 			for(int i = 0; i < extraFood.size(); i ++) {
+				FoodPurchase foodPurchase = new FoodPurchase();
 				foodPurchase.setFood(extraFood.get(i).getFoodID());
 				foodPurchase.setTicket(flightInfo.getTicketID());
 				foodPurchase.setCount(extraFood.get(i).getCount());
 				if(foodPurchase != null) {
+					System.out.println("Extra Food ID: "+extraFood.get(i).getFoodID());
 					allFoodPurchases.add(k, foodPurchase);
 					k ++;
 				}
 			}
+		}
+		for(k = 0; k < allFoodPurchases.size(); k ++) {
+			System.out.println("Food "+ k + "is: "+allFoodPurchases.get(k).getFood());
 		}
 		
 		return allFoodPurchases;
