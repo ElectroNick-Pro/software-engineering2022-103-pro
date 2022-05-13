@@ -83,7 +83,7 @@ public  Helpnotice(){
        
 
         vBox.add(new JLabel(){{
-            ImageIcon n = new ImageIcon("src/main/resources/image/exit.png");
+            ImageIcon n = new ImageIcon(ClassLoader.getSystemResource("image/exit.png"));
             n.setImage(n.getImage().getScaledInstance(30, 30, 1));
             setIcon(n);
             setText("To exit, please click this button");

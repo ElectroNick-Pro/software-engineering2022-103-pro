@@ -31,7 +31,7 @@ public class originFoodUI extends foodPanelUI{
 			}});	
 		}
 		
-		add(ok = new JLabel(new ImageIcon("src/main/resources/image/success1.png")) {{
+		add(ok = new JLabel(new ImageIcon(ClassLoader.getSystemResource("image/success1.png"))) {{
 			setBounds(0,80,50,50);
 			setVisible(false);
 		}});

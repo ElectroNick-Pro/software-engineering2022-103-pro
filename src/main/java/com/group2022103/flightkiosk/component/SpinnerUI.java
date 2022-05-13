@@ -14,7 +14,7 @@ public class SpinnerUI extends JPanel{
 		setSize(90,20);
 		setBackground(Color.WHITE);
 		
-		add(new RoundButtonUI(new ImageIcon("src/main/resources/image/reduce0.png"),Color.WHITE,new Color(226,226,226)) {{
+		add(new RoundButtonUI(new ImageIcon(ClassLoader.getSystemResource("image/reduce0.png")),Color.WHITE,new Color(226,226,226)) {{
 			setBounds(0,0,20,20);
 			setARC(20);
 			setBorderColor(Color.GRAY);
@@ -38,7 +38,7 @@ public class SpinnerUI extends JPanel{
             });
 		}});
 		
-		add(new RoundButtonUI(new ImageIcon("src/main/resources/image/add3.png"),new Color(0,131,255), new Color(0,105,206)) {{
+		add(new RoundButtonUI(new ImageIcon(ClassLoader.getSystemResource("image/add3.png")),new Color(0,131,255), new Color(0,105,206)) {{
 			setBounds(70,0,20,20);
 			setARC(20);
 			addActionListener(new ActionListener() {

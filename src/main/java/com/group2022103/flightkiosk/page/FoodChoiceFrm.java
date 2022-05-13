@@ -64,7 +64,7 @@ public class FoodChoiceFrm extends JFrame{
 			getVerticalScrollBar();
 		}});
 
-        add(new ConfirmButtonUI("src/main/resources/image/pay1.png","Total",foodPrice){{
+        add(new ConfirmButtonUI("image/pay1.png","Total",foodPrice){{
             setBounds(43,400,415,85);
         }});
         

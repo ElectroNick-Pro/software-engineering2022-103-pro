@@ -77,25 +77,25 @@ public class ConfirmPayFrm extends PageFrm {
         	seatType = "A Seat with Extra Space";
         }
         
-        add(new ConfirmButtonUI("src/main/resources/image/seat1.png",seatClass,seatType,chosenSeat.getPrice(),false){{
+        add(new ConfirmButtonUI("image/seat1.png",seatClass,seatType,chosenSeat.getPrice(),false){{
             setBounds(45, 170,415,90);
         }});
         
-        ConfirmButtonUI foodBtn = new ConfirmButtonUI("src/main/resources/image/beer3.png", "Standard","Click to see the details", this.foodPrice, true);
+        ConfirmButtonUI foodBtn = new ConfirmButtonUI("image/beer3.png", "Standard","Click to see the details", this.foodPrice, true);
         if(isGetOriginFood) {
         	if(isGetExtraFood) {
-            	foodBtn = new ConfirmButtonUI("src/main/resources/image/knife and fork0.png", "Food","Click to see the details", this.foodPrice, true);
+            	foodBtn = new ConfirmButtonUI("image/knife and fork0.png", "Food","Click to see the details", this.foodPrice, true);
             }else {
             	foodBtn = new ConfirmButtonUI(originFood.getImage(), originFood.getName(), this.foodPrice);
             }
         }else {
         	if(! isGetExtraFood) {
-        		foodBtn = new ConfirmButtonUI("src/main/resources/image/knife and fork0.png", "Nothing", this.foodPrice);
+        		foodBtn = new ConfirmButtonUI("image/knife and fork0.png", "Nothing", this.foodPrice);
         	}else {
         		if(allFoodChoice.size() == 1) {
         			foodBtn = new ConfirmButtonUI(allFoodChoice.get(0).getImage(), allFoodChoice.get(0).getName(), this.foodPrice);
         		}else {
-        			foodBtn = new ConfirmButtonUI("src/main/resources/image/Dessert0.png", "Dessert","Click to see the details", this.foodPrice, true);
+        			foodBtn = new ConfirmButtonUI("image/Dessert0.png", "Dessert","Click to see the details", this.foodPrice, true);
         		}
         	}
         }
@@ -111,7 +111,7 @@ public class ConfirmPayFrm extends PageFrm {
         foodBtn.setBounds(45, 260, 415, 85);
         add(foodBtn);
 
-        add(new ConfirmButtonUI("src/main/resources/image/pay1.png","Total",this.totalPrice){{
+        add(new ConfirmButtonUI("image/pay1.png","Total",this.totalPrice){{
             setBounds(45, 350, 415, 85);
         }});
         

@@ -7,7 +7,7 @@ import java.awt.event.*;
 public class exitButtonUI extends JButton implements ActionListener{
 	public exitButtonUI(){
 		super();
-		setIcon(new ImageIcon("src/main/resources/image/exit.png") {{
+		setIcon(new ImageIcon(ClassLoader.getSystemResource("image/exit.png")) {{
 			setImage(this.getImage().getScaledInstance(40,40,Image.SCALE_DEFAULT));
 		}});
 		setBackground(Color.WHITE);
@@ -15,10 +15,10 @@ public class exitButtonUI extends JButton implements ActionListener{
 	}
 
 	public void actionPerformed(ActionEvent e) {
-//		Èç¹û²»ÊÇ×îºóÒ»¸öÒ³Ãæ¾Íµ¯´°ÌáÊ¾
+//		ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ò³ï¿½ï¿½Íµï¿½ï¿½ï¿½ï¿½ï¿½Ê¾
 		int choice = JOptionPane.showConfirmDialog(null, "Do you want to exit? If so, your choices will not be saved.", "Confirm", JOptionPane.YES_NO_OPTION);
 		if(choice == JOptionPane.YES_OPTION){
-//            TODO - RetrieveFrmÒ³ÃæµÄÊäÈë¿ò¶¼Çå¿Õ + GlobalDataÇå¿Õ + ·µ»Øµ½»¶Ó­Ò³Ãæ
+//            TODO - RetrieveFrmÒ³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ + GlobalDataï¿½ï¿½ï¿½ + ï¿½ï¿½ï¿½Øµï¿½ï¿½ï¿½Ó­Ò³ï¿½ï¿½
         }
 	}
 }

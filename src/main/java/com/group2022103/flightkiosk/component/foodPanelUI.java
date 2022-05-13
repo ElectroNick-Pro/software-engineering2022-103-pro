@@ -8,8 +8,10 @@ public class foodPanelUI extends JPanel{
 		setLayout(null);
 		setSize(200,150);
 		setBackground(Color.WHITE);
+
+		System.out.println(image);
 		
-		add(new JLabel(new ImageIcon(image)) {{
+		add(new JLabel(new ImageIcon(ClassLoader.getSystemResource(image))) {{
 			setBackground(Color.WHITE);
 			setBounds(75,0,60,60);
 		}});

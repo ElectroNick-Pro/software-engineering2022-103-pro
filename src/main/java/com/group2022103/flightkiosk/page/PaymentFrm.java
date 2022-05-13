@@ -71,7 +71,7 @@ public class PaymentFrm extends JFrame{
             setBackground(Color.WHITE);
             setVisible(false);
             setBounds(5, 100, 500, 180);setBounds(5, 100, 500, 180);
-            add(new JLabel(new ImageIcon("src/main/resources/image/code.png"){{
+            add(new JLabel(new ImageIcon(ClassLoader.getSystemResource("image/code.png")){{
                 setImage(this.getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT));
             }}));
         }});

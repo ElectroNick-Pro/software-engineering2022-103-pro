@@ -24,7 +24,7 @@ public class RetrieveFrm extends PageFrm{
 	public RetrieveFrm(){
 		super();
 		setTitleName("Retrieve");
-		setBackgroundImage(new ImageIcon("src/main/resources/image/travel.png"));
+		setBackgroundImage(new ImageIcon(ClassLoader.getSystemResource("image/travel.png")));
 		Application.context.getPageConfig().bindPage(this.path, this);
 		Application.context.getContext().put("curPath",this.path);
 
@@ -86,7 +86,7 @@ public class RetrieveFrm extends PageFrm{
 				setFont(new Font("Microsoft YaHei UI",Font.LAYOUT_LEFT_TO_RIGHT,18));
 				setBounds(0,0,341,70);
 			}});
-			add(new JLabel(new ImageIcon("src/main/resources/image/scanIDcard.png") {{
+			add(new JLabel(new ImageIcon(ClassLoader.getSystemResource("image/scanIDcard.png")) {{
 				setImage(this.getImage().getScaledInstance(276,126,Image.SCALE_DEFAULT));
 			}}) {{
 				setBackground(Color.WHITE);

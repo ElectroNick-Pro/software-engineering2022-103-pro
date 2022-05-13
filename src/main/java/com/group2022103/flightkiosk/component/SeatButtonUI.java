@@ -42,7 +42,7 @@ public class SeatButtonUI extends JPanel {
         // setBackground(Color.WHITE);
         setOpaque(false);
 
-        add(choose = new JLabel(new ImageIcon("src/main/resources/image/success1.png")) {{
+        add(choose = new JLabel(new ImageIcon(ClassLoader.getSystemResource("image/success1.png"))) {{
 			setBounds(0,0, 35, 35);
 			setVisible(false);
 			if(isChosen) {

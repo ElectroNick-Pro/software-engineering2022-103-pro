@@ -24,7 +24,7 @@ public class PageFrm extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		add(new JButton() {{
-			setIcon(new ImageIcon("src/main/resources/image/exit.png") {{
+			setIcon(new ImageIcon(ClassLoader.getSystemResource("image/exit.png")) {{
 				setImage(this.getImage().getScaledInstance(40,40,Image.SCALE_DEFAULT));
 			}});
 			setBackground(Color.WHITE);
@@ -38,7 +38,7 @@ public class PageFrm extends JFrame{
 		}});
 		
 		add(new JButton() {{
-			setIcon(new ImageIcon("src/main/resources/image/question.png") {{
+			setIcon(new ImageIcon(ClassLoader.getSystemResource("image/question.png")) {{
 				setImage(this.getImage().getScaledInstance(40,40,Image.SCALE_DEFAULT));
 			}});
 			setBackground(Color.WHITE);

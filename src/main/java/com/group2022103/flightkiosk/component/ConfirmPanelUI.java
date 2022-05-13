@@ -10,7 +10,7 @@ public class ConfirmPanelUI extends JPanel{
 		setSize(415,85);
 		setBackground(Color.WHITE);
 
-        add(new JLabel(new ImageIcon(image)) {{
+        add(new JLabel(new ImageIcon(ClassLoader.getSystemResource(image))) {{
 			setBackground(Color.WHITE);
 			setBounds(20,13,50,50);
 		}});

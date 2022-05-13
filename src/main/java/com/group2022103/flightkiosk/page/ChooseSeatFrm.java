@@ -110,7 +110,7 @@ public class ChooseSeatFrm extends PageFrm{
                 });
             }});
         }
-        add(new JLabel(new ImageIcon("src/main/resources/image/success1.png")) {{
+        add(new JLabel(new ImageIcon(ClassLoader.getSystemResource("image/success1.png"))) {{
 			setBounds(295,110, 35, 35);
 			setVisible(true);
 		}});
@@ -249,7 +249,6 @@ public class ChooseSeatFrm extends PageFrm{
         setTitleName("Choose Seat");
 		setBackButton();
 		setNextButton();
-//		setBackgroundImage(new ImageIcon("src/main/resources/image/backgroundAirplane.png"));
 
         setTitle("Choose Seat");
     }

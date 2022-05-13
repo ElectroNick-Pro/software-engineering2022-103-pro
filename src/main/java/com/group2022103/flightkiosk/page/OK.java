@@ -33,7 +33,7 @@ public class OK extends PageFrm {
         setFont(new Font("Microsoft YaHei", Font.PLAIN,21));
 		}});
 
-        add(new JLabel(new ImageIcon("src/main/resources/image/success1.png")) {{
+        add(new JLabel(new ImageIcon(ClassLoader.getSystemResource("image/success1.png"))) {{
             //setText("You Have Paid Successfully!");
 			setBounds(25,30,75,75);
 			setVisible(true);

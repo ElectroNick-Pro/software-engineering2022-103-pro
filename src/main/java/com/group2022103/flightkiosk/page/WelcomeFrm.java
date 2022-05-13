@@ -24,11 +24,11 @@ public class WelcomeFrm extends PageFrm {
             }
         });
 
-        setBackgroundImage(new ImageIcon("src/main/resources/image/welcome5.gif"));
+        setBackgroundImage(new ImageIcon(ClassLoader.getSystemResource("image/welcome5.gif")));
         long time = 3000;
         TimerTask tt = new TimerTask() {
             public void run() {
-                setNewBackgroundImage(new ImageIcon("src/main/resources/image/welcome1.jpg"));
+                setNewBackgroundImage(new ImageIcon(ClassLoader.getSystemResource("image/welcome1.jpg")));
                 // System.out.println("Well");
             }
         };

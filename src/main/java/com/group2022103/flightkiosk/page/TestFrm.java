@@ -12,7 +12,7 @@ public class TestFrm extends PageFrm{
 		setHintName("hhh111");
 		setBackButton();
 		setNextButton();
-		setBackgroundImage(new ImageIcon("src/main/resources/image/background0.png"));
+		setBackgroundImage(new ImageIcon(ClassLoader.getSystemResource("image/background0.png")));
 	}
 	
 	public void setBackAction() {

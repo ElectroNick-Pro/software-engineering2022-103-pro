@@ -86,7 +86,7 @@ public class Notice extends JFrame implements ActionListener {
                 vBox.add(new JLabel() {
                     {
                         setVisible(true);
-                        ImageIcon m = (new ImageIcon("src/main/resources/image/question.png"));
+                        ImageIcon m = (new ImageIcon(ClassLoader.getSystemResource("image/question.png")));
                         m.setImage(m.getImage().getScaledInstance(30, 30, 1));
                         // setImage(this.getImage().getScaledInstance(276,126,Image.SCALE_DEFAULT));
                         setIcon(m);
@@ -103,7 +103,7 @@ public class Notice extends JFrame implements ActionListener {
 
                 vBox.add(new JLabel() {
                     {
-                        ImageIcon n = new ImageIcon("src/main/resources/image/exit.png");
+                        ImageIcon n = new ImageIcon(ClassLoader.getSystemResource("image/exit.png"));
                         n.setImage(n.getImage().getScaledInstance(30, 30, 1));
                         setIcon(n);
                         setText("To exit, please click this button");
@@ -214,7 +214,7 @@ public class Notice extends JFrame implements ActionListener {
 
                 vBox.add(new JLabel() {
                     {
-                        ImageIcon m1 = new ImageIcon("src/main/resources/image/flowchart.png");
+                        ImageIcon m1 = new ImageIcon(ClassLoader.getSystemResource("image/flowchart.png"));
                         m1.setImage(m1.getImage().getScaledInstance(400, 40, 1));
                         setIcon(m1);
 
