@@ -2,45 +2,32 @@ package com.group2022103.flightkiosk.model;
 
 public class FoodPurchase {
 	private Integer id;
-	private Double price;
-	private String name;
-	private String type;
-	private Integer flight;
-	private String image;
+	private Integer food;
+	private Integer ticket;
+	private Integer count;
 	public Integer getId() {
 		return id;
 	}
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Double getPrice() {
-		return price;
+	public Integer getFood() {
+		return food;
 	}
-	public void setPrice(Double price) {
-		this.price = price;
+	public void setFood(Integer food) {
+		this.food = food;
 	}
-	public String getName() {
-		return name;
+	public Integer getTicket() {
+		return ticket;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setTicket(Integer ticket) {
+		this.ticket = ticket;
 	}
-	public String getType() {
-		return type;
+	public Integer getCount() {
+		return count;
 	}
-	public void setType(String type) {
-		this.type = type;
+	public void setCount(Integer count) {
+		this.count = count;
 	}
-	public Integer getFlight() {
-		return flight;
-	}
-	public void setFlight(Integer flight) {
-		this.flight = flight;
-	}
-	public String getImage() {
-		return image;
-	}
-	public void setImage(String image) {
-		this.image = image;
-	}
+	
 }
