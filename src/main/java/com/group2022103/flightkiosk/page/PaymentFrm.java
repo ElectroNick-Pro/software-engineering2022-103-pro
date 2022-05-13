@@ -120,6 +120,12 @@ public class PaymentFrm extends JFrame{
             // success
             dispose();
             try {
+            	ConfirmPayView confirmPayView = new ConfirmPayView();
+            	Seat seat = confirmPayView.getSeatInData();
+            	confirmPayView = new ConfirmPayView(new ConfirmPayBack(){{
+            		setFoodChoice(allFoodPurchases);
+            		setSeat(seat);
+            	}});
                 new CheckInFrm();
                 Application.context.getPageConfig().displayPage(Path.of("/Retrieve/Flight Information/Choose Seat/Choose Food/Extra Food/Confirm and Pay/Check in"));
             } catch (UnboundPageException e1) {

@@ -67,11 +67,11 @@ public class CheckInFrm extends PageFrm{
 					CheckInView checkInView = new CheckInView(new CheckInBack() {{
 						setTicketID(flightInfo.getTicketID());
 					}});
-					Seat seat = confirmPayView.getSeatInData();
-	            	confirmPayView = new ConfirmPayView(new ConfirmPayBack(){{
-	            		setFoodChoice(allFoodPurchases);
-	            		setSeat(seat);
-	            	}});
+//					Seat seat = confirmPayView.getSeatInData();
+//	            	confirmPayView = new ConfirmPayView(new ConfirmPayBack(){{
+//	            		setFoodChoice(allFoodPurchases);
+//	            		setSeat(seat);
+//	            	}});
 					new PrintFrm().setVisible(true);
 				}
 			});
