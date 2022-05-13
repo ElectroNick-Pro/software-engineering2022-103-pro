@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.group2022103.flightkiosk.application.Application;
+import com.group2022103.flightkiosk.controller.ConfirmPayController;
 import com.group2022103.flightkiosk.controller.SeatController;
 import com.group2022103.flightkiosk.model.Food;
 import com.group2022103.flightkiosk.model.FoodPurchase;
@@ -22,12 +23,13 @@ public class ConfirmPayView {
 	private boolean haveOriginFood;
 	private ConfirmPayBack confirmPayBack;
 	private ConfirmPayFront confirmPayFront;
+	private FlightInfoView flightInfo;
 	
 	public ConfirmPayView() {
-		
+
 	}
 	public ConfirmPayView(ConfirmPayBack confirmPayBack) {
-		
+		new ConfirmPayController().get(confirmPayBack);
 	}
 
 	public Seat getSeat() {
@@ -46,6 +48,19 @@ public class ConfirmPayView {
 		this.seat = chosenSeat;
 		
 		return chosenSeat;
+	}
+	
+	public Seat getSeatInData() {
+		Seat chosenSeat = getSeat();
+		SeatView seatView = new SeatView(new SeatBack() {{
+			setIntervalId(-1);
+			setTicketId(-1);
+			setSeatId(chosenSeat.getId());
+		}});
+		Seat seatToSave = seatView.getSeatFront().get(0);
+		seatToSave.setTicket(chosenSeat.getTicket());
+		
+		return seatToSave;
 	}
 	
 	public OriginFood getOriginFood() {
@@ -95,15 +110,13 @@ public class ConfirmPayView {
 	public List<FoodPurchase> getAllFoodPurchases() {
 		int k = 0;
 		FoodPurchase foodPurchase = new FoodPurchase();
+		int flightId = ((FlightInfoView)Application.context.getContext().get("flightInfo")).getFlightID();
 		if(isGetOriginFood()) {
 			OriginFood originFood = getOriginFood();
 			//origin food
-			foodPurchase.setId(originFood.getFoodID());
-			foodPurchase.setPrice(originFood.getPrice());
-			foodPurchase.setName(originFood.getName());
-			foodPurchase.setType("Origin");
-			foodPurchase.setFlight(1);
-			foodPurchase.setImage(originFood.getImage());
+			foodPurchase.setFood(originFood.getFoodID());
+			foodPurchase.setTicket(flightInfo.getTicketID());
+			foodPurchase.setCount(1);
 			if(foodPurchase != null) {
 				allFoodPurchases.add(k,foodPurchase);
 				k ++;
@@ -114,12 +127,9 @@ public class ConfirmPayView {
 		if(isGetExtraFood()) {
 			ArrayList<OriginFood> extraFood = (ArrayList<OriginFood>) Application.context.getContext().get("ExtraFood");
 			for(int i = 0; i < extraFood.size(); i ++) {
-				foodPurchase.setId(extraFood.get(i).getFoodID());
-				foodPurchase.setPrice(extraFood.get(i).getPrice());
-				foodPurchase.setName(extraFood.get(i).getName());
-				foodPurchase.setType("Extra");
-				foodPurchase.setFlight(1);
-				foodPurchase.setImage(extraFood.get(i).getImage());
+				foodPurchase.setFood(extraFood.get(i).getFoodID());
+				foodPurchase.setTicket(flightInfo.getTicketID());
+				foodPurchase.setCount(extraFood.get(i).getCount());
 				if(foodPurchase != null) {
 					allFoodPurchases.add(k, foodPurchase);
 					k ++;

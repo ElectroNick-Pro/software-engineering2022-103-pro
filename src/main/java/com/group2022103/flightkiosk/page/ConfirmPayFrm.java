@@ -6,10 +6,12 @@ import javax.swing.JPanel;
 
 import com.group2022103.flightkiosk.application.Application;
 import com.group2022103.flightkiosk.component.*;
+import com.group2022103.flightkiosk.controller.ConfirmPayController;
 import com.group2022103.flightkiosk.exception.UnboundPageException;
 import com.group2022103.flightkiosk.model.FoodPurchase;
 import com.group2022103.flightkiosk.model.Seat;
 import com.group2022103.flightkiosk.view.ConfirmPayView;
+import com.group2022103.flightkiosk.view.FlightInfoView;
 import com.group2022103.flightkiosk.view.OriginFood;
 import com.group2022103.flightkiosk.view.SeatChoice;
 import com.group2022103.flightkiosk.vo.ConfirmPayBack;
@@ -27,8 +29,10 @@ public class ConfirmPayFrm extends PageFrm {
 	private ConfirmPayView confirmPayView;
 	private ConfirmPayBack confirmPayBack;
 	private ConfirmPayFront confirmPayFront;
+	private FlightInfoView flightInfo;
     private Seat chosenSeat;
     private OriginFood originFood;
+    private String originFoodName = "";
     private ArrayList<OriginFood> allFoodChoice;
     private List<FoodPurchase> allFoodPurchases;
     private boolean isGetExtraFood;
@@ -42,6 +46,7 @@ public class ConfirmPayFrm extends PageFrm {
         Application.context.getPageConfig().bindPage(this.path, this);
         Application.context.getContext().put("curPath",this.path);
         ConfirmPayView confirmPayView = new ConfirmPayView();
+        flightInfo = (FlightInfoView)Application.context.getContext().get("flightInfo");
         
         add(new BreadCrumbUI(path){{
 			setBounds(80,25,800,25);
@@ -109,12 +114,23 @@ public class ConfirmPayFrm extends PageFrm {
         add(new ConfirmButtonUI("src/main/resources/image/pay1.png","Total",this.totalPrice){{
             setBounds(45, 350, 415, 85);
         }});
-
-        add(new FlightInfoPanelUI("flightbookID", "flightDate", "airline","flightTakeoff", "flightArrive",
-        	    "flightFlightNo", "flightAirport1", "flightAirport2", "flightStartTime",
-        	    "flightArriveTime","time", "flightSeat", "flightFood","12", 
-        	    "5"," flightName","fligthNameID") {{
-        	    checkLayout("Nomal","6A","sea food");
+        
+        if(isGetOriginFood) {
+        	originFoodName = originFood.getName();
+        }else if(isGetExtraFood) {
+        	originFoodName = "Dessert";
+        }else if(! isGetExtraFood && ! isGetOriginFood){
+        	originFoodName = "No Food";
+        }
+        add(new FlightInfoPanelUI(flightInfo.getBookingID(), 
+  				flightInfo.getDate(), flightInfo.getAirline(),
+  				flightInfo.getDepartPlace(), flightInfo.getArrivePlace(),
+          	    flightInfo.getFlightNo(), flightInfo.getDepartureAirport(), flightInfo.getArriveAirport(), 
+          	    flightInfo.getDepartureTime(),flightInfo.getArriveTime(),
+          	    flightInfo.getLastTime(), "flightSeat", "flightFood", 
+          	    flightInfo.getTerminalNo(),flightInfo.getGateNo(),
+          	    flightInfo.getUserName(),flightInfo.getUserID()) {{
+        	    checkLayout(chosenSeat.getSeatClass(),chosenSeat.getSeatNo(),originFoodName);
         	   setBounds(500, 80, 415, 355);
         }});
 
@@ -130,9 +146,11 @@ public class ConfirmPayFrm extends PageFrm {
 		System.out.println("next");
         if(totalPrice == 0.0){
             try {
-            	confirmPayView = new ConfirmPayView(new ConfirmPayBack() {{
+            	confirmPayView = new ConfirmPayView();
+            	Seat seat = confirmPayView.getSeatInData();
+            	confirmPayView = new ConfirmPayView(new ConfirmPayBack(){{
             		setFoodChoice(allFoodPurchases);
-            		setSeat(chosenSeat);
+            		setSeat(seat);
             	}});
                 new CheckInFrm();
                 Application.context.getPageConfig().displayPage(path.resolve(Path.of("/Retrieve/Flight Information/Choose Seat/Choose Food/Extra Food/Confirm and Pay/Check in")));
