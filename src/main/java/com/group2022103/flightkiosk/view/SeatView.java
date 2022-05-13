@@ -161,7 +161,7 @@ public class SeatView {
 			        			setTicketId(-1);
 			        			setSeatId(-1);
 			        		}});
-			        		price = price - seatFront2.getSeats().get(0).getPrice();
+			        		price = 0.0;
 			        	}
 			        }
 			        SeatChoice seatChoice = new SeatChoice(intervalId, ticketId, seatId, columnNo, rowNo, seatNo, seatClass, price, type, upgrade);
