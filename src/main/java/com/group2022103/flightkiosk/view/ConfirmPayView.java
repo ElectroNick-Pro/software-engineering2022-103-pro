@@ -110,6 +110,7 @@ public class ConfirmPayView {
 	public List<FoodPurchase> getAllFoodPurchases() {
 		int k = 0;
 		FoodPurchase foodPurchase = new FoodPurchase();
+		FlightInfoView flightInfo = (FlightInfoView)Application.context.getContext().get("flightInfo");
 		int flightId = ((FlightInfoView)Application.context.getContext().get("flightInfo")).getFlightID();
 		if(isGetOriginFood()) {
 			OriginFood originFood = getOriginFood();
