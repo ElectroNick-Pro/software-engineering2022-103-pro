@@ -14,10 +14,14 @@ import javax.swing.WindowConstants;
 
 import com.group2022103.flightkiosk.application.Application;
 import com.group2022103.flightkiosk.component.*;
+import com.group2022103.flightkiosk.view.CheckInView;
+import com.group2022103.flightkiosk.view.FlightInfoView;
+import com.group2022103.flightkiosk.vo.CheckInBack;
 
 public class CheckInFrm extends PageFrm{
 	private ImageIcon image;
 	private JButton checkIn;
+	private FlightInfoView flightInfo;
 	private Path path = Path.of("/Retrieve/Flight Information/Choose Seat/Choose Food/Extra Food/Confirm and Pay/Check in");
 	public CheckInFrm() {
 		super();
@@ -43,6 +47,9 @@ public class CheckInFrm extends PageFrm{
 			setBounds(50,400,360,30);
 			addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					CheckInView checkInView = new CheckInView(new CheckInBack() {{
+						setTicketID(flightInfo.getTicketID());
+					}});
 					new PrintFrm().setVisible(true);
 				}
 			});
