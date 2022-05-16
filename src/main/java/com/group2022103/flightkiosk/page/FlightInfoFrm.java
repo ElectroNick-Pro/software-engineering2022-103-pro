@@ -47,7 +47,7 @@ public class FlightInfoFrm extends PageFrm{
 	public FlightInfoFrm() {
 		super();
 		setTitleName("Flight Information");
-		setHintName("Please choose the flight and check the information:");
+//		setHintName("Please choose the flight and check the information:");
 		setBackButton();
 		setNextButton();
 		setBackgroundImage(new ImageIcon(ClassLoader.getSystemResource("image/background0.png")));
