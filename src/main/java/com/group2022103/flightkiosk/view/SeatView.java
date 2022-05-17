@@ -103,7 +103,6 @@ public class SeatView {
 	}
 
 	public void chooseSeat(SeatButtonUI seatChoiceBtn){
-		System.out.println(seatChoiceBtn.getSeatId());
         this.seatChoiceBtn = seatChoiceBtn;
         seatId = seatChoiceBtn.getSeatId();
         Seat seat = seats.get(0);
@@ -136,7 +135,6 @@ public class SeatView {
 	
 	public boolean canChooseSeat() {
 		boolean canChoose = true;
-		System.out.println("ÊýÁ¿"+seats.size());
 		Seat seat = seats.get(0);
 		for(int i = 0; i < seats.size(); i ++) {
 			seat = seats.get(i);
@@ -196,6 +194,17 @@ public class SeatView {
     }
     
     public boolean isChosen() {
+    	//true: is chosen by this user
+    	Seat seat = seats.get(0);
+    	if(seat.getTicket() != null) {
+    		if(seat.getTicket() == this.ticketId) {
+    			this.isChosen = true;
+    		}else {
+    			this.isChosen = false;
+    		}
+    	}else {
+    		this.isChosen = false;
+    	}
     	return this.isChosen;
     }
     

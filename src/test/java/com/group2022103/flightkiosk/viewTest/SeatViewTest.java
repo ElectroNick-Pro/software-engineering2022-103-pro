@@ -3,6 +3,11 @@ package com.group2022103.flightkiosk.viewTest;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
+import java.nio.channels.NonWritableChannelException;
+import java.util.List;
+
+import javax.swing.plaf.ColorUIResource;
+
 import org.junit.Test;
 
 import com.group2022103.flightkiosk.application.Application;
@@ -19,7 +24,26 @@ public class SeatViewTest {
 	@Test
 	public void test() {
 		Application.run();
-		SeatMapper seatMapper = (SeatMapper) Application.context.getMapperConfig().getMappers().get(SeatMapper.class);
-		assertNotEquals(null, seatMapper.queryAll());
+		SeatBack seatBack = new SeatBack(){{
+			setTicketId(-1);
+			setSeatId(1);
+			setIntervalId(-1);
+		}};
+		SeatView seatView = new SeatView(seatBack);
+		SeatFront seatFront = new SeatController().get(seatBack);
+		List<Seat> seats = seatView.getSeatFront();
+		assertEquals(seats.get(0).getSeatNo(), "1A");
+		assertEquals(seatView.getRowLength(), 10);
+		assertEquals(seatView.getColumnLength(), 4);
+		
+		ColorUIResource[] color = new ColorUIResource[2];
+		color[0] = new ColorUIResource(249,237,166);
+		color[1] = new ColorUIResource(205,205,205);
+		assertEquals(seatView.getButtonColor(), color);
+		
+		assertEquals(seatView.canChooseSeat(), true);
+		assertEquals(seatView.getSeatStatus(), 0);
+		assertEquals(seatView.getAllSeats(), seatView.getSeatFront());
+		
 	}
 }
