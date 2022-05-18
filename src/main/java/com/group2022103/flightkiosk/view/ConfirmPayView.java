@@ -96,7 +96,6 @@ public class ConfirmPayView {
 		}
 		if(isGetExtraFood()) {
 			ArrayList<OriginFood> extraFood = (ArrayList<OriginFood>) Application.context.getContext().get("ExtraFood");
-			System.out.println("extra: "+ extraFood.size());
 			for(int i = 0; i < extraFood.size(); i ++) {
 				if(extraFood.get(i) != null) {
 					allFoodChoice.add(k,extraFood.get(i));

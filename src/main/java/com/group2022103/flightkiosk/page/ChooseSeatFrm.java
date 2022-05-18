@@ -163,7 +163,6 @@ public class ChooseSeatFrm extends PageFrm{
                     if(seatChoiceBtn != null){ //have chosen a seat before
                         seatChoiceBtn.cancelChoice();
                     }
-                    System.out.println(seatBtn.getSeatClass());
                     if(originSeatClass.equals("First Class") && seatBtn.getSeatClass().equals("Normal")) {
                     	System.out.println("inside");
                     	JOptionPane.showMessageDialog(null, "Please choose a First-Class seat!", "Error", JOptionPane.ERROR_MESSAGE);
