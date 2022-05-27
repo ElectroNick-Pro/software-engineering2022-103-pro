@@ -3,16 +3,19 @@ package com.group2022103.flightkiosk.vo;
 import java.util.*;
 
 import com.group2022103.flightkiosk.model.Customer;
+import com.group2022103.flightkiosk.model.Ticket;
 
 public class FlightInfosFront {
+
 	// FlightId-Map{TicketId-isCheckIn}
-	private Map<Integer, Map<Integer, Integer>> ticketMap;
+	private Map<Integer, Map<Integer, Ticket>> ticketMap;
 	// FlightId-Map{TicketId-Customer}
 	private Map<Integer, Map<Integer, Customer>> customerMap;
-	public Map<Integer, Map<Integer, Integer>> getTicketMap() {
+
+	public Map<Integer, Map<Integer, Ticket>> getTicketMap() {
 		return ticketMap;
 	}
-	public void setTicketMap(Map<Integer, Map<Integer, Integer>> ticketMap) {
+	public void setTicketMap(Map<Integer, Map<Integer, Ticket>> ticketMap) {
 		this.ticketMap = ticketMap;
 	}
 	public Map<Integer, Map<Integer, Customer>> getCustomerMap() {

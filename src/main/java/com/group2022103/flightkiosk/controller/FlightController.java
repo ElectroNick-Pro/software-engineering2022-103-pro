@@ -4,7 +4,6 @@ import java.util.HashMap;
 
 import com.group2022103.flightkiosk.application.Application;
 import com.group2022103.flightkiosk.mapper.FlightMapper;
-import com.group2022103.flightkiosk.model.Flight;
 import com.group2022103.flightkiosk.vo.*;
 
 public class FlightController {
@@ -13,7 +12,7 @@ public class FlightController {
 	
 	public FlightFront get(FlightBack req) {
 		var res = new FlightFront();
-		res.setFlights(new HashMap<Integer, Flight>());
+		res.setFlights(new HashMap<>());
 		req.getFlightID().forEach((e)->{
 			res.getFlights().put(Integer.parseInt(e), flightMapper.getById(Integer.parseInt(e)));
 		});

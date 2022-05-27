@@ -4,15 +4,12 @@ import java.util.*;
 
 import com.group2022103.flightkiosk.application.Application;
 import com.group2022103.flightkiosk.mapper.CustomerMapper;
-import com.group2022103.flightkiosk.mapper.FlightMapper;
 import com.group2022103.flightkiosk.mapper.TicketMapper;
-import com.group2022103.flightkiosk.model.*;
 import com.group2022103.flightkiosk.vo.FlightInfosBack;
 import com.group2022103.flightkiosk.vo.FlightInfosFront;
 
 public class FlightInfosController {
 	
-	private FlightMapper flightMapper = (FlightMapper) Application.context.getMapperConfig().getMappers().get(FlightMapper.class);
 	private TicketMapper ticketMapper = (TicketMapper) Application.context.getMapperConfig().getMappers().get(TicketMapper.class);
 	private CustomerMapper customerMapper = (CustomerMapper) Application.context.getMapperConfig().getMappers().get(CustomerMapper.class);
 	
@@ -34,7 +31,7 @@ public class FlightInfosController {
 			if(!ticketMap.containsKey(flightId)) {
 				ticketMap.put(flightId, new HashMap<>());
 			}
-			ticketMap.get(flightId).put(e.getId(), e.getIsCheckin());
+			ticketMap.get(flightId).put(e.getId(), e);
 		});
 		return res;
 	}
