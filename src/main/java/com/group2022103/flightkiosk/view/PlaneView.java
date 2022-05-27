@@ -17,12 +17,8 @@ import com.group2022103.flightkiosk.vo.TicketFront;
 public class PlaneView {
 	private PlaneFront planeFront;
 	public PlaneView(PlaneBack planeBack) {
-		/*Bypass backend begins*/
-//		var map = new HashMap<Integer,Plane>();
 		planeFront = new PlaneFront();
-//		this.planeFront.setPlanes(map);
-		/*Bypass backend ends*/
-		 setPlaneFront(new PlaneController().get(planeBack));
+		setPlaneFront(new PlaneController().get(planeBack));
 	}
 	public PlaneFront getPlaneFront() {
 		return planeFront;

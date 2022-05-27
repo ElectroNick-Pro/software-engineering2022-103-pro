@@ -15,11 +15,7 @@ import com.group2022103.flightkiosk.vo.PlaneFront;
 public class FlightView {
 	private FlightFront flightFront;
 	public FlightView(FlightBack flightBack) {
-		/*Bypass backend begins*/
-//		var map = new HashMap<Integer,Flight>();
 		flightFront = new FlightFront();
-//		this.flightFront.setFlights(map);
-		/*Bypass backend ends*/
 		 setFlightFront(new FlightController().get(flightBack));
 	}
 	public FlightFront getFlightFront() {

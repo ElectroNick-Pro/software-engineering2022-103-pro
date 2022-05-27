@@ -16,12 +16,12 @@ import com.group2022103.flightkiosk.view.TicketView;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.junit.Test;
 
 public class TicketViewTest {
-	@Test
 	public TicketView testGetickets() {
 		Application.run();
 		TicketView ticketView = new TicketView(new TicketBack() {{
@@ -30,46 +30,31 @@ public class TicketViewTest {
 		}});
 		assertEquals(3,ticketView.getTicketFront().getTickets().size());
 		return ticketView;
-		// Ticket ticket = ticketView.getTicket(0);
-		// assertEquals(1,(int)ticket.getId());
-		// assertEquals("BK1001",ticket.getBookingId());
-		// assertEquals(1,(int)ticket.getFlight());
-		// FlightView flightView = new FlightView(new FlightBack() {{
-		// 	setFlightID(ticketView.getTicketId());
-		// }});
-		// assertEquals(3,flightView.getFlightFront().getFlights().size());
-		// assertEquals(1,(int)flightView.getFlightFront().getFlights().get(1).getId());
-		// assertEquals("2",flightView.getFlightID().get(1));
-		// PlaneView planeView = new PlaneView(new PlaneBack() {{
-		// 	setPlaneID(flightView.getPlaneID());
-		// }});
-		// assertEquals(3,planeView.getPlaneFront().getPlanes().size());
-		// IntervalView intervalView = new IntervalView(new IntervalBack() {{
-		// 	setFlightID(flightView.getFlightID());
-		// }});
-		// assertEquals(3,intervalView.getIntervalFront().getIntervals().size());
 	}
+	@Test
 	public void testGetTicket(){
 		TicketView ticketView = testGetickets();
-		ticketView.getTicket(0);
-
+		Ticket ticket = ticketView.getTicket(0);
+		assertEquals(3,(int)ticket.getId());
+   	 	assertEquals("BK1101",ticket.getBookingId());
+   	 	assertEquals(3,(int)ticket.getFlight());
 		ticketView.getTicket(1);
 	}
+	@Test
 	public void testGetTicketNum(){
 		Application.run();
 		TicketView ticketView = testGetickets();
 		assertEquals(ticketView.getTicketFront().getTickets().size(),ticketView.getTicketNumber());
 	}
-	// public void testGetAllInfo(TicketView tickets,FlightView flights,IntervalView intervals,
-	// 		PlaneView planes,AirlineView airline) {
-	// 	int num = tickets.getTicketNumber();
-	// 	for(int i = 0; i < num;i++) {
-	// 		Ticket ticket = tickets.getTicket(i);
-	// 		Flight flight = flights.getFlight(ticket.getFlight());
-	// 		Interval interval =  intervals.getInterval(ticket.getFlight());
-	// 		Plane plane = planes.getPlane(flight.getId());
-	// 		// FlightInfoView flightInfoView = new FlightInfoView(ticket,flight,plane,interval);
-	// 		// System.out.println(flightInfoView.getArriveAirport()+" "+flightInfoView.getArrivePlace());
-	// 	}
-	// }
+	@Test
+	public void testGetTicketID() {
+		Application.run();
+		List<String> ticketID = new LinkedList<String>(){{
+		    add("3");
+		    add("2");
+		    add("1");
+		}};
+		assertEquals(ticketID,testGetickets().getTicketId());
+	}
+
 }	
