@@ -3,15 +3,25 @@ package com.group2022103.flightkiosk.page;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+
+import com.group2022103.flightkiosk.application.Application;
 import com.group2022103.flightkiosk.component.*;
-import com.group2022103.flightkiosk.view.FlightInfoView;
+import com.group2022103.flightkiosk.view.FlightInfosView;
+import com.group2022103.flightkiosk.view.FlightView;
+import com.group2022103.flightkiosk.view.IntervalView;
+import com.group2022103.flightkiosk.vo.FlightBack;
+import com.group2022103.flightkiosk.vo.FlightInfosBack;
+import com.group2022103.flightkiosk.vo.IntervalBack;
 
 public class BackAllFlightFrm extends JFrame{
 	private static final int DEFAULT_WIDTH = 965;
     private static final int DEFAULT_HEIGHT = 550;
-    private int NUM = 3;
     private JPanel contentPane;
     private JPanel buttonPane;
+	private IntervalView intervalView = new IntervalView(new IntervalBack());
+	private FlightView flightView = new FlightView(new FlightBack());
+	private int NUM = flightView.getFlights().size();
+
 	public BackAllFlightFrm() {
 		setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
         contentPane = new JPanel() {{
@@ -62,22 +72,33 @@ public class BackAllFlightFrm extends JFrame{
         	}});
         }};
         FlightBackButtonUI[] button = new FlightBackButtonUI[NUM];
-        for(int i = 0; i < Math.max(NUM,5); i++) {
-        	if(i < NUM) {
-        		button[i] = new FlightBackButtonUI("BK1001","ShangHai-China","Beijing-China","2022-01-01") {{
-    	        	buttonLayout();
-    	        	setBounds(41,138,836,56);
-    	        }};
-                button[i].buttonLayout();
-                button[i].setBorder(BorderFactory.createCompoundBorder(button[i].getBorder(), BorderFactory.createEmptyBorder(20, 20, 20, 20))); 
-                buttonPane.add(button[i]);
-        	}else{
-            	buttonPane.add(new JPanel() {{
-            		setPreferredSize(new Dimension(836, 56));
-            		setBackground(Color.WHITE);
-            	}});
-            }
-        }
+		int i = 0;
+		for(var e: flightView.getFlights().entrySet()) {
+			var intervals = intervalView.getAllIntervals().get(e.getKey());
+			button[i] = new FlightBackButtonUI(e.getValue().getFlightNo(),intervals.get(0).getDepartureCity(),intervals.get(intervals.size() - 1).getDestCity(),Application.context.getAppConfig().getTimezone().format(intervals.get(0).getDepartureTime())) {{
+				buttonLayout();
+				setBounds(41,138,836,56);
+			}};
+			var id = e.getKey();
+			button[i].addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					var frame = new FlightListFrm(new FlightInfosView(new FlightInfosBack(){{setFlightId(id);}}));
+        			frame.setVisible(true);
+				}
+			});
+			button[i].buttonLayout();
+			button[i].setBorder(BorderFactory.createCompoundBorder(button[i].getBorder(), BorderFactory.createEmptyBorder(20, 20, 20, 20))); 
+			buttonPane.add(button[i]);
+			i++;
+		}
+		for(; i < (NUM > 5 ? NUM : 5); i++) {
+			buttonPane.add(new JPanel() {{
+				setPreferredSize(new Dimension(836, 56));
+				setBackground(Color.WHITE);
+			}});
+		}
+		i = 0;
         add(new JScrollPane(buttonPane) {{
         	setBackground(Color.white);
         	setBounds(41,138,850,300);
@@ -95,6 +116,7 @@ public class BackAllFlightFrm extends JFrame{
 		}});
 	}
 	public static void main(String[] args) {
+		Application.run();
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {

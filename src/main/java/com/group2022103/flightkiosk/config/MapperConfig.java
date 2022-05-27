@@ -10,10 +10,8 @@ import java.util.*;
 
 import javax.swing.JOptionPane;
 
-import com.group2022103.flightkiosk.application.Application;
 import com.group2022103.flightkiosk.base.mapper.MapperHandler;
 import com.group2022103.flightkiosk.base.mapper.MapperImpl;
-import com.group2022103.flightkiosk.mapper.*;
 import com.group2022103.flightkiosk.util.ClassUtil;
 
 public class MapperConfig {
@@ -81,16 +79,6 @@ public class MapperConfig {
 
 	public Map<Class<?>, Object> getMappers() {
 		return mappers;
-	}
-	
-	public static void main(String[] args) {
-		Application.run();
-		var _this = Application.context.getMapperConfig();
-		var am = (AirlineMapper) _this.getMappers().get(AirlineMapper.class);
-		var res = am.queryAll();
-		var obj = am.getById(2);
-		res.get(0).setName("AirOneOne");
-		am.update(res.get(0));
 	}
 
 }

@@ -12,10 +12,9 @@ import com.group2022103.flightkiosk.vo.FlightInfosFront;
 
 public class FlightInfosView extends AbstractTableModel {
 
-    private final static String[] colNames = {"Flight id", "Ticket id", "Check-in", "Customer name", "Customer id", "Credit id"};
+    private final static String[] colNames = {"Flight id", "Ticket id", "Check-in", "Customer name", "Customer id"};
 
     private final static List<Class<?>> colClzList = List.of(
-        String.class,
         String.class,
         String.class,
         String.class,
@@ -42,7 +41,6 @@ public class FlightInfosView extends AbstractTableModel {
                 ls.add(v2.getIsCheckin().equals(1) ? "Checked-in" : "Not Checked-in");
                 ls.add(customer.getFullName());
                 ls.add(customer.getCustomerId());
-                ls.add(customer.getCreditId());
                 ticketList.add(ls);
             });
         });

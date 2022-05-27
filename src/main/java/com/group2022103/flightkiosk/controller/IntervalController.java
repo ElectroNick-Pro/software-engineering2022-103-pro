@@ -13,15 +13,24 @@ public class IntervalController {
 	public IntervalFront get(IntervalBack req) {
 		var res = new IntervalFront();
 		res.setIntervals(new HashMap<>());
-		var m = Set.copyOf(req.getFlightID());
-		intervalMapper.queryAll().forEach((e)->{
-			if(m.contains(e.getFlight().toString())) {
+		if(req.getFlightID() == null) {
+			intervalMapper.queryAll().forEach(e->{
 				if(!res.getIntervals().containsKey(e.getFlight())) {
-					res.getIntervals().put(e.getFlight(), new ArrayList<>());	
+					res.getIntervals().put(e.getFlight(), new ArrayList<>());
 				}
 				res.getIntervals().get(e.getFlight()).add(e);
-			}
-		});
+			});
+		} else {
+			var m = Set.copyOf(req.getFlightID());
+			intervalMapper.queryAll().forEach(e->{
+				if(m.contains(e.getFlight().toString())) {
+					if(!res.getIntervals().containsKey(e.getFlight())) {
+						res.getIntervals().put(e.getFlight(), new ArrayList<>());	
+					}
+					res.getIntervals().get(e.getFlight()).add(e);
+				}
+			});
+		}
 		return res;
 	}
 

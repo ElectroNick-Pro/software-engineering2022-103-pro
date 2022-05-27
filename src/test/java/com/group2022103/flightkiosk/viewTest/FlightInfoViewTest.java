@@ -34,7 +34,7 @@ public class FlightInfoViewTest {
 		IntervalView intervalView = new IntervalView(new IntervalBack() {{
 			setFlightID(flightView.getFlightID());
 		}});
-		assertEquals(3,intervalView.getIntervalFront().getIntervals().size());
+		assertEquals(3,intervalView.getAllIntervals().size());
         AirlineView airlineView = new AirlineView(new AirlineBack(){{
             
         }});

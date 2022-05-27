@@ -13,9 +13,15 @@ public class FlightController {
 	public FlightFront get(FlightBack req) {
 		var res = new FlightFront();
 		res.setFlights(new HashMap<>());
-		req.getFlightID().forEach((e)->{
-			res.getFlights().put(Integer.parseInt(e), flightMapper.getById(Integer.parseInt(e)));
-		});
+		if(req.getFlightID() == null) {
+			flightMapper.queryAll().forEach(e->{
+				res.getFlights().put(e.getId(), e);
+			});
+		} else {
+			req.getFlightID().forEach(e->{
+				res.getFlights().put(Integer.parseInt(e), flightMapper.getById(Integer.parseInt(e)));
+			});
+		}
 		return res;
 	}
 
