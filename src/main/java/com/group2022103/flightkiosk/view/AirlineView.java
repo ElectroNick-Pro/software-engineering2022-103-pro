@@ -13,10 +13,6 @@ import com.group2022103.flightkiosk.vo.FlightFront;
 public class AirlineView {
 	private AirlineFront airlineFront;
 	public AirlineView(AirlineBack airlineBack){
-//		var map = new HashMap<Integer,Airline>();
-		airlineFront = new AirlineFront();
-//		this.airlineFront.setAirlines(map);
-		/*Bypass backend ends*/
 		setAirlineFront(new AirlineController().get(airlineBack));
 	}
 	
