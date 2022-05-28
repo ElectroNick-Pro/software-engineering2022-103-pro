@@ -31,17 +31,10 @@ public class BackAllFlightFrm extends JFrame{
         setContentPane(contentPane);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        JTextField textField=new JTextField() {{
-        	ImageIcon image = new ImageIcon(ClassLoader.getSystemResource("image/search .png"));// background picture
-    		image.setImage(image.getImage().getScaledInstance(25,25,Image.SCALE_DEFAULT));// setSize
-    		JLabel picture=new JLabel(image);
-    		picture.setBounds(480,0,45,45);
-    		add(picture);
-    		setBorder(new RoundBorderUI(Color.gray)); 
-    		setBounds(43,28,530,40);
-        }}; 
-        textField.addFocusListener(new JTextFieldHintListener(textField,"      Search FlightNo......."));
-        add(textField);
+        add(new JLabel("All Fights:") {{
+        	setFont(new Font("Microsoft YaHei UI",Font.BOLD,25));
+        	setBounds(43,28,530,40);
+        }});
         
         add(new JLabel("FlightNo") {{
         	setFont(new Font("Microsoft YaHei UI",Font.PLAIN,16));
