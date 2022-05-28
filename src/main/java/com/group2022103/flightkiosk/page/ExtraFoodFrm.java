@@ -3,6 +3,7 @@ package com.group2022103.flightkiosk.page;
 import com.group2022103.flightkiosk.application.Application;
 import com.group2022103.flightkiosk.component.*;
 import com.group2022103.flightkiosk.exception.UnboundPageException;
+import com.group2022103.flightkiosk.model.Food;
 import com.group2022103.flightkiosk.view.*;
 import com.group2022103.flightkiosk.vo.FoodBack;
 
@@ -13,35 +14,37 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 
 public class ExtraFoodFrm extends PageFrm{
+	private Path path = Path.of("/Retrieve/Flight Information/Choose Seat/Choose Food/Extra Food");
+	private ArrayList<Food> food;
 	private extraFoodUI[] foodContent;	
 	private int foodNumber;
 	private int rows = 2;
-	private Path path = Path.of("/Retrieve/Flight Information/Choose Seat/Choose Food/Extra Food");
+	private int flightId = ((FlightInfoView)Application.context.getContext().get("flightInfo")).getFlightID();
 	public ExtraFoodFrm() {
 		super();
 		setTitleName("Extra Food");
 		setHintName("You can choose some extra food:");
 		setBackButton();
 		setNextButton();
+		addExitButton();
+		addHelpButton();
 		Application.context.getPageConfig().bindPage(this.path, this);
 		Application.context.getContext().put("curPath",this.path);
 
 		add(new BreadCrumbUI(path){{
 			setBounds(80,25,800,25);
 		}});
-
-		// OriginFood originFood = (OriginFood)Application.context.getContext().get("OriginFood");
-		// int FoodID = originFood.getFoodID();
-		// String image = originFood.getImage();
-		// String name = originFood.getName();
-		// double price = originFood.getPrice();
-		// int count = originFood.getCount();
-		// System.out.println(originFood.getFoodID() + " " + originFood.getImage() + "" + originFood.getName() + " " + originFood.getPrice() + " " + originFood.getCount());
 		
-		new FoodView(new FoodBack()){{
-			foodContent = getExtraFoodUI();
-			foodNumber = foodContent.length;
-			rows = getExtraFoodNumber();
+		new FoodView(new FoodBack(){{
+            setFlightId(flightId);
+        }}){{
+			food = getExtraFood();
+			foodNumber = food.size();
+			foodContent = new extraFoodUI[foodNumber];
+			for(int i=0;i<foodNumber;i++){
+				foodContent[i] = new extraFoodUI(food.get(i).getId(), food.get(i).getImage(), food.get(i).getName(), food.get(i).getPrice());
+			}
+			rows = foodNumber%4==0?foodNumber/4:foodNumber/4+1;
 		}};
 		
 		add(new JScrollPane(new JPanel() {{

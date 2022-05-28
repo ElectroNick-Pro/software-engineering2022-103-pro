@@ -50,6 +50,8 @@ public class FlightInfoFrm extends PageFrm{
 		setHintName("Please choose the flight and check the information:");
 		setBackButton();
 		setNextButton();
+		addExitButton();
+		addHelpButton();
 		setBackgroundImage(new ImageIcon(ClassLoader.getSystemResource("image/background0.png")));
 		Application.context.getPageConfig().bindPage(this.path, this);
 		Application.context.getContext().put("curPath",this.path);

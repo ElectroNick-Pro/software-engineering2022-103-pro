@@ -3,6 +3,7 @@ package com.group2022103.flightkiosk.page;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.nio.file.Path;
 
 import com.group2022103.flightkiosk.application.Application;
 import com.group2022103.flightkiosk.component.*;
@@ -22,9 +23,11 @@ public class PageFrm extends JFrame{
 		setResizable(false);
 		setTitle("Check-In Kiosk");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+	}
+
+	public void addExitButton(){
 		add(new JButton() {{
-			setIcon(new ImageIcon(ClassLoader.getSystemResource("image/exit.png")) {{
+			setIcon(new ImageIcon("src/main/resources/image/exit.png") {{
 				setImage(this.getImage().getScaledInstance(40,40,Image.SCALE_DEFAULT));
 			}});
 			setBackground(Color.WHITE);
@@ -32,13 +35,15 @@ public class PageFrm extends JFrame{
 			setBounds(40,20,40,40);
 			addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					
+					setExitAction();
 				}
 			});
 		}});
-		
+	}
+
+	public void addHelpButton(){
 		add(new JButton() {{
-			setIcon(new ImageIcon(ClassLoader.getSystemResource("image/question.png")) {{
+			setIcon(new ImageIcon("src/main/resources/image/question.png") {{
 				setImage(this.getImage().getScaledInstance(40,40,Image.SCALE_DEFAULT));
 			}});
 			setBackground(Color.WHITE);
@@ -46,7 +51,11 @@ public class PageFrm extends JFrame{
 			setBounds(880,20,40,40);
 			addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					
+					Helpnotice frame = new Helpnotice();
+					frame.setBackground(Color.WHITE);
+					frame.setSize(515, 600);
+					frame.setLocationRelativeTo(null);
+					frame.setVisible(true);
 				}
 			});
 		}});
@@ -101,15 +110,25 @@ public class PageFrm extends JFrame{
 	
 	public void setNextAction() {
 	}
+
+	public void setExitAction(){
+		try {
+			new WelcomeFrm();
+			Application.context.getPageConfig().displayPage((Path.of("Welcome")));
+		} catch (UnboundPageException e1) {
+			e1.printStackTrace();
+			return;
+		}
+	}
 	
 	public void setBackgroundImage(ImageIcon image) {
 		contentPane.add(backgroundImage = new JLabel(image) {{
 			setBounds(0, 0, image.getIconWidth(), image.getIconHeight());
 		}}, JLayeredPane.DEFAULT_LAYER);
         contentPane.setOpaque(false);
-        this.getLayeredPane().setLayout(null);
-        this.getLayeredPane().add(backgroundImage, new Integer(Integer.MIN_VALUE));
-        this.getLayeredPane().setBackground(Color.WHITE);
+        getLayeredPane().setLayout(null);
+        getLayeredPane().add(backgroundImage, new Integer(Integer.MIN_VALUE));
+        getLayeredPane().setBackground(Color.WHITE);
 	}
 		
 	public void setNewBackgroundImage(ImageIcon image) {
@@ -117,8 +136,8 @@ public class PageFrm extends JFrame{
 			setBounds(0, 0, image.getIconWidth(), image.getIconHeight());
 		}}, JLayeredPane.DEFAULT_LAYER);
         contentPane.setOpaque(false);
-        this.getLayeredPane().setLayout(null);
-        this.getLayeredPane().add(backgroundImage,new Integer(Integer.MIN_VALUE+1));
-        this.getLayeredPane().setBackground(Color.WHITE);
+        getLayeredPane().setLayout(null);
+        getLayeredPane().add(backgroundImage,new Integer(Integer.MIN_VALUE+1));
+        getLayeredPane().setBackground(Color.WHITE);
 	}
 }

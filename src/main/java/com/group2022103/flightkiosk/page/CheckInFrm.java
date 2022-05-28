@@ -11,6 +11,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 
 import com.group2022103.flightkiosk.application.Application;
@@ -39,6 +40,8 @@ public class CheckInFrm extends PageFrm{
 		super();
 		setTitleName("Confirm and Print");
 		setHintName("Please scan your ID document");
+		addExitButton();
+		addHelpButton();
 		setBackgroundImage(new ImageIcon(ClassLoader.getSystemResource("image/background0.png")));
 		Application.context.getPageConfig().bindPage(this.path, this);
 		Application.context.getContext().put("curPath",this.path);
@@ -72,6 +75,12 @@ public class CheckInFrm extends PageFrm{
 //	            		setFoodChoice(allFoodPurchases);
 //	            		setSeat(seat);
 //	            	}});
+					ConfirmPayView confirmPayView = new ConfirmPayView();
+					Seat seat = confirmPayView.getSeatInData();
+					confirmPayView = new ConfirmPayView(new ConfirmPayBack(){{
+						setFoodChoice(allFoodPurchases);
+						setSeat(seat);
+					}});	
 					new PrintFrm().setVisible(true);
 				}
 			});
@@ -94,9 +103,13 @@ public class CheckInFrm extends PageFrm{
           	    flightInfo.getUserName(),flightInfo.getUserID()) {{
           	    	checkLayout(confirmPayView.getSeat().getSeatClass(),confirmPayView.getSeat().getSeatNo(),originFoodName);
              	setBounds(490, 80, 415, 355);
-		}});
-		
+		}});	
 	}
+
+	public void setExitAction(){
+		JOptionPane.showMessageDialog(null, "You can not exit the system before checking in.", "Error", JOptionPane.ERROR_MESSAGE);
+	}
+
 	public static void main(String[] args) {
 		CheckInFrm f = new CheckInFrm();
 		f.setTitle("Check-In Kiosk");

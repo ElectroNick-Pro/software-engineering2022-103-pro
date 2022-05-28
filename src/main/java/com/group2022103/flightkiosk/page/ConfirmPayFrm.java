@@ -139,7 +139,8 @@ public class ConfirmPayFrm extends PageFrm {
         setHintName("Please check your information and pay the bill:");
 		setBackButton();
 		setNextButton();
-
+        addExitButton();
+		addHelpButton();
     }
 
 	public void setNextAction() {

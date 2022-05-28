@@ -23,7 +23,7 @@ public class PrintFrm extends PageFrm{
     public PrintFrm() {
     	super();
 		setLocationRelativeTo(null);
-
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         image = new ImageIcon(ClassLoader.getSystemResource("image/loading.gif"));// background picture
 		image.setImage(image.getImage().getScaledInstance(300,210,Image.SCALE_DEFAULT));// setSize
 		JLabel picture;
