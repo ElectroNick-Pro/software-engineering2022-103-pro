@@ -15,16 +15,20 @@ import java.util.ArrayList;
 
 public class ChooseFoodFrm extends PageFrm{
 	private Path path = Path.of("/Retrieve/Flight Information/Choose Seat/Choose Food");
-	private originFoodUI[] foodContent;	
+	private ArrayList<Food> food;
+	private originFoodUI[] foodContent;
+	private originFoodUI foodChoice;	
 	private int foodNumber;
-	private originFoodUI foodChoice;
 	private int rows = 2;
+	private int flightId = ((FlightInfoView)Application.context.getContext().get("flightInfo")).getFlightID();
 	public ChooseFoodFrm() {
 		super();
 		setTitleName("Choose Food");
 		setHintName("You can choose a type of food you perfer:");
 		setBackButton();
 		setNextButton();
+		addExitButton();
+		addHelpButton();
 		Application.context.getPageConfig().bindPage(this.path, this);
 		Application.context.getContext().put("curPath",this.path);
 
@@ -32,10 +36,16 @@ public class ChooseFoodFrm extends PageFrm{
 			setBounds(80,25,800,25);
 		}});
 
-		new FoodView(new FoodBack()){{
-			foodContent = getOriginFoodUI();
-			foodNumber = foodContent.length;
-			rows = getOriginFoodNumber();
+		new FoodView(new FoodBack(){{
+            setFlightId(flightId);
+        }}){{
+			food = getOriginFood();
+			foodNumber = food.size();
+			foodContent = new originFoodUI[foodNumber];
+			for(int i=0;i<foodNumber;i++){
+				foodContent[i] = new originFoodUI(food.get(i).getId(), food.get(i).getImage(), food.get(i).getName(), food.get(i).getPrice());
+			}
+			rows = foodNumber%4==0?foodNumber/4:foodNumber/4+1;
 		}};
 		
 		add(new JScrollPane(new JPanel() {{

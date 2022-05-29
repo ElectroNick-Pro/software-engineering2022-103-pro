@@ -24,6 +24,8 @@ public class RetrieveFrm extends PageFrm{
 	public RetrieveFrm(){
 		super();
 		setTitleName("Retrieve");
+		addExitButton();
+		addHelpButton();
 		setBackgroundImage(new ImageIcon(ClassLoader.getSystemResource("image/travel.png")));
 		Application.context.getPageConfig().bindPage(this.path, this);
 		Application.context.getContext().put("curPath",this.path);

@@ -117,15 +117,8 @@ public class PaymentFrm extends JFrame{
 
     public void OKAction(){
         if(panel2.isVisible()){
-            // success
             dispose();
             try {
-            	ConfirmPayView confirmPayView = new ConfirmPayView();
-            	Seat seat = confirmPayView.getSeatInData();
-            	confirmPayView = new ConfirmPayView(new ConfirmPayBack(){{
-            		setFoodChoice(allFoodPurchases);
-            		setSeat(seat);
-            	}});
                 new CheckInFrm();
                 Application.context.getPageConfig().displayPage(Path.of("/Retrieve/Flight Information/Choose Seat/Choose Food/Extra Food/Confirm and Pay/Check in"));
             } catch (UnboundPageException e1) {
@@ -133,21 +126,12 @@ public class PaymentFrm extends JFrame{
             }
         }else{
             new CustomerView(new CustomerBack(){{
-                // String customerID = (String)Application.context.getContext().get("customerID");
                 String customerID = ((FlightInfoView)Application.context.getContext().get("flightInfo")).getUserID();
-                // setID(ID);
                 setCustomerID(customerID);
             }}){{
                 if(isValid(creditId.getText(),password.getText())){
-                    // success
                     dispose();
                     try {
-                    	ConfirmPayView confirmPayView = new ConfirmPayView();
-                    	Seat seat = confirmPayView.getSeatInData();
-    	            	confirmPayView = new ConfirmPayView(new ConfirmPayBack(){{
-    	            		setFoodChoice(allFoodPurchases);
-    	            		setSeat(seat);
-    	            	}});
                         new CheckInFrm();
                         Application.context.getPageConfig().displayPage(Path.of("/Retrieve/Flight Information/Choose Seat/Choose Food/Extra Food/Confirm and Pay/Check in"));
                     } catch (UnboundPageException e1) {

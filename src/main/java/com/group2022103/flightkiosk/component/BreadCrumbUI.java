@@ -12,14 +12,21 @@ import com.group2022103.flightkiosk.application.Application;
 public class BreadCrumbUI extends JPanel{
     private Path path;
     private LinkedList<HrefButtonUI> crumbs = new LinkedList<>();
+    private Path currentPath = null;
     private Path totalPath = Path.of("/Retrieve/Flight Information/Choose Seat/Choose Food/Extra Food/Confirm and Pay");
     public BreadCrumbUI(Path path){
         super();
         setBackground(Color.WHITE);
         // System.out.println(Application.context.getContext().get("curPath"));
 
+        if(currentPath == null){
+            currentPath = path;
+            if(path.getNameCount() > currentPath.getNameCount()){
+                currentPath = path;
+            }
+        }
         int n = totalPath.getNameCount();
-        int k = path.getNameCount();
+        int k = currentPath.getNameCount();
         for(int i = 1;i <= n;i++){
             HrefButtonUI btn = new HrefButtonUI(Path.of("/").resolve(totalPath.subpath(0, i)));
             JLabel label = new JLabel(">");

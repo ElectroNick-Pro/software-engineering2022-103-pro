@@ -10,7 +10,7 @@ public class ConfirmButtonUI extends ConfirmPanelUI{
     public ConfirmButtonUI(String image, String label, double price){
         super(image);
         add(new JLabel(label,SwingConstants.CENTER){{
-            setBounds(113,32,190,20);
+            setBounds(113,22,190,40);
             setFont(new Font("Microsoft YaHei", Font.BOLD, 25));
         }});
         if(price == 0.0) {
@@ -35,7 +35,7 @@ public class ConfirmButtonUI extends ConfirmPanelUI{
     public ConfirmButtonUI(String image, String label1,String label2, double price,boolean isClickable) {
         super(image);
         add(new JLabel(label1,SwingConstants.CENTER){{
-            setBounds(113,18,190,25);
+            setBounds(113,8,190,45);
             setFont(new Font("Microsoft YaHei", Font.BOLD, 25));
         }});
         add(new JLabel(label2,SwingConstants.CENTER){{
@@ -71,7 +71,7 @@ public class ConfirmButtonUI extends ConfirmPanelUI{
     public ConfirmButtonUI(String image,String label,double price,int count){
         super(image);
         add(new JLabel(label,SwingConstants.CENTER){{
-            setBounds(85,32,160,20);
+            setBounds(85,22,190,40);
             setFont(new Font("Microsoft YaHei", Font.BOLD, 25));
         }});
         if(price == 0.0) {
@@ -102,10 +102,10 @@ public class ConfirmButtonUI extends ConfirmPanelUI{
 		JFrame f = new JFrame();
 		f.getContentPane().setBackground(Color.WHITE);
 		f.setLayout(null);
-		ConfirmButtonUI confirm1 = new ConfirmButtonUI("image/knife and fork0.png","Standard","Click to see the details",0,true);
-        ConfirmButtonUI confirm2 = new ConfirmButtonUI("image/pay1.png","Total",34);
-        ConfirmButtonUI confirm3 = new ConfirmButtonUI("image/sushi8.png","Sushi",4.5,1);
-        ConfirmButtonUI confirm4 = new ConfirmButtonUI("resources/image/seat1.png","Economy Class","A Seat with Extra Space",50,false);
+		ConfirmButtonUI confirm1 = new ConfirmButtonUI("src/main/resources/image/knife and fork0.png","Standard","Click to see the details",0,true);
+        ConfirmButtonUI confirm2 = new ConfirmButtonUI("src/main/resources/image/pay1.png","Total",34);
+        ConfirmButtonUI confirm3 = new ConfirmButtonUI("src/main/resources/image/sushi8.png","Sushi",4.5,1);
+        ConfirmButtonUI confirm4 = new ConfirmButtonUI("src/main/resources/image/seat1.png","Economy Class","A Seat with Extra Space",50,false);
 		confirm1.setBounds(50,50,415,85);
 		f.add(confirm1);
         confirm2.setBounds(50,150,415,85);

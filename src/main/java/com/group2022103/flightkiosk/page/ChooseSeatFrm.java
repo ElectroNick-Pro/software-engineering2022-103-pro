@@ -248,8 +248,8 @@ public class ChooseSeatFrm extends PageFrm{
         setTitleName("Choose Seat");
 		setBackButton();
 		setNextButton();
-
-        setTitle("Choose Seat");
+        addExitButton();
+		addHelpButton();
     }
 	
 	public void setNextAction() {		
