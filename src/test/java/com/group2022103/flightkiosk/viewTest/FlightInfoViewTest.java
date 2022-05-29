@@ -16,6 +16,7 @@ public class FlightInfoViewTest {
 			setSurname("");
 			setDocumentID("123456789012345678");
 		}});
+		
 	}
     
 }
