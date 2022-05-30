@@ -15,7 +15,7 @@ public class SeatController {
 		res.setSeats(new ArrayList<>());
 		if(req.getTicketId() > 0) {
 			seatMapper.queryAll().forEach((e)->{
-				if(e.getTicket().equals(req.getTicketId())) {
+				if(Integer.valueOf(req.getTicketId()).equals(e.getTicket())) {
 					res.getSeats().add(e);
 				}
 			});

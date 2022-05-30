@@ -40,7 +40,6 @@ public class CsvConfig {
 			try {
 				return s.equals("") ? null : Application.context.getAppConfig().getTimezone().parse(s);
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			return null;

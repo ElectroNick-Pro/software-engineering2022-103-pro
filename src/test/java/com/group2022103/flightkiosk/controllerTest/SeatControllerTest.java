@@ -35,7 +35,6 @@ public class SeatControllerTest {
 		seats = new SeatController().get(req).getSeats();
 		assertEquals("1A", seats.get(0).getSeatNo());
 		
-		//当seat的ticket为空时，就会报错
 		req.setIntervalId(-1);
 		req.setSeatId(-1);
 		req.setTicketId(1);

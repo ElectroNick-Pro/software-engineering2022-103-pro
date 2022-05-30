@@ -30,7 +30,12 @@ public class MapperConfig {
 			if(!dataDirFile.mkdirs()) {
 				System.exit(1);
 			}
-			JOptionPane.showMessageDialog(null, "Data files are now in directory " + dataDir.toAbsolutePath().toString(), "File Ready", JOptionPane.PLAIN_MESSAGE);
+			JOptionPane.showMessageDialog(
+				null, 
+				"Data files are now in directory " + dataDir.toAbsolutePath().toString(), 
+				"File Ready", 
+				JOptionPane.PLAIN_MESSAGE
+			);
 		}
 		
 		try {

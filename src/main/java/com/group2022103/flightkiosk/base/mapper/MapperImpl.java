@@ -57,7 +57,6 @@ public class MapperImpl<T> implements Mapper<T> {
 				| IllegalArgumentException | InvocationTargetException 
 				| NoSuchMethodException | SecurityException | ObjectNotFoundException 
 				| NoSuchFieldException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
@@ -87,7 +86,6 @@ public class MapperImpl<T> implements Mapper<T> {
 		} catch (IOException | InstantiationException | IllegalAccessException 
 				| IllegalArgumentException | InvocationTargetException 
 				| NoSuchMethodException | SecurityException | NoSuchFieldException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
@@ -98,7 +96,6 @@ public class MapperImpl<T> implements Mapper<T> {
 		try {
 			var lines = Files.readAllLines(storagePath, StandardCharsets.UTF_8);
 			var keys = CsvUtil.splitLine(lines.get(0));
-			int n = keys.length;
 			var id = (Integer)clz.getMethod(FieldUtil.toAccessor("id")).invoke(obj);
 			if(id == null || id >= lines.size()) {
 				clz.getMethod(FieldUtil.toModifier("id"), Integer.class).invoke(obj, lines.size());
@@ -120,7 +117,6 @@ public class MapperImpl<T> implements Mapper<T> {
 		} catch (IOException | IllegalAccessException | IllegalArgumentException 
 				| InvocationTargetException | NoSuchMethodException 
 				| SecurityException | NoSuchFieldException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
