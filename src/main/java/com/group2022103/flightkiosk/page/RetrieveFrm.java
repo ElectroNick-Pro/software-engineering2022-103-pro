@@ -178,7 +178,7 @@ public class RetrieveFrm extends PageFrm{
 						setDocumentID(customerID);
 					}});
 					if(ticketView.getTicketNumber() == 0){
-						JOptionPane.showMessageDialog(null, "This bookingID does not exist!", "Error", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "You have not booked any ticket yet!", "Error", JOptionPane.ERROR_MESSAGE);
 					}else{
 						navigateTo(bookingID,customerView.getCustomer());
 					}
