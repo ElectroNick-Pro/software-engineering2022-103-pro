@@ -41,7 +41,7 @@ public class WelcomeFrm extends PageFrm {
             {
                 setForeground(Color.WHITE);
                 setFont(new Font("Microsoft YaHei UI", Font.BOLD, 30));
-                setBounds(391, 426, 177, 40);
+                setBounds(284, 426, 177, 40);
                 addActionListener(new ActionListener() {
 
                     @Override
@@ -59,7 +59,21 @@ public class WelcomeFrm extends PageFrm {
                 });
             }
         });
-
+        add(new RoundButtonUI("check-in status",new Color(198,198,198), new Color(148,148,148)){{
+            setForeground(Color.WHITE);
+            setFont(new Font("Microsoft YaHei UI", Font.BOLD, 22));
+            setBounds(500, 426, 200, 40);
+            addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    dispose();
+                    BackAllFlightFrm frame = new BackAllFlightFrm();
+                    frame.setBackground(Color.WHITE);
+                    frame.setSize(965, 550);
+                    frame.setLocationRelativeTo(null);
+                    frame.setVisible(true);
+                }
+            });
+        }});
         setSize(960, 540);
     }
 
