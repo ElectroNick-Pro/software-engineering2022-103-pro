@@ -30,7 +30,7 @@ public class FlightInfoFrm extends PageFrm{
 		}
 	}});
 	private FlightView flightView = new FlightView(new FlightBack() {{
-		setFlightID(ticketView.getTicketId());
+		setFlightID(ticketView.getFlightId());
 	}});
 	private PlaneView planeView = new PlaneView(new PlaneBack() {{
 		setPlaneID(flightView.getPlaneID());
@@ -146,6 +146,10 @@ public class FlightInfoFrm extends PageFrm{
 				 JOptionPane.showMessageDialog(null, "This ticket has been checked in!",
 		         "Expired!",JOptionPane.INFORMATION_MESSAGE);
 			}else {
+				if(chooseTicket != 0) {
+					JOptionPane.showMessageDialog(null, "This ticket is not open for check in!");
+					return;
+				}
 				try {
 					new ChooseSeatFrm();
 					Application.context.getPageConfig().displayPage(path.resolve(Path.of("/Retrieve/Flight Information/Choose Seat")));

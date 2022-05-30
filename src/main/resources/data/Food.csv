@@ -51,3 +51,39 @@ id,flight,name,price,type,image
 50,3,Rice ball,8,Extra,image/rice ball7.png
 51,3,Sushi,4,Extra,image/sushi8.png
 52,3,Coffee,2,Extra,image/coffee1.png
+53,4,No Need,0,Origin,image/noNeed0.png
+54,4,Standard,0,Origin,image/Standard1.png
+55,4,Vegan,0,Origin,image/Vegan2.png
+56,4,Hamburger,5,Origin,image/Hamburger3.png
+57,4,Beefsteak,12,Origin,image/Beefsteak4.png
+58,4,Halal,0,Origin,image/halal5.png
+59,4,Child,0,Origin,image/child6.png
+60,4,Seafood,8,Origin,image/Seafood7.png
+61,4,Low Sugar,4,Origin,image/Lowsugar8.png
+62,4,Doughnut,2,Extra,image/doughnut1.png
+63,4,Bread,1,Extra,image/bread2.png
+64,4,Chocolates,5,Extra,image/chocolate3.png
+65,4,Biscuit,12,Extra,image/biscuit4.png
+66,4,Pudding,3,Extra,image/pudding5.png
+67,4,Lollipop,4.5,Extra,image/lollipop6.png
+68,4,Rice ball,8,Extra,image/rice ball7.png
+69,4,Sushi,4,Extra,image/sushi8.png
+70,4,Coffee,2,Extra,image/coffee1.png
+71,5,No Need,0,Origin,image/noNeed0.png
+72,5,Standard,0,Origin,image/Standard1.png
+73,5,Vegan,0,Origin,image/Vegan2.png
+74,5,Hamburger,5,Origin,image/Hamburger3.png
+75,5,Beefsteak,12,Origin,image/Beefsteak4.png
+76,5,Halal,0,Origin,image/halal5.png
+77,5,Child,0,Origin,image/child6.png
+78,5,Seafood,8,Origin,image/Seafood7.png
+79,5,Low Sugar,4,Origin,image/Lowsugar8.png
+80,5,Doughnut,2,Extra,image/doughnut1.png
+81,5,Bread,1,Extra,image/bread2.png
+82,5,Chocolates,5,Extra,image/chocolate3.png
+83,5,Biscuit,12,Extra,image/biscuit4.png
+84,5,Pudding,3,Extra,image/pudding5.png
+85,5,Lollipop,4.5,Extra,image/lollipop6.png
+86,5,Rice ball,8,Extra,image/rice ball7.png
+87,5,Sushi,4,Extra,image/sushi8.png
+88,5,Coffee,2,Extra,image/coffee1.png

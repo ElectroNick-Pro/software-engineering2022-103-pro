@@ -5,6 +5,7 @@ import java.time.Duration;
 import java.util.Date;
 import java.util.Locale;
 
+import com.group2022103.flightkiosk.application.Application;
 import com.group2022103.flightkiosk.model.Airline;
 import com.group2022103.flightkiosk.model.Customer;
 import com.group2022103.flightkiosk.model.Flight;
@@ -79,11 +80,8 @@ public class FlightInfoView {
 		return lastTimeStr;
 	}
 	public boolean isOutOfDate(Interval interval) {
-		String testtime = "2022-04-06 12:00:00";
-		SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        String flightTime=simpleDateFormat.format(interval.getDepartureTime());
-        System.out.println(flightTime);
-        if (testtime.compareTo(flightTime) > 0)
+        System.out.println(Application.context.getAppConfig().getTimezone().format(interval.getDepartureTime()));
+        if (Application.context.getAppConfig().getCurTime().after(interval.getDepartureTime()))
         {
             return true;
         }
@@ -99,22 +97,15 @@ public class FlightInfoView {
 		}
 	}
 	public String setDateFormat(Date departDt) {
-		SimpleDateFormat sdf = new SimpleDateFormat("MM");
-	    sdf = new SimpleDateFormat("MMMMM dd,yyyy",Locale.US);
-	    String timeFormat = sdf.format(departDt);
-	    return timeFormat;
+		SimpleDateFormat sdf = new SimpleDateFormat("MMMMM dd,yyyy",Locale.US);
+		sdf.setTimeZone(Application.context.getAppConfig().getTimezone().getTimeZone());
+	    return sdf.format(departDt);
 	}
-	@SuppressWarnings("deprecation")
+	
 	public String setTimeFormat(Date time) {
-		int hour = (int)time.getHours();
-		int minute = (int)time.getMinutes();
-		String timeFormat = "";
-		if(minute == 0) {
-			timeFormat = hour+":"+minute+"0";
-		}else {
-			timeFormat = hour+":"+minute;
-		}
-		return timeFormat;
+		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+	    sdf.setTimeZone(Application.context.getAppConfig().getTimezone().getTimeZone());
+		return sdf.format(time);
 	}
 	public String getBookingID() {
 		return BookingID;

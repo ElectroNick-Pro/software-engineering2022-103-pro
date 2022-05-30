@@ -50,7 +50,7 @@ public class TicketController {
 		res.getTickets().sort((x,y)-> {
 			var xDep = intervalMap.get(x.getFlight()).get(0).getDepartureTime();
 			var yDep = intervalMap.get(y.getFlight()).get(0).getDepartureTime();
-			var now = new Date();
+			var now = Application.context.getAppConfig().getCurTime();
 			if(xDep.after(now) ^ yDep.after(now)) {
 				return yDep.compareTo(xDep);
 			} else {

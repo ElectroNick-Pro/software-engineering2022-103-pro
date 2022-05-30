@@ -46,4 +46,13 @@ public class TicketView {
 		}
 		return ticketId;
 	}
+
+	public List<String> getFlightId(){
+		List<String> flightId = new ArrayList<>();
+		int number = this.getTicketNumber();
+		for(int i = 0;i < number;i++) {
+			flightId.add(this.getTicket(i).getFlight().toString());
+		}
+		return flightId;
+	} 
 }
