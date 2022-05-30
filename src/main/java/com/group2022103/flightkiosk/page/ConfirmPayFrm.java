@@ -153,10 +153,4 @@ public class ConfirmPayFrm extends PageFrm {
             new PaymentFrm().setVisible(true);
         }
 	}
-	
-	public static void main(String args[]) {
-		Application.run();
-//	    ConfirmPayFrm f = new ConfirmPayFrm();
-//      FoodChoiceFrm f = new FoodChoiceFrm();
-	}
 }

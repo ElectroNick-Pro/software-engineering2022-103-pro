@@ -102,9 +102,4 @@ public class ExtraFoodFrm extends PageFrm{
 		}
 
 	}
-
-	public static void main(String args[]) {
-		ExtraFoodFrm f = new ExtraFoodFrm();
-		f.setVisible(true);
-	}
 }

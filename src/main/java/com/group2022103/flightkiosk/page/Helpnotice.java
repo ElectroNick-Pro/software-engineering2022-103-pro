@@ -10,13 +10,11 @@ public class Helpnotice extends JFrame {
     private JPanel panel1 = new JPanel(null);
     private Box vBox = Box.createVerticalBox();
     private JScrollPane p = new JScrollPane(vBox);
-    //private JPanel contentPane;
     public  Helpnotice(){
         super();
         panel1 = new JPanel() {{
             setLayout(null);
             setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-            // setAlwaysOnTop(true);
             setBackground(Color.WHITE);
         }};
         setContentPane(panel1);
@@ -29,7 +27,6 @@ public class Helpnotice extends JFrame {
         add(new RoundButtonUI("I have noticed",new Color(0,131,255), new Color(0,105,206)) {{
             setForeground(Color.WHITE);
             setBounds(25,520,180,30);
-            //setBorder(new RoundBorder(new Color(30, 144, 255)));
             setARC(15);
             setFont(new Font("Microsoft YaHei UI",Font.PLAIN,15));
             
@@ -173,12 +170,5 @@ public class Helpnotice extends JFrame {
         
             }});
         }});
-    }
-    public static void main(String args[]) {
-        Helpnotice frame = new Helpnotice();
-        frame.setVisible(true);
-        frame.setSize(515, 600);
-        frame.setLocationRelativeTo(null);
-        // frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 }

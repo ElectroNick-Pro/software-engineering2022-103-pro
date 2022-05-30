@@ -28,7 +28,6 @@ public class PageConfig {
         }
         if(curPagePath != null) {
             var page = pagePathMap.get(curPagePath);
-            // page.setVisible(false);
             page.dispose();
         }
         curPagePath = path;

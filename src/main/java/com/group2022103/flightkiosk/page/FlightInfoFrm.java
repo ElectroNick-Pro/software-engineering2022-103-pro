@@ -47,7 +47,6 @@ public class FlightInfoFrm extends PageFrm{
 	public FlightInfoFrm() {
 		super();
 		setTitleName("Flight Information");
-//		setHintName("Please choose the flight and check the information:");
 		setBackButton();
 		setNextButton();
 		addExitButton();
@@ -76,7 +75,6 @@ public class FlightInfoFrm extends PageFrm{
             	button[i] = new FlightInfoButtonUI(flightInfo.getDepartPlace(),flightInfo.getArrivePlace(),
             			flightInfo.getBookingID(),flightInfo.getDate(),flightInfo.getAirline(),flightInfo.getDepartureTime(),flightInfo.getArriveTime(),
             			flightInfo.getLastTime());
-            	//TODO
             	if(flightInfo.isOutOfDate()) {
             		button[i].setStyle();
             	}
@@ -157,14 +155,5 @@ public class FlightInfoFrm extends PageFrm{
 				}
 			}
 		}
-	}
-	public static void main(String[] args) {
-		Application.run();
-		FlightInfoFrm f = new FlightInfoFrm();
-		f.setTitle("Check-In Kiosk");
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f.setResizable(false);
-	    f.setSize(965,550);
-		f.setVisible(true);
 	}
 }

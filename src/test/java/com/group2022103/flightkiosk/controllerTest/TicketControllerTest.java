@@ -22,7 +22,6 @@ public class TicketControllerTest {
 		var retIds = new ArrayList<Integer>();
 		ret.forEach(e->retIds.add(e.getId()));
 		var cmp = List.of(10,4,11,9);
-		// cmp = List.of(4,10,11,9);
 		assertArrayEquals(cmp.toArray(), retIds.toArray());
 	}
 

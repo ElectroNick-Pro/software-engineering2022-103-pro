@@ -79,7 +79,6 @@ public class FlightInfoView {
 		return lastTimeStr;
 	}
 	public boolean isOutOfDate(Interval interval) {
-		//TODO
 		String testtime = "2022-04-06 12:00:00";
 		SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         String flightTime=simpleDateFormat.format(interval.getDepartureTime());

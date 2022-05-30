@@ -34,7 +34,7 @@ public class TicketController {
 			});
 		}
 		
-		var intervalMap = new HashMap<Integer, List<Interval>>(); // FilghtId-Intervals
+		var intervalMap = new HashMap<Integer, List<Interval>>();
 		for(var interval : intervalMapper.queryAll()) {
 			var flightId = interval.getFlight();
 			if(!intervalMap.containsKey(flightId)) {
@@ -51,7 +51,6 @@ public class TicketController {
 			var xDep = intervalMap.get(x.getFlight()).get(0).getDepartureTime();
 			var yDep = intervalMap.get(y.getFlight()).get(0).getDepartureTime();
 			var now = new Date();
-			// now = (Date)Application.context.getCsvConfig().getParseMethodMap().get(Date.class).apply("2022-04-03 00:00:00");
 			if(xDep.after(now) ^ yDep.after(now)) {
 				return yDep.compareTo(xDep);
 			} else {

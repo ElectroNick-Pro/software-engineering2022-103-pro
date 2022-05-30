@@ -3,7 +3,6 @@ package com.group2022103.flightkiosk.component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.plaf.ColorUIResource;
@@ -34,7 +33,6 @@ public class SeatButtonUI extends JPanel {
         setBounds(position[0], position[1], 40, 40);
         ColorUIResource[] color =  seatView.getButtonColor();
         isChosen = seatView.isChosen();
-        // setBackground(Color.WHITE);
         setOpaque(false);
 
         add(choose = new JLabel(new ImageIcon(ClassLoader.getSystemResource("image/success1.png"))) {{
@@ -56,16 +54,6 @@ public class SeatButtonUI extends JPanel {
         
         
 
-    }
-
-    public static void main(String[] args) {
-        JFrame frame = new JFrame();
-		frame.setBounds(100, 100, 400, 400);
-        int[] position = {100,100};
-        SeatButtonUI button = new SeatButtonUI(1, position);
-		frame.add(button);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
     }
 
     public void setChoice(){

@@ -82,19 +82,4 @@ public class SpinnerUI extends JPanel{
 	public void setValue(int value){
 		textField.setText(""+value);
 	}
-	
-	public static void main(String[] args) {
-		JFrame f = new JFrame();
-		f.getContentPane().setBackground(Color.WHITE);
-		f.setLayout(null);
-		SpinnerUI s = new SpinnerUI();
-		s.setBounds(50,50,90,20);
-		f.add(s);
-		f.setTitle("Check-In Kiosk");
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f.setResizable(false);
-//	    f.setLocationRelativeTo(null); 
-	    f.setSize(250,200);
-		f.setVisible(true);
-	}
 }

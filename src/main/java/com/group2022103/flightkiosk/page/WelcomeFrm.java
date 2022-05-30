@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-import com.group2022103.flightkiosk.application.Application;
 import com.group2022103.flightkiosk.component.*;
 
 import java.util.Timer;
@@ -14,7 +13,6 @@ public class WelcomeFrm extends PageFrm {
     public WelcomeFrm() {
         super();
 
-        // setTitleName("Welcome");
         add(new JLabel() {
             {
                 setText("Check-In Kiosk");
@@ -28,7 +26,6 @@ public class WelcomeFrm extends PageFrm {
         TimerTask tt = new TimerTask() {
             public void run() {
                 setNewBackgroundImage(new ImageIcon(ClassLoader.getSystemResource("image/welcome1.jpg")));
-                // System.out.println("Well");
             }
         };
         new Timer() {
@@ -76,12 +73,5 @@ public class WelcomeFrm extends PageFrm {
             }
         });
         setSize(960, 540);
-    }
-
-    public static void main(String[] args) {
-        Application.run();
-        // WelcomeFrm w = new WelcomeFrm();
-        // w.setLocationRelativeTo(null);
-        // w.setVisible(true);
     }
 }

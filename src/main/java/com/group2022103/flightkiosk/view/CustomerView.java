@@ -9,11 +9,6 @@ public class CustomerView {
     private CustomerFront customerFront;
     // the data passed by the user
     public CustomerView(CustomerBack customerBack){
-        // customerFront = new CustomerFront();
-        // customerFront.setCreditID("4001234567");
-        // customerFront.setPassword("123123123");
-        // customerFront.setSurname("surname");
-        // there is no method called "getCustomer()" in CustomerController
         setCustomerFront(new CustomerController().get(customerBack));
     }
 

@@ -9,21 +9,11 @@ import com.group2022103.flightkiosk.vo.TicketBack;
 import com.group2022103.flightkiosk.vo.TicketFront;
 
 public class TicketView {
-	/*template begins*/
 	private TicketFront ticketFront;
 	protected TicketView() {}
 	public TicketView(TicketBack ticketBack) {
-		/*Bypass backend begins*/
-//		var ls = new ArrayList<Ticket>();
-//		ls.add(new Ticket() {{
-//			this.setBookingId("123123123");
-//		}});
-		ticketFront = new TicketFront();
-//		this.ticketFront.setTickets(ls);
-		/*Bypass backend ends*/
 		ticketFront = new TicketController().get(ticketBack);
 	}
-	/*template ends*/
 	public boolean isCheckIn(Ticket ticket) {
 		if(ticket.getIsCheckin() == 0) {
 			return false;
@@ -32,7 +22,6 @@ public class TicketView {
 		}
 	}
 	public boolean isOutOfDate(Ticket ticket) {
-		//TODO
 		return true;
 	}
 	public TicketFront getTicketFront() {

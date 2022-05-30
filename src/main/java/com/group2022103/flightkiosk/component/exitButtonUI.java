@@ -15,10 +15,8 @@ public class exitButtonUI extends JButton implements ActionListener{
 	}
 
 	public void actionPerformed(ActionEvent e) {
-//		����������һ��ҳ��͵�����ʾ
 		int choice = JOptionPane.showConfirmDialog(null, "Do you want to exit? If so, your choices will not be saved.", "Confirm", JOptionPane.YES_NO_OPTION);
 		if(choice == JOptionPane.YES_OPTION){
-//            TODO - RetrieveFrmҳ����������� + GlobalData��� + ���ص���ӭҳ��
         }
 	}
 }

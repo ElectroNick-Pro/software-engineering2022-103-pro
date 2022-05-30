@@ -62,13 +62,4 @@ public class PrintFrm extends PageFrm{
         }).start();
         
     }
-    public static void main(String[] args) {
-    	Application.run();
-    	PrintFrm f = new PrintFrm();
-		f.setTitle("Check-In Kiosk");
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f.setResizable(false);
-	    f.setSize(965,550);
-		f.setVisible(true);
-    } 
 }

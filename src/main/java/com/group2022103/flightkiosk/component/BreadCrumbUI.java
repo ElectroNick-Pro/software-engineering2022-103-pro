@@ -13,7 +13,6 @@ public class BreadCrumbUI extends JPanel{
     public BreadCrumbUI(Path path){
         super();
         setBackground(Color.WHITE);
-        // System.out.println(Application.context.getContext().get("curPath"));
 
         if(currentPath == null){
             currentPath = path;
@@ -44,14 +43,5 @@ public class BreadCrumbUI extends JPanel{
 
     public LinkedList<HrefButtonUI> getBtnList(){
         return crumbs;
-    }
-
-    public static void main(String[] args) {
-        var panel = new BreadCrumbUI(Path.of("/Retrieve/Flight Information/Choose Seat"));
-        var frame = new JFrame();
-        frame.add(panel);
-        frame.pack();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
     }
 }

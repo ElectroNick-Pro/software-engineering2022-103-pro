@@ -101,10 +101,4 @@ public class ChooseFoodFrm extends PageFrm{
 			return;
 		}
 	}
-
-	public static void main(String args[]) {
-		Application.run();
-		ChooseFoodFrm f = new ChooseFoodFrm();
-		f.setVisible(true);
-	}
 }

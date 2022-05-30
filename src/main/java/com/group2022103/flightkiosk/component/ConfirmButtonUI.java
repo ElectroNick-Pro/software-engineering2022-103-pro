@@ -96,27 +96,4 @@ public class ConfirmButtonUI extends ConfirmPanelUI{
 			setBounds(0,0,414,84);
 		}});
     }
-
-    public static void main(String[] args) {
-		JFrame f = new JFrame();
-		f.getContentPane().setBackground(Color.WHITE);
-		f.setLayout(null);
-		ConfirmButtonUI confirm1 = new ConfirmButtonUI("src/main/resources/image/knife and fork0.png","Standard","Click to see the details",0,true);
-        ConfirmButtonUI confirm2 = new ConfirmButtonUI("src/main/resources/image/pay1.png","Total",34);
-        ConfirmButtonUI confirm3 = new ConfirmButtonUI("src/main/resources/image/sushi8.png","Sushi",4.5,1);
-        ConfirmButtonUI confirm4 = new ConfirmButtonUI("src/main/resources/image/seat1.png","Economy Class","A Seat with Extra Space",50,false);
-		confirm1.setBounds(50,50,415,85);
-		f.add(confirm1);
-        confirm2.setBounds(50,150,415,85);
-        f.add(confirm2);
-        confirm3.setBounds(50,250,415,85);
-        f.add(confirm3);
-        confirm4.setBounds(50,350,415,85);
-        f.add(confirm4);
-		f.setTitle("Check-In Kiosk");
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f.setResizable(false);
-	    f.setSize(550,550);
-		f.setVisible(true);
-	}
 }

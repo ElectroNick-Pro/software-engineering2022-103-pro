@@ -8,7 +8,6 @@ import java.nio.file.Path;
 import java.util.List;
 
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -52,8 +51,8 @@ public class CheckInFrm extends PageFrm{
 			setBounds(80,25,800,25);
 		}});
 		
-		image = new ImageIcon(ClassLoader.getSystemResource("image/scanIDcard.png"));// background picture
-		image.setImage(image.getImage().getScaledInstance(350,200,Image.SCALE_DEFAULT));// setSize
+		image = new ImageIcon(ClassLoader.getSystemResource("image/scanIDcard.png"));
+		image.setImage(image.getImage().getScaledInstance(350,200,Image.SCALE_DEFAULT));
 		JLabel picture;
 		picture=new JLabel(image);
 		picture.setBounds(30,180,350,200);
@@ -101,14 +100,5 @@ public class CheckInFrm extends PageFrm{
 
 	public void setExitAction(){
 		JOptionPane.showMessageDialog(null, "You can not exit the system before checking in.", "Error", JOptionPane.ERROR_MESSAGE);
-	}
-
-	public static void main(String[] args) {
-		CheckInFrm f = new CheckInFrm();
-		f.setTitle("Check-In Kiosk");
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f.setResizable(false);
-	    f.setSize(965,550);
-		f.setVisible(true);
 	}
 }

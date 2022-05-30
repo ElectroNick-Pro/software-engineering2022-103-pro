@@ -277,9 +277,5 @@ public class ChooseSeatFrm extends PageFrm{
     		}
         }
 	}
-	public static void main(String args[]) {
-		Application.run();
-//		ChooseSeatFrm f = new ChooseSeatFrm();
-	}
     
 }

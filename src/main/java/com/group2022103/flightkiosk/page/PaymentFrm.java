@@ -140,12 +140,4 @@ public class PaymentFrm extends JFrame{
             }};
         }
     }
-    public static void main(String[] args){
-        PaymentFrm f = new PaymentFrm();
-        f.setTitle("Check-In Kiosk");
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f.setResizable(false);
-	    f.setSize(520,400);
-		f.setVisible(true);
-    }
 }

@@ -19,13 +19,4 @@ public class TestFrm extends PageFrm{
 	public void setNextAction() {
 		System.out.println("next");
 	}
-	
-	public static void main(String args[]) {
-		TestFrm f = new TestFrm();
-		f.setTitle("Check-In Kiosk");
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f.setResizable(false);
-	    f.setSize(965,550);
-		f.setVisible(true);
-	}
 }

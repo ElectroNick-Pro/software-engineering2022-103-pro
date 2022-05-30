@@ -15,7 +15,6 @@ public class Notice extends JFrame implements ActionListener {
     private JPanel panel1 = new JPanel(null);
     private Box vBox = Box.createVerticalBox();
 
-    // private JPanel contentPane;
     public Notice() {
         super();
         panel1 = new JPanel() {
@@ -70,10 +69,6 @@ public class Notice extends JFrame implements ActionListener {
             {
                 setBackground(Color.WHITE);
 
-                // setAutoscrolls(autoscrolls);
-                // setVerticalScrollBar(verticalScrollBar);
-                // setHorizontalScrollBar(horizontalScrollBar);
-                // setScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER
                 setBounds(20, 50, 450, 450);
                 setVisible(true);
 
@@ -82,7 +77,6 @@ public class Notice extends JFrame implements ActionListener {
                         setVisible(true);
                         ImageIcon m = (new ImageIcon(ClassLoader.getSystemResource("image/question.png")));
                         m.setImage(m.getImage().getScaledInstance(30, 30, 1));
-                        // setImage(this.getImage().getScaledInstance(276,126,Image.SCALE_DEFAULT));
                         setIcon(m);
                         setText("For helping inforation, please click this button");
                         setFont(new Font(null, Font.PLAIN, 16));
@@ -241,18 +235,9 @@ public class Notice extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // TODO Auto-generated method stub
         String cmd = e.getActionCommand();
         if (cmd.equals("I have noticed")) {
             this.dispose();
-            // new Retrieve();
         }
-    }
-
-    public static void main(String args[]) {
-        Notice frame = new Notice();
-        frame.setVisible(true);
-        frame.setSize(515, 600);
-        frame.setLocationRelativeTo(null);
     }
 }

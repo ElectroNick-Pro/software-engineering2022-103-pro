@@ -118,17 +118,4 @@ public class BackAllFlightFrm extends JFrame{
 			});
 		}});
 	}
-	public static void main(String[] args) {
-		Application.run();
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    BackAllFlightFrm frame = new BackAllFlightFrm();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
 }

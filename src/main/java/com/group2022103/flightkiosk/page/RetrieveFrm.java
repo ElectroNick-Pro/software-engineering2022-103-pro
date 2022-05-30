@@ -208,10 +208,4 @@ public class RetrieveFrm extends PageFrm{
 			return;
 		}
 	}
-
-	public static void main(String args[]) {
-		Application.run();
-		RetrieveFrm f = new RetrieveFrm();
-		f.setVisible(true);
-	}
 }
