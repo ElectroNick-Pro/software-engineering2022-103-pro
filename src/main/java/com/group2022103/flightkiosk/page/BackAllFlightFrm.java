@@ -3,9 +3,11 @@ package com.group2022103.flightkiosk.page;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.nio.file.Path;
 
 import com.group2022103.flightkiosk.application.Application;
 import com.group2022103.flightkiosk.component.*;
+import com.group2022103.flightkiosk.exception.UnboundPageException;
 import com.group2022103.flightkiosk.view.FlightInfosView;
 import com.group2022103.flightkiosk.view.FlightView;
 import com.group2022103.flightkiosk.view.IntervalView;
@@ -78,6 +80,7 @@ public class BackAllFlightFrm extends JFrame{
 				public void actionPerformed(ActionEvent e) {
 					var frame = new FlightListFrm(new FlightInfosView(new FlightInfosBack(){{setFlightId(id);}}));
         			frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
 				}
 			});
 			button[i].buttonLayout();
@@ -103,7 +106,14 @@ public class BackAllFlightFrm extends JFrame{
 			setBounds(730,38,90,30);
 			addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-//					setBackAction();
+					try {
+						dispose();
+						new WelcomeFrm();
+						Application.context.getPageConfig().displayPage((Path.of("Welcome")));
+					} catch (UnboundPageException e1) {
+						e1.printStackTrace();
+						return;
+					}
 				}
 			});
 		}});
