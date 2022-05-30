@@ -1,16 +1,13 @@
 package com.group2022103.flightkiosk.view;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.group2022103.flightkiosk.controller.FlightController;
 import com.group2022103.flightkiosk.model.Flight;
-import com.group2022103.flightkiosk.model.Plane;
 import com.group2022103.flightkiosk.vo.FlightBack;
 import com.group2022103.flightkiosk.vo.FlightFront;
-import com.group2022103.flightkiosk.vo.PlaneFront;
 
 public class FlightView {
 	

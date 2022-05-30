@@ -1,14 +1,11 @@
 package com.group2022103.flightkiosk.view;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import com.group2022103.flightkiosk.controller.AirlineController;
 import com.group2022103.flightkiosk.model.Airline;
-import com.group2022103.flightkiosk.model.Flight;
 import com.group2022103.flightkiosk.vo.AirlineBack;
 import com.group2022103.flightkiosk.vo.AirlineFront;
-import com.group2022103.flightkiosk.vo.FlightFront;
 
 public class AirlineView {
 	private AirlineFront airlineFront;

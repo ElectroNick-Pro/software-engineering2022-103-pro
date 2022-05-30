@@ -1,7 +1,6 @@
 package com.group2022103.flightkiosk.vo;
 
 import java.util.List;
-import java.util.Map;
 
 import com.group2022103.flightkiosk.model.FoodPurchase;
 import com.group2022103.flightkiosk.model.Seat;

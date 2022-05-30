@@ -7,7 +7,6 @@ import java.awt.event.*;
 import com.group2022103.flightkiosk.application.Application;
 import com.group2022103.flightkiosk.component.*;
 
-import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -32,12 +31,12 @@ public class WelcomeFrm extends PageFrm {
                 // System.out.println("Well");
             }
         };
-        Timer timer = new Timer() {
+        new Timer() {
             {
                 schedule(tt, time);
             }
         };
-        add(new RoundButtonUI("START", new Color(0,131,255), new Color(0,105,206)) {
+        add(new RoundButtonUI("START", new Color(0, 131, 255), new Color(0, 105, 206)) {
             {
                 setForeground(Color.WHITE);
                 setFont(new Font("Microsoft YaHei UI", Font.BOLD, 30));
@@ -59,21 +58,23 @@ public class WelcomeFrm extends PageFrm {
                 });
             }
         });
-        add(new RoundButtonUI("check-in status",new Color(198,198,198), new Color(148,148,148)){{
-            setForeground(Color.WHITE);
-            setFont(new Font("Microsoft YaHei UI", Font.BOLD, 22));
-            setBounds(500, 426, 200, 40);
-            addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    dispose();
-                    BackAllFlightFrm frame = new BackAllFlightFrm();
-                    frame.setBackground(Color.WHITE);
-                    frame.setSize(965, 550);
-                    frame.setLocationRelativeTo(null);
-                    frame.setVisible(true);
-                }
-            });
-        }});
+        add(new RoundButtonUI("check-in status", new Color(198, 198, 198), new Color(148, 148, 148)) {
+            {
+                setForeground(Color.WHITE);
+                setFont(new Font("Microsoft YaHei UI", Font.BOLD, 22));
+                setBounds(500, 426, 200, 40);
+                addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        dispose();
+                        BackAllFlightFrm frame = new BackAllFlightFrm();
+                        frame.setBackground(Color.WHITE);
+                        frame.setSize(965, 550);
+                        frame.setLocationRelativeTo(null);
+                        frame.setVisible(true);
+                    }
+                });
+            }
+        });
         setSize(960, 540);
     }
 

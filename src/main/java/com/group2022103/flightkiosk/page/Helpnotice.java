@@ -2,12 +2,9 @@ package com.group2022103.flightkiosk.page;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.awt.event.ActionEvent;
 import com.group2022103.flightkiosk.component.*;
 import java.awt.event.ActionListener;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Helpnotice extends JFrame {
     private JPanel panel1 = new JPanel(null);

@@ -3,8 +3,6 @@ package com.group2022103.flightkiosk.page;
 import com.group2022103.flightkiosk.application.Application;
 import com.group2022103.flightkiosk.component.*;
 import com.group2022103.flightkiosk.exception.UnboundPageException;
-import com.group2022103.flightkiosk.model.FoodPurchase;
-import com.group2022103.flightkiosk.model.Seat;
 import com.group2022103.flightkiosk.view.*;
 import com.group2022103.flightkiosk.vo.*;
 
@@ -12,17 +10,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.nio.file.Path;
-import java.util.List;
 
 public class PaymentFrm extends JFrame{
     private JPanel contentPane;
     private JPanel panel1,panel2;
     private JTextField creditId;
     private JPasswordField password;
-    private List<FoodPurchase> allFoodPurchases;
-    private ConfirmPayView confirmPayView = new ConfirmPayView();
     public PaymentFrm(){
-    	allFoodPurchases = confirmPayView.getAllFoodPurchases();
         contentPane = new JPanel() {{
 			setLayout(null);
 			setBackground(Color.WHITE);
@@ -129,7 +123,7 @@ public class PaymentFrm extends JFrame{
                 String customerID = ((FlightInfoView)Application.context.getContext().get("flightInfo")).getUserID();
                 setCustomerID(customerID);
             }}){{
-                if(isValid(creditId.getText(),password.getText())){
+                if(isValid(creditId.getText(),new String(password.getPassword()))){
                     dispose();
                     try {
                         new CheckInFrm();

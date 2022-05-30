@@ -5,25 +5,17 @@ import java.util.List;
 
 import com.group2022103.flightkiosk.application.Application;
 import com.group2022103.flightkiosk.controller.ConfirmPayController;
-import com.group2022103.flightkiosk.controller.SeatController;
-import com.group2022103.flightkiosk.model.Food;
 import com.group2022103.flightkiosk.model.FoodPurchase;
 import com.group2022103.flightkiosk.model.Seat;
 import com.group2022103.flightkiosk.vo.ConfirmPayBack;
-import com.group2022103.flightkiosk.vo.ConfirmPayFront;
 import com.group2022103.flightkiosk.vo.SeatBack;
-import com.group2022103.flightkiosk.vo.SeatFront;
 
+@SuppressWarnings("unchecked")
 public class ConfirmPayView {
-	private Seat seat;
-	private OriginFood originFood;
 	private ArrayList<OriginFood> allFoodChoice = new ArrayList<>();
 	private List<FoodPurchase> allFoodPurchases = new ArrayList<>();
 	private boolean haveExtraFood;
 	private boolean haveOriginFood;
-	private ConfirmPayBack confirmPayBack;
-	private ConfirmPayFront confirmPayFront;
-	private FlightInfoView flightInfo;
 	
 	public ConfirmPayView() {
 
@@ -44,8 +36,6 @@ public class ConfirmPayView {
 		chosenSeat.setPrice(seatChoice.getPrice());
 		chosenSeat.setTicket(seatChoice.getTicketId());
 		chosenSeat.setType(seatChoice.getType());
-		
-		this.seat = chosenSeat;
 		
 		return chosenSeat;
 	}
@@ -109,7 +99,6 @@ public class ConfirmPayView {
 	public List<FoodPurchase> getAllFoodPurchases() {
 		int k = 0;
 		FlightInfoView flightInfo = (FlightInfoView)Application.context.getContext().get("flightInfo");
-		int flightId = ((FlightInfoView)Application.context.getContext().get("flightInfo")).getFlightID();
 		if(isGetOriginFood()) {
 			OriginFood originFood = getOriginFood();
 			//origin food

@@ -8,7 +8,6 @@ import org.junit.Test;
 
 import com.group2022103.flightkiosk.application.Application;
 import com.group2022103.flightkiosk.controller.ConfirmPayController;
-import com.group2022103.flightkiosk.mapper.FoodPurchaseMapper;
 import com.group2022103.flightkiosk.mapper.SeatMapper;
 import com.group2022103.flightkiosk.model.FoodPurchase;
 import com.group2022103.flightkiosk.vo.ConfirmPayBack;
@@ -17,14 +16,11 @@ public class ConfirmPayControllerTest {
 	
 	private ConfirmPayBack req = new ConfirmPayBack();
 	private SeatMapper seatMapper;
-	private FoodPurchaseMapper foodPurchaseMapper;
 	
-	@SuppressWarnings("serial")
 	@Test
 	public void test() {
 		Application.run();
 		seatMapper = (SeatMapper) Application.context.getMapperConfig().getMappers().get(SeatMapper.class);
-		foodPurchaseMapper = (FoodPurchaseMapper) Application.context.getMapperConfig().getMappers().get(FoodPurchaseMapper.class);
 		req.setFoodChoice(new ArrayList<FoodPurchase>() {{
 			add(new FoodPurchase() {{
 				setFood(1);

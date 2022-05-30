@@ -4,8 +4,6 @@ import com.group2022103.flightkiosk.component.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.nio.file.Path;
-import java.util.*;
 
 
 public class OK extends PageFrm {

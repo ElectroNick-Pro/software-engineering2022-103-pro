@@ -1,16 +1,12 @@
 package com.group2022103.flightkiosk.component;
 
 import java.awt.*;
-import java.awt.event.*;
 import java.nio.file.Path;
 import java.util.LinkedList;
 
 import javax.swing.*;
 
-import com.group2022103.flightkiosk.application.Application;
-
 public class BreadCrumbUI extends JPanel{
-    private Path path;
     private LinkedList<HrefButtonUI> crumbs = new LinkedList<>();
     private Path currentPath = null;
     private Path totalPath = Path.of("/Retrieve/Flight Information/Choose Seat/Choose Food/Extra Food/Confirm and Pay");

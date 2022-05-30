@@ -2,9 +2,6 @@ package com.group2022103.flightkiosk.view;
 
 import java.util.ArrayList;
 
-import com.group2022103.flightkiosk.application.Application;
-import com.group2022103.flightkiosk.component.extraFoodUI;
-import com.group2022103.flightkiosk.component.originFoodUI;
 import com.group2022103.flightkiosk.controller.FoodController;
 import com.group2022103.flightkiosk.model.Food;
 import com.group2022103.flightkiosk.vo.*;

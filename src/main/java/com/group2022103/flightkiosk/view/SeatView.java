@@ -3,7 +3,6 @@ package com.group2022103.flightkiosk.view;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.swing.plaf.ColorUIResource;
 
@@ -11,7 +10,6 @@ import com.group2022103.flightkiosk.application.Application;
 import com.group2022103.flightkiosk.component.SeatButtonUI;
 import com.group2022103.flightkiosk.controller.PlaneController;
 import com.group2022103.flightkiosk.controller.SeatController;
-import com.group2022103.flightkiosk.mapper.SeatMapper;
 import com.group2022103.flightkiosk.model.Plane;
 import com.group2022103.flightkiosk.model.Seat;
 import com.group2022103.flightkiosk.vo.PlaneBack;
@@ -22,12 +20,9 @@ import com.group2022103.flightkiosk.vo.SeatFront;
 public class SeatView {
     private int seatId = -1;
     private int ticketId = -1;
-    private SeatButtonUI seatChoiceBtn;
     private List<Seat> seats;
     private SeatFront seatFront;
-    private SeatBack seatBack;
     private String originSeatClass;
-    private FlightInfoView flightInfo;
     private boolean isChosen = false;
     private Plane plane;
     
@@ -43,7 +38,6 @@ public class SeatView {
     	planeIDList.add(planeId+"");
     	PlaneBack planeBack = new PlaneBack();
     	planeBack.setPlaneID(planeIDList);
-    	PlaneView planeView = new PlaneView(planeBack);
     	PlaneFront planeFront = new PlaneController().get(planeBack);
     	Map<Integer,Plane> planes = planeFront.getPlanes();
     	for(Plane value : planes.values()) {
@@ -103,7 +97,6 @@ public class SeatView {
 	}
 
 	public void chooseSeat(SeatButtonUI seatChoiceBtn){
-        this.seatChoiceBtn = seatChoiceBtn;
         seatId = seatChoiceBtn.getSeatId();
         Seat seat = seats.get(0);
         int intervalId = seat.getInterval();
@@ -154,12 +147,11 @@ public class SeatView {
 			        	if(originSeatClass.equals("Normal")) {
 			        		upgrade = true;
 			        	}else {
-			        		SeatFront seatFront2 = new SeatController().get(new SeatBack() {{
+			        		price -= new SeatController().get(new SeatBack() {{
 			        			setIntervalId(intervalId);
 			        			setTicketId(-1);
 			        			setSeatId(-1);
-			        		}});
-			        		price = 0.0;
+			        		}}).getSeats().get(0).getPrice(); 
 			        	}
 			        }
 			        SeatChoice seatChoice = new SeatChoice(intervalId, ticketId, seatId, columnNo, rowNo, seatNo, seatClass, price, type, upgrade);

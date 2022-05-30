@@ -2,13 +2,9 @@ package com.group2022103.flightkiosk.page;
 
 import javax.swing.*;
 import javax.swing.Timer;
-import java.util.*;
 import java.awt.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 import com.group2022103.flightkiosk.application.Application;
-import com.group2022103.flightkiosk.component.RoundBorderUI;
 import com.group2022103.flightkiosk.exception.UnboundPageException;
 
 import java.awt.event.ActionEvent;
@@ -33,10 +29,8 @@ public class PrintFrm extends PageFrm{
 		
 		add(new JLabel("Your boarding pass, tage and ticket are printing...") {{
 			setFont(new Font("Microsoft YaHei UI", Font.BOLD, 15));
-			setForeground(Color.white);
 			setBounds(270,230,400,210);
 		}});
-        // 创建一个进度条
         final JProgressBar progressBar = new JProgressBar() {{
         	setMinimum(MIN_PROGRESS);
         	setMaximum(MAX_PROGRESS);
@@ -45,7 +39,6 @@ public class PrintFrm extends PageFrm{
         	setBackground(Color.white);
         	setForeground(new Color(30, 144, 255));
         	setStringPainted(true);
-//        	setBorder(new RoundBorderUI());
         	setBounds(200,380,550,15);
         }};
         add(progressBar);

@@ -1,13 +1,8 @@
 package com.group2022103.flightkiosk.view;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
 
 import com.group2022103.flightkiosk.model.Airline;
@@ -16,8 +11,6 @@ import com.group2022103.flightkiosk.model.Flight;
 import com.group2022103.flightkiosk.model.Interval;
 import com.group2022103.flightkiosk.model.Plane;
 import com.group2022103.flightkiosk.model.Ticket;
-import com.group2022103.flightkiosk.view.*;
-import com.group2022103.flightkiosk.vo.*;
 
 public class FlightInfoView {
 	private String BookingID, date, airline,flightNo;
@@ -62,7 +55,7 @@ public class FlightInfoView {
 		this.setUserName(this.getNameFormat(customer.getSurname(), customer.getFirstname()));
 		this.setUserID(customer.getCustomerId());
 		if(this.isCheckIn()) {
-			//TODO  
+			
 		};
 	}
 
@@ -112,6 +105,7 @@ public class FlightInfoView {
 	    String timeFormat = sdf.format(departDt);
 	    return timeFormat;
 	}
+	@SuppressWarnings("deprecation")
 	public String setTimeFormat(Date time) {
 		int hour = (int)time.getHours();
 		int minute = (int)time.getMinutes();

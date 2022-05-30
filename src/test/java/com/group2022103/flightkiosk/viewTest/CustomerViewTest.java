@@ -1,6 +1,5 @@
 package com.group2022103.flightkiosk.viewTest;
 import com.group2022103.flightkiosk.application.Application;
-import com.group2022103.flightkiosk.util.CsvUtil;
 import com.group2022103.flightkiosk.view.*;
 import com.group2022103.flightkiosk.vo.*;
 

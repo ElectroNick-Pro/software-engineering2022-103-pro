@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.junit.Test;
 
@@ -12,19 +11,14 @@ import com.group2022103.flightkiosk.application.Application;
 import com.group2022103.flightkiosk.model.Airline;
 import com.group2022103.flightkiosk.model.Customer;
 import com.group2022103.flightkiosk.model.Flight;
-import com.group2022103.flightkiosk.model.FoodPurchase;
 import com.group2022103.flightkiosk.model.Interval;
 import com.group2022103.flightkiosk.model.Plane;
 import com.group2022103.flightkiosk.model.Seat;
 import com.group2022103.flightkiosk.model.Ticket;
 import com.group2022103.flightkiosk.view.ConfirmPayView;
 import com.group2022103.flightkiosk.view.FlightInfoView;
-import com.group2022103.flightkiosk.view.FoodView;
 import com.group2022103.flightkiosk.view.OriginFood;
 import com.group2022103.flightkiosk.view.SeatChoice;
-import com.group2022103.flightkiosk.view.SeatView;
-import com.group2022103.flightkiosk.vo.FoodBack;
-import com.group2022103.flightkiosk.vo.SeatBack;
 
 public class ConfirmPayViewTest {
 	private FlightInfoView flightInfo;

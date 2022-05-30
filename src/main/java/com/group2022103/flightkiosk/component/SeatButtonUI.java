@@ -2,10 +2,7 @@ package com.group2022103.flightkiosk.component;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import com.group2022103.flightkiosk.component.RoundButtonUI;
-import java.awt.*;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -14,14 +11,13 @@ import javax.swing.plaf.ColorUIResource;
 import com.group2022103.flightkiosk.model.Seat;
 import com.group2022103.flightkiosk.view.SeatView;
 import com.group2022103.flightkiosk.vo.SeatBack;
-import com.group2022103.flightkiosk.vo.SeatFront;
 
 public class SeatButtonUI extends JPanel {
     public RoundButtonUI seatChoiceBtn;
     private JLabel choose;
     private int seatId;
     private Seat seat;
-    private SeatButtonUI seatChoice;
+
     private SeatView seatView;
     private boolean isChosen = false;
 
@@ -33,7 +29,6 @@ public class SeatButtonUI extends JPanel {
         	setTicketId(-1);
         	setIntervalId(-1);
         }});
-        this.seatChoice = this;
         this.seat = seatView.getSeatFront().get(0);
         setLayout(null);
         setBounds(position[0], position[1], 40, 40);

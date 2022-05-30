@@ -9,17 +9,13 @@ import org.junit.Test;
 
 import com.group2022103.flightkiosk.application.Application;
 import com.group2022103.flightkiosk.controller.TicketController;
-import com.group2022103.flightkiosk.mapper.TicketMapper;
 import com.group2022103.flightkiosk.vo.TicketBack;
 
 public class TicketControllerTest {
-	
-	private TicketMapper ticketMapper;
-	
+		
 	@Test
 	public void test() {
 		Application.run();
-		ticketMapper = (TicketMapper) Application.context.getMapperConfig().getMappers().get(TicketMapper.class);
 		var para = new TicketBack();
 		para.setDocumentID("098765432112345678");
 		var ret = new TicketController().get(para).getTickets();

@@ -6,7 +6,6 @@ import org.junit.Test;
 
 import com.group2022103.flightkiosk.application.Application;
 import com.group2022103.flightkiosk.mapper.IntervalMapper;
-import com.group2022103.flightkiosk.mapper.TicketMapper;
 
 public class IntervalMapperTest {
 	@Test

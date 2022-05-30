@@ -1,22 +1,16 @@
 package com.group2022103.flightkiosk.page;
 
 import javax.swing.*;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.plaf.ColorUIResource;
-import javax.swing.tree.RowMapper;
 
 import com.group2022103.flightkiosk.application.Application;
 import com.group2022103.flightkiosk.component.*;
-import com.group2022103.flightkiosk.controller.SeatController;
 import com.group2022103.flightkiosk.exception.UnboundPageException;
 import com.group2022103.flightkiosk.model.Seat;
-import com.group2022103.flightkiosk.model.Ticket;
 import com.group2022103.flightkiosk.view.FlightInfoView;
 import com.group2022103.flightkiosk.view.SeatChoice;
 import com.group2022103.flightkiosk.view.SeatView;
 import com.group2022103.flightkiosk.vo.SeatBack;
-import com.group2022103.flightkiosk.vo.SeatFront;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -40,10 +34,8 @@ public class ChooseSeatFrm extends PageFrm{
                                         700,106,165,25,
                                         701,119,165,25};
     private String[] hintText = {"First Class", "Economy Class", "Your choice", "Unable to choose", "First Class Seat", "with Extra Space", "Economy Class Seat", "with Extra Space"};
-    private ColorUIResource[] seatBtnColor = new ColorUIResource[2];
     private int i = 0, j = 0, k = 0, x = 0, y = 0;
     private int frameWidth = 965;
-    private int frameHeight = 550;
     private int seatWidth = frameWidth - 150;
     private int seatHeight = 280;
     private int aisle_space = 30;
@@ -52,13 +44,10 @@ public class ChooseSeatFrm extends PageFrm{
     private int row_spacing;
     private int column_spacing;
     private int btnWidth = 35, btnHeight = 35;
-    private int seatNum;
 
     private int seatId = -1;
     private int intervalId = 1;
-    private int ticketId = -1;
     private SeatButtonUI seatChoiceBtn;
-    private FlightInfoView flightInfo;
     private boolean canChoose = true;
     private String originSeatClass;
     private SeatChoice chosenSeat;
@@ -69,7 +58,6 @@ public class ChooseSeatFrm extends PageFrm{
         Application.context.getPageConfig().bindPage(this.path, this);
         Application.context.getContext().put("curPath",this.path);
         this.intervalId = ((FlightInfoView)Application.context.getContext().get("flightInfo")).getIntervalID();
-        this.ticketId = ((FlightInfoView)Application.context.getContext().get("flightInfo")).getTicketID();
         this.originSeatClass = ((FlightInfoView)Application.context.getContext().get("flightInfo")).getSeatClass();
         if(Application.context.getContext().get("SeatChoice") != null) {
         	chosenSeat = (SeatChoice)Application.context.getContext().get("SeatChoice");
@@ -85,7 +73,6 @@ public class ChooseSeatFrm extends PageFrm{
         System.out.println("Line 81: row length = "+rowLength+" column length = "+columnLength);
         row_spacing = (seatWidth - rowLength * 35 ) / rowLength;
         column_spacing = (seatHeight - columnLength * 35 - aisle_space) / columnLength;
-        seatNum = seatView.getAllSeats().size();
         
         
         add(new BreadCrumbUI(path){{

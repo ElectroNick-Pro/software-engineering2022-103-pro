@@ -13,10 +13,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.nio.file.Path;
-import java.util.*;
 
 public class RetrieveFrm extends PageFrm{
-	private JPanel contentPane,panel1,panel2,panel3;
+	private JPanel panel1,panel2,panel3;
 	private JTextField bookingIdField,surnameField,customerIdField;
 	private Path path = Path.of("/Retrieve");
 	private TicketView ticketView;

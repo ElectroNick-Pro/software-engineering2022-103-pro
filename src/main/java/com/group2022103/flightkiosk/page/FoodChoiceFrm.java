@@ -2,7 +2,6 @@ package com.group2022103.flightkiosk.page;
 import java.awt.*;
 import java.util.ArrayList;
 
-import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -10,13 +9,10 @@ import javax.swing.JScrollPane;
 import javax.swing.WindowConstants;
 
 import com.group2022103.flightkiosk.component.ConfirmButtonUI;
-import com.group2022103.flightkiosk.component.DemoScrollBarUI;
-import com.group2022103.flightkiosk.model.FoodPurchase;
 import com.group2022103.flightkiosk.view.OriginFood;
 
 public class FoodChoiceFrm extends JFrame{
 	private JPanel contentPane;
-	private ArrayList<OriginFood> allFoodChoice;
 	private Double foodPrice = 0.0;
     public FoodChoiceFrm(ArrayList<OriginFood> allFoodChoice){
         super();
@@ -29,7 +25,6 @@ public class FoodChoiceFrm extends JFrame{
 		setResizable(false);
 		setTitle("Food Choice");
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        this.allFoodChoice = allFoodChoice;
 
         add(new JLabel("Details of food choice"){{
             setBounds(26, 25, 360, 42);

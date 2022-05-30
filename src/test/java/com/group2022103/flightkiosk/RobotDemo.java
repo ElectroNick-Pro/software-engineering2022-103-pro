@@ -5,12 +5,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 import com.group2022103.flightkiosk.application.Application;
-import com.group2022103.flightkiosk.component.*;
-import com.group2022103.flightkiosk.page.*;
 
-import java.util.Date;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.awt.Robot;
 
 public class RobotDemo{

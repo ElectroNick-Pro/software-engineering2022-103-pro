@@ -2,7 +2,6 @@ package com.group2022103.flightkiosk.page;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.awt.event.ActionEvent;
 
 import com.group2022103.flightkiosk.application.Application;
@@ -11,15 +10,10 @@ import com.group2022103.flightkiosk.exception.UnboundPageException;
 
 import java.awt.event.ActionListener;
 import java.nio.file.Path;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Notice extends JFrame implements ActionListener {
     private JPanel panel1 = new JPanel(null);
     private Box vBox = Box.createVerticalBox();
-    private String str31 = "· After entering the system";
-    private String str32 = "Please choose the way you want to check in.";
-    private String str3 = "<html><body>" + str31 + "<br>" + str32 + "<body></html>";
 
     // private JPanel contentPane;
     public Notice() {

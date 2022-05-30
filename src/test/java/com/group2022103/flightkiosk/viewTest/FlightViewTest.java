@@ -6,12 +6,10 @@ import java.util.List;
 
 import com.group2022103.flightkiosk.application.Application;
 import com.group2022103.flightkiosk.model.Flight;
-import com.group2022103.flightkiosk.model.Ticket;
 import com.group2022103.flightkiosk.view.*;
 
 import org.junit.Test;
 
-import com.group2022103.flightkiosk.view.TicketView;
 import com.group2022103.flightkiosk.vo.*;
 
 public class FlightViewTest {

@@ -1,23 +1,15 @@
 package com.group2022103.flightkiosk.page;
 
-import javax.swing.*;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-
 import com.group2022103.flightkiosk.application.Application;
 import com.group2022103.flightkiosk.component.*;
-import com.group2022103.flightkiosk.controller.ConfirmPayController;
 import com.group2022103.flightkiosk.exception.UnboundPageException;
 import com.group2022103.flightkiosk.model.FoodPurchase;
 import com.group2022103.flightkiosk.model.Seat;
 import com.group2022103.flightkiosk.view.ConfirmPayView;
 import com.group2022103.flightkiosk.view.FlightInfoView;
 import com.group2022103.flightkiosk.view.OriginFood;
-import com.group2022103.flightkiosk.view.SeatChoice;
 import com.group2022103.flightkiosk.vo.ConfirmPayBack;
-import com.group2022103.flightkiosk.vo.ConfirmPayFront;
 
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.nio.file.Path;
@@ -27,8 +19,6 @@ import java.util.List;
 
 public class ConfirmPayFrm extends PageFrm {
 	private ConfirmPayView confirmPayView;
-	private ConfirmPayBack confirmPayBack;
-	private ConfirmPayFront confirmPayFront;
 	private FlightInfoView flightInfo;
     private Seat chosenSeat;
     private OriginFood originFood;

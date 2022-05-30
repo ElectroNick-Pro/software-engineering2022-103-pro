@@ -1,8 +1,6 @@
 package com.group2022103.flightkiosk.view;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import com.group2022103.flightkiosk.controller.TicketController;

@@ -9,7 +9,6 @@ import com.group2022103.flightkiosk.vo.FoodBack;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.nio.file.Path;
 import java.util.ArrayList;
 
@@ -59,6 +58,7 @@ public class ExtraFoodFrm extends PageFrm{
 			getVerticalScrollBar().setUI(new DemoScrollBarUI()); 
 		}});
 
+		@SuppressWarnings("unchecked")
 		ArrayList<OriginFood> oldChoice = (ArrayList<OriginFood>)Application.context.getContext().get("ExtraFood");
 		if(oldChoice != null){
 			for(int i=0;i<oldChoice.size();i++){
