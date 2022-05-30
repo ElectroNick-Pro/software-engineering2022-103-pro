@@ -2,16 +2,7 @@ package com.group2022103.flightkiosk.viewTest;
 
 import com.group2022103.flightkiosk.application.Application;
 import com.group2022103.flightkiosk.vo.*;
-import com.group2022103.flightkiosk.model.Airline;
-import com.group2022103.flightkiosk.model.Flight;
-import com.group2022103.flightkiosk.model.Interval;
-import com.group2022103.flightkiosk.model.Plane;
 import com.group2022103.flightkiosk.model.Ticket;
-import com.group2022103.flightkiosk.view.AirlineView;
-import com.group2022103.flightkiosk.view.FlightInfoView;
-import com.group2022103.flightkiosk.view.FlightView;
-import com.group2022103.flightkiosk.view.IntervalView;
-import com.group2022103.flightkiosk.view.PlaneView;
 import com.group2022103.flightkiosk.view.TicketView;
 
 import static org.junit.Assert.assertEquals;
